@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import contacts from "./contacts.module.css";
 import React from "react";
+import styles from './contacts.module.css'
 
 const Contacts = () => {
   return (
@@ -17,13 +18,13 @@ const Contacts = () => {
         <Container>efwefwf</Container>
 
         <Container fluid>
-        <Container  >
+        <Container>
             <Container className={contacts.text}>Ваше имя (обязательно)</Container>
-          <input type="text" />
+          <input type="text" className={styles.inp} />
         </Container>
         <Container>
         <Container className={contacts.text}>Ваш адрес Email (обязательно)</Container>
-          <input type="email" />
+          <input type="email" className={styles.inp}/>
         </Container>
         <Container>
         <Container className={contacts.text}>Твое сообщение</Container>
