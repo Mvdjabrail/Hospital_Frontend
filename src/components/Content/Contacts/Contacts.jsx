@@ -1,4 +1,3 @@
-import contacts from "./Contacts.jsx"
 import { Container } from 'react-bootstrap';
 
 import React from 'react';
