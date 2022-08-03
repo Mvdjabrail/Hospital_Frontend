@@ -1,11 +1,11 @@
 .header{
-    /* box-shadow: 0 2px 4px 0 rgb(0 0 0 / 9%);
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 9%);
     z-index: 999;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1vw; */
+    padding: 1vw;
 }
 .headerContent{
     display: flex;
