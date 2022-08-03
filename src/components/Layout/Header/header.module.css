@@ -1,0 +1,60 @@
+.header{
+    /* box-shadow: 0 2px 4px 0 rgb(0 0 0 / 9%);
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1vw; */
+}
+.headerContent{
+    display: flex;
+    justify-content: space-around;
+}
+.logo{
+    width: 15vw;
+}
+.links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 45vw;
+}
+.allLinks{
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Gilroy', Arial, Tahoma;
+    color:#3e4043;
+    cursor: pointer;
+}
+.icons {
+    color: #3695eb;
+}
+.signUp{
+    margin-left: 4vw;
+}
+.timeTable{
+    position: relative;
+    display: inline-block;
+}
+.timePopUp{
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: #3e4043;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: -160%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  box-shadow: 0 2px 4px 2px rgb(0 0 0 / 9%);
+}
+.timeTable:hover .timePopUp{
+    visibility: visible;
+    opacity: 1;
+}
