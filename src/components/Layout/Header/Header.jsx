@@ -100,7 +100,7 @@ const Header = () => {
               style={({ isActive }) =>
                 isActive ? activePageStyle : inActivePageStyle
               }
-              to={"/tele"}
+              to={"/telemed"}
               className={`${styles.shop} ${styles.allLinks}`}
             >
               Телемедецина

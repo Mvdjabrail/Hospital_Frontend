@@ -4,7 +4,7 @@ import SignUpPage from "./components/Content/SigninUpContent/SigninUp";
 import Layout from "./components/Layout/Layout";
 import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
-
+import VideoChat from "./components/Content/TelemedContent/VideoChat";
 
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
           <Route path="/*" element={<Layout />}>
           <Route path="contacts" element={<Contacts/>}></Route> 
           <Route path="shop" element={<Shop />}></Route>
+          <Route path="telemed" element={<VideoChat />} />
           </Route>
           <Route path="signinIn" element={<SignInPage/>}/>
           <Route path="signinUp" element={<SignUpPage/>}/>
