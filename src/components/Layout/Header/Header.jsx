@@ -3,6 +3,7 @@ import { Container, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
 import { ImUserPlus, ImEnter } from "react-icons/im";
+import { RiAdminFill } from "react-icons/ri";
 import { GiExitDoor } from "react-icons/gi";
 import logo from "../../../assets/logo.png";
 import { NavLink } from "react-router-dom";
@@ -21,7 +22,7 @@ import CartComponent from "../../Content/CartContent/CartContent";
 const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.usersReducer.token);
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(false);
 
   const handleclose = () => setOpened(false);
   const handleshow = () => setOpened(true);
@@ -35,8 +36,6 @@ const Header = () => {
   const handleExit = () => {
     dispatch(clearToken());
   };
-
-  console.log(opened)
 
   const activePageStyle = {
     color: "#3695eb",
@@ -117,15 +116,32 @@ const Header = () => {
           </Container>
           {token ? (
             <>
-              <Nav>
-                <Button variant="link" onClick={handleExit} className="mx-1">
-                  {<GiExitDoor size={35} color={"#3695eb"} />}
-                </Button>
-              </Nav>
-              <Nav>
-                <Button onClick={() => setOpened(!opened)} variant="link"  className="mx-1">
-                    <CartComponent handleClose={handleclose} handleShow={handleshow} show={opened} placement={'end'} name={'end'} />
-                </Button>
+              <Nav style={{ alignItems: "center" }}>
+                <Nav>
+                  <Button variant="link" onClick={handleExit} className="mx-1">
+                    {<GiExitDoor size={35} color={"#3695eb"} />}
+                  </Button>
+                </Nav>
+                <Nav>
+                  <Button
+                    onClick={() => setOpened(!opened)}
+                    variant="link"
+                    className="mx-1"
+                  >
+                    <CartComponent
+                      handleclose={handleclose}
+                      handleshow={handleshow}
+                      show={opened}
+                      placement={"end"}
+                      name={"end"}
+                    />
+                  </Button>
+                </Nav>
+                <NavLink to={"/admin"} >
+                  <Button variant="link" className="mx-1">
+                    {<RiAdminFill size={30} color={"#3695eb"} />}
+                  </Button>
+                </NavLink>
               </Nav>
             </>
           ) : (
