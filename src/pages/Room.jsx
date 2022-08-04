@@ -18,7 +18,7 @@ function layout(clientsNumber = 1) {
   );
 
   const rowsNumber = pairs.length;
-  const height = `${100 / rowsNumber}%`;
+  const height = `${80 / rowsNumber}%`;
 
   return pairs
     .map((row, index, arr) => {
@@ -44,7 +44,7 @@ const Room = () => {
   const { clients, provideMediaRef } = useWebRTC(roomID);
   const videoLayout = layout(clients.length);
 
-  console.log(clients);
+  console.log(clients.length);
 
   return (
     <div
