@@ -47,9 +47,9 @@ const AboutUs = () => {
               )
             })}
             <Container className={styles.btnCnt}>
-              <button className={styles.btn}>Отделения</button>
             </Container>
           </Container>
+              <button className={styles.btn}>Отделения</button>
         </Container>
       </Container>
     </Container>
