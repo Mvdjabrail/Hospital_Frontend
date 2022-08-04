@@ -5,6 +5,7 @@ import categoriesReducer from "../features/category/categorySlice";
 import departmentSlice from "../features/departments/depsSlice";
 import callRieqReduser from '../features/callRieq/callRieqSlice'
 
+
 export const store = configureStore({
   reducer: {
     usersReducer: usersReducer,
