@@ -1,43 +1,47 @@
-.header{
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 9%);
-    z-index: 999;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1vw;
+.header {
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 9%);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1vw;
+  background-color: white;
 }
-.headerContent{
-    display: flex;
-    justify-content: space-around;
+.headerContent {
+  display: flex;
+  justify-content: space-around;
 }
-.logo{
-    width: 15vw;
+.logo {
+  width: 12vw;
 }
-.links{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 45vw;
+.links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 45vw;
 }
-.allLinks{
-    text-decoration: none;
-    font-size: 17px;
-    font-family: 'Gilroy', Arial, Tahoma;
-    color:#3e4043;
-    cursor: pointer;
+.allLinks {
+  text-decoration: none;
+  font-size: 17px;
+  font-family: "Gilroy", Arial, Tahoma;
+  color: #3e4043;
+  cursor: pointer;
+  width: auto;
+  margin: 0;
 }
 .icons {
-    color: #3695eb;
+  color: #3695eb;
 }
-.signUp{
-    margin-left: 4vw;
+
+.signUp {
+  margin-right: 1vw;
 }
-.timeTable{
-    position: relative;
-    display: inline-block;
+.timeTable {
+  position: relative;
+  display: inline-block;
 }
-.timePopUp{
+.timePopUp {
   visibility: hidden;
   width: 120px;
   background-color: white;
@@ -54,7 +58,22 @@
   transition: opacity 0.3s;
   box-shadow: 0 2px 4px 2px rgb(0 0 0 / 9%);
 }
-.timeTable:hover .timePopUp{
-    visibility: visible;
-    opacity: 1;
+.timeTable:hover .timePopUp {
+  visibility: visible;
+  opacity: 1;
+}
+.login {
+  display: flex;
+  align-items: center;
+}
+.signIn {
+  margin-left: 2vw;
+}
+
+.signinInUp {
+  align-items: center;
+}
+
+.signinInUp nav {
+  margin-right: 20%;
 }
