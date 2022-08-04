@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
-import AiOutlineUser from "react-icons/ai";
 import { ImUserPlus, ImEnter } from "react-icons/im";
 import { GiExitDoor } from "react-icons/gi";
-import { BiUser } from "react-icons/bi";
 import logo from "../../../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -18,10 +16,15 @@ import {
 import SignInPage from "../../Content/SigninInContent/SigninIn";
 import SignUpPage from "../../Content/SigninUpContent/SigninUp";
 import { useSelector } from "react-redux";
+import CartComponent from "../../Content/CartContent/CartContent";
 
 const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.usersReducer.token);
+  const [opened, setOpened] = useState(false)
+
+  const handleclose = () => setOpened(false);
+  const handleshow = () => setOpened(true);
 
   const handleShowSignin = () => {
     dispatch(showModalSignIn(true));
@@ -32,6 +35,8 @@ const Header = () => {
   const handleExit = () => {
     dispatch(clearToken());
   };
+
+  console.log(opened)
 
   const activePageStyle = {
     color: "#3695eb",
@@ -76,7 +81,7 @@ const Header = () => {
             >
               Отделения
             </NavLink>
-            <Container className={`${styles.timeTable} ${styles.allLinks}`}>
+            <Container className={`${styles.timeTable} ${styles.allLinks} `}>
               Расписание
               <span className={styles.timePopUp}>
                 <Container>placeholder</Container>
@@ -95,22 +100,38 @@ const Header = () => {
               style={({ isActive }) =>
                 isActive ? activePageStyle : inActivePageStyle
               }
+              to={"/telemed"}
+              className={`${styles.shop} ${styles.allLinks}`}
+            >
+              Телемедецина
+            </NavLink>
+            <NavLink
+              style={({ isActive }) =>
+                isActive ? activePageStyle : inActivePageStyle
+              }
               to={"/contacts"}
               className={`${styles.contacts} ${styles.allLinks}`}
             >
               Контакты
             </NavLink>
-            {token ? (
-              <>
-                <Nav>
-                  <Button variant="link" onClick={handleExit} className="mx-1">
-                    {<GiExitDoor size={40} color={"#a80757"} />}
-                  </Button>
-                </Nav>
-              </>
-            ) : (
-              <>
-                {" "}
+          </Container>
+          {token ? (
+            <>
+              <Nav>
+                <Button variant="link" onClick={handleExit} className="mx-1">
+                  {<GiExitDoor size={35} color={"#3695eb"} />}
+                </Button>
+              </Nav>
+              <Nav>
+                <Button onClick={() => setOpened(!opened)} variant="link"  className="mx-1">
+                    <CartComponent handleClose={handleclose} handleShow={handleshow} show={opened} placement={'end'} name={'end'} />
+                </Button>
+              </Nav>
+            </>
+          ) : (
+            <>
+              {" "}
+              <Nav className={styles.signinInUp}>
                 <NavLink
                   to={"sign-in"}
                   className={`${styles.signUp} ${styles.icons}`}
@@ -125,9 +146,9 @@ const Header = () => {
                 >
                   <ImEnter size={28} />
                 </NavLink>
-              </>
-            )}
-          </Container>
+              </Nav>
+            </>
+          )}
         </Container>
       </Container>
       <SignInPage />

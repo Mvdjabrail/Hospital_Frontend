@@ -13,7 +13,7 @@
     justify-content: space-around;
 }
 .logo{
-    width: 13vw;
+    width: 12vw;
 }
 .links{
     display: flex;
@@ -27,9 +27,15 @@
     font-family: 'Gilroy', Arial, Tahoma;
     color:#3e4043;
     cursor: pointer;
+    width: auto;
+    margin: 0;
 }
 .icons {
     color: #3695eb;
+}
+
+.signUp{
+    margin-right: 1vw;
 }
 .timeTable{
     position: relative;
@@ -63,3 +69,13 @@
 .signIn{
     margin-left: 2vw;
 }
+=======
+
+.signinInUp {
+    align-items: center;
+}
+
+.signinInUp nav {
+    margin-right: 20%;
+}
+
