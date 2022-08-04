@@ -6,6 +6,7 @@ import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
 import VideoChat from "./components/Content/TelemedContent/VideoChat";
 import AdminPage from "./pages/AdminPage";
+import AboutUs from "./components/Content/AboutUsContent/AboutUs"
 
 
 function App() {
