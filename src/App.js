@@ -16,10 +16,13 @@ function App() {
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="shop" element={<Shop />}></Route>
           <Route path="telemed" element={<VideoChat />} />
+          <Route path="about-us" element={<AboutUs />} />
           <Route path="admin" element={<AdminPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          </Route>
+          <Route path="signinIn" element={<SignInPage/>}/>
+          <Route path="signinUp" element={<SignUpPage/>}/>
+        </Routes>
+      </BrowserRouter>
   );
 }
 

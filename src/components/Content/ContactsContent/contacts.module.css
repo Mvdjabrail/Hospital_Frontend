@@ -1,12 +1,13 @@
+
 .ContactContainer {
   margin-top: 6vw;
-
 }
 
 .info_bloc {
   display: flex;
   justify-content: space-around;
   margin-top: 3vw;
+  
 }
 
 .inp {
