@@ -100,7 +100,8 @@ const Header = () => {
                 isActive ? activePageStyle : inActivePageStyle
               }
               to={"/telemed"}
-              className={`${styles.shop} ${styles.allLinks}`}
+              className={`${styles.shop} ${styles.allLinks}`
+              }
             >
               Телемедецина
             </NavLink>
@@ -116,6 +117,7 @@ const Header = () => {
           </Container>
           {token ? (
             <>
+
               <Nav style={{ alignItems: "center" }}>
                 <Nav>
                   <Button variant="link" onClick={handleExit} className="mx-1">
@@ -169,6 +171,7 @@ const Header = () => {
       </Container>
       <SignInPage />
       <SignUpPage />
+      <CartComponent />
     </>
   );
 };
