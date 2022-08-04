@@ -6,13 +6,14 @@
     left: 0;
     width: 100%;
     padding: 1vw;
+    background-color: white;
 }
 .headerContent{
     display: flex;
     justify-content: space-around;
 }
 .logo{
-    width: 15vw;
+    width: 13vw;
 }
 .links{
     display: flex;
@@ -29,9 +30,6 @@
 }
 .icons {
     color: #3695eb;
-}
-.signUp{
-    margin-left: 4vw;
 }
 .timeTable{
     position: relative;
@@ -57,4 +55,11 @@
 .timeTable:hover .timePopUp{
     visibility: visible;
     opacity: 1;
+}
+.login{
+    display: flex;
+    align-items: center;
+}
+.signIn{
+    margin-left: 2vw;
 }

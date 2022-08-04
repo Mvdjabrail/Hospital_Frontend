@@ -45,9 +45,9 @@ const Header = () => {
                     <NavLink style={({ isActive }) =>
                     isActive ? activePageStyle : inActivePageStyle
                   } to={'/contacts'} className={`${styles.contacts} ${styles.allLinks}`}>Контакты</NavLink>
-                    <NavLink to={'sign-up'} className={`${styles.signUp} ${styles.icons}`}><ImUserPlus size={28} /></NavLink>
-                    <NavLink to={'sign-in'} className={`${styles.signIn} ${styles.icons}`}><ImEnter size={28}/></NavLink>
                 </Container>
+                    <Container className={styles.login}><NavLink to={'sign-up'} className={`${styles.signUp} ${styles.icons}`}><ImUserPlus size={28} /></NavLink>
+                    <NavLink to={'sign-in'} className={`${styles.signIn} ${styles.icons}`}><ImEnter size={28}/></NavLink></Container>
             </Container>
         </Container>
     );
