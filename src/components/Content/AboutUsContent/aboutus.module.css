@@ -1,0 +1,9 @@
+.welcoming{
+    background: url('https://health-center.vamtam.com/wp-content/uploads/2013/03/about_bg.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: auto;
+    background-attachment: scroll;
+    padding-top: 30px;
+    padding-bottom: 10px
+}
