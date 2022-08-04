@@ -9,15 +9,19 @@ import VideoChat from "./components/Content/TelemedContent/VideoChat";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/*" element={<Layout />}>
-          <Route path="Shop" element={<Shop />}></Route>
-          <Route path="contacts" element={<Contacts />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<Layout />}>
+          <Route path="contacts" element={<Contacts/>}></Route> 
+          <Route path="shop" element={<Shop />}></Route>
           <Route path="telemed" element={<VideoChat />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          </Route>
+          <Route path="signinIn" element={<SignInPage/>}/>
+          <Route path="signinUp" element={<SignUpPage/>}/>
+          
+
+        </Routes>
+      </BrowserRouter>
   );
 }
 
