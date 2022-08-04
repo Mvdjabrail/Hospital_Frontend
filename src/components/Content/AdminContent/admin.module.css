@@ -1,0 +1,88 @@
+.admin_page {
+  width: 35%;
+  margin: 40px ;
+  margin-top: 7.5vw;
+  padding: 0;
+  display: flex;
+}
+
+.admin_page_content {
+  width: 85%;
+}
+.mainNovost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
+}
+
+.divNovost {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.createImage {
+  height: 80px;
+  width: 160px;
+  display: flex;
+  background-color: #eee;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.divImg {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.img2 {
+  margin-top: 45%;
+  width: 260px;
+  height: 200px;
+  margin-left: 20%;
+}
+
+.img1 {
+  width: 150px;
+  height: 150px;
+  padding: 0;
+  cursor: pointer;
+}
+.input_block {
+  margin-top: 120px;
+  width: 30%;
+}
+
+
+.addDiv {
+  padding-left: 25%;
+  display: flex;
+  align-items: center;
+  margin-top: 15%;
+}
+
+.add {
+  font-size: 1.2em;
+  margin-left: 5%;
+  width: 50%;
+}
+
+.polzovatel {
+  text-align: center;
+}
+.polzovatel a {
+  text-decoration: none;
+  color: black;
+}
+
+.btn_send {
+  margin-top: 20px;
+  color: white;
+  background-color: #a80757;
+  border: none;
+  border-radius: 2%;
+  padding: 12px 36px;
+}

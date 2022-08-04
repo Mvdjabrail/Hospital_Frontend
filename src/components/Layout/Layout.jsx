@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Container className={styles.outlet}>
+      <Container fluid className={styles.outlet}>
         <Outlet />
       </Container>
       <Footer />

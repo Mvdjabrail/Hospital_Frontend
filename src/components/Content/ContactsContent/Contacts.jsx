@@ -1,9 +1,38 @@
 import { Container } from "react-bootstrap";
 import contacts from "./contacts.module.css";
-import React from "react";
-import styles from './contacts.module.css'
+import React, { useState } from "react";
+import styles from "./contacts.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { callRieq } from "../../../features/callRieq/callRieqSlice";
+
 
 const Contacts = () => {
+  const dispatch = useDispatch()
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const error = useSelector(state => state.callRieqReduser.error)
+  console.log(error);
+
+  const handleValueName = (e) => {
+    setName(e.target.value)
+  };
+  const handleValueEmail = (e) => {
+    setEmail(e.target.value)
+  };
+  const handleValueMessage = (e) => {
+    setMessage(e.target.value)
+  };
+
+  const handleSubmit = () => {
+dispatch(callRieq({name, email, message}))
+setName("")
+setEmail("")
+setMessage("")
+  };
+
   return (
     <Container className={contacts.ContactContainer}>
       <iframe
@@ -11,30 +40,56 @@ const Contacts = () => {
         width="100%"
         height="500vw"
         allowfullscreen=""
+
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       />
       <Container className={contacts.info_bloc}>
-        <Container>efwefwf</Container>
+        <Container>
+          <Container className={contacts.logo_conteyner}>
+         
+          </Container>
+        </Container>
 
         <Container fluid>
-        <Container>
-            <Container className={contacts.text}>Ваше имя (обязательно)</Container>
-          <input type="text" className={styles.inp} />
+          <Container>
+            <Container className={contacts.text}>
+              Ваше имя (обязательно)
+            </Container>
+            <input
+              type="text"
+              className={styles.inp}
+              value={name}
+              onChange={(e) => handleValueName(e)}
+            />
+          </Container>
+          <Container>
+            <Container className={contacts.text}>
+             Ваш адрес Email (обязательно)
+            </Container>
+            <Container className={contacts.error}>{error}</Container>
+            <input
+              type="email"
+              className={styles.inp}
+              value={email}
+              onChange={(e) => handleValueEmail(e)}
+            />
+          </Container>
+          <Container>
+            <Container className={contacts.text}>Твое сообщение</Container>
+            <textarea
+              className={contacts.textarea_message}
+              value={message}
+              onChange={(e) => handleValueMessage(e)}
+            ></textarea>
+          </Container>
+
+          <Container>
+            <button className={contacts.send} onClick={handleSubmit}>
+              Отправит
+            </button>
+          </Container>
         </Container>
-        <Container>
-        <Container className={contacts.text}>Ваш адрес Email (обязательно)</Container>
-          <input type="email" className={styles.inp}/>
-        </Container>
-        <Container>
-        <Container className={contacts.text}>Твое сообщение</Container>
-        <textarea  className={contacts.textarea_message} ></textarea>
-        </Container>
-        <Container>
-         <button className={contacts.send}>Отправит</button>
-        </Container>
-        </Container>
-      
       </Container>
     </Container>
   );
