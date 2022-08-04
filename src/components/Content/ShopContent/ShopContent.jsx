@@ -163,14 +163,6 @@ const ShopContent = () => {
         ) : (
           <Container className={styles.drugs_block_stroka}>
             {sortDrugs().map((drug, index) => {
-                return (
-                  <Container key={index} className={styles.drug2}>
-                    <Container>
-                      <img
-                        className={styles.drug_img2}
-                        src="https://planetazdorovo.ru/pics/logotype.svg"
-                        alt=""
-                      />
               return (
                 <Container key={index} className={styles.drug2}>
                   <Container>
@@ -194,8 +186,6 @@ const ShopContent = () => {
                         <button className={styles.drug_on_cart}></button>
                       </div>
                     </Container>
-                   </Container>
-                );
                   </Container>
                 </Container>
               );
