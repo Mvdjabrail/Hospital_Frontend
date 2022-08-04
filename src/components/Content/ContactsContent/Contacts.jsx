@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./contacts.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { callRieq } from "../../../features/callRieq/callRieqSlice";
+import logo from "../../../assets/66 (3).png"
 
 
 const Contacts = () => {
@@ -47,7 +48,7 @@ setMessage("")
       <Container className={contacts.info_bloc}>
         <Container>
           <Container className={contacts.logo_conteyner}>
-         
+         <Container><img className={contacts.logo} src={logo} alt="" /></Container>
           </Container>
         </Container>
 
@@ -67,7 +68,6 @@ setMessage("")
             <Container className={contacts.text}>
              Ваш адрес Email (обязательно)
             </Container>
-            <Container className={contacts.error}>{error}</Container>
             <input
               type="email"
               className={styles.inp}
@@ -83,7 +83,7 @@ setMessage("")
               onChange={(e) => handleValueMessage(e)}
             ></textarea>
           </Container>
-
+          <Container className={contacts.error}>{error}</Container>
           <Container>
             <button className={contacts.send} onClick={handleSubmit}>
               Отправит

@@ -1,5 +1,6 @@
 .ContactContainer {
   margin-top: 6vw;
+  margin-bottom: 1vw;
 
 }
 
@@ -56,10 +57,18 @@
 
 .error {
   position: absolute;
-  margin-top: 1.5vw;
-  margin-left: 47vw;
+  margin-top: -0.5vw;
+  margin-left: 30vw;
   color: red;
   width: 24%;
+}
+
+.logo {
+  width: 35vw;
+  height: 10vw;
+  position: absolute;
+  margin-top: 7vw;
+
 }
 
 
