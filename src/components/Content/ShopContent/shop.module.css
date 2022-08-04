@@ -1,7 +1,132 @@
+body {
+  background: #edf0f2;
+}
+
 .apteka_title {
   font-size: 36px;
   line-height: 42px;
   font-family: "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 700;
   margin: 48px 0 24px;
+}
+
+.filter_block {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 14vw;
+  float: left;
+  padding: 10px 5px 10px 0px;
+  margin-top: 5vw;
+  position: absolute;
+}
+
+.filter_recipe_block {
+  width: 13vw;
+  font-family: "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort_block {
+  float: left;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort_block_child1 {
+  float: right;
+  display: flex;
+  justify-content: space-between;
+  width: 25vw;
+}
+
+select {
+  display: block;
+  width: 15vw;
+  height: 36px;
+  background: #fff;
+  background-image: none;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000;
+  border: 1px solid #2ad1c5;
+  border-radius: 24px;
+  padding: 5px 13px 6px 13px;
+  outline: none;
+  box-shadow: none;
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none !important;
+  text-indent: 0.01px;
+  text-overflow: "";
+  cursor: pointer;
+  background-color: transparent !important;
+  background-image: url("https://planetazdorovo.ru/pics/i/icon-toggle.svg");
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+
+.sort_block_child2 {
+  display: flex;
+  justify-content: space-between;
+  width: 5vw;
+}
+
+.sortVid1_off {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  transform: none !important;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background: url("https://planetazdorovo.ru/pics/i/icon-grid1.svg");
+}
+
+.sortVid1_on {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  transform: none !important;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background: url("https://planetazdorovo.ru/pics/i/icon-grid2.svg");
+}
+
+.sortVid2_off {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  transform: none !important;
+  background-color: transparent !important;
+  background-image: url("https://planetazdorovo.ru/pics/i/icon-list1.svg") !important;
+  background-repeat: no-repeat !important;
+  -webkit-transition: -webkit-transform 0.2s ease;
+  -moz-transition: -moz-transform 0.2s ease;
+  transition: transform 0.2s ease;
+}
+
+.sortVid2_on {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  transform: none !important;
+  background-color: transparent !important;
+  background-image: url("https://planetazdorovo.ru/pics/i/icon-list2.svg") !important;
+  background-repeat: no-repeat !important;
+  -webkit-transition: -webkit-transform 0.2s ease;
+  -moz-transition: -moz-transform 0.2s ease;
+  transition: transform 0.2s ease;
+}
+
+.drugs_block {
+  
 }
