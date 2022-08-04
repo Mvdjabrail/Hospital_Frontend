@@ -5,6 +5,7 @@ import Layout from "./components/Layout/Layout";
 import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
 import VideoChat from "./components/Content/TelemedContent/VideoChat";
+import AboutUs from "./components/Content/AboutUsContent/AboutUs";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="contacts" element={<Contacts/>}></Route> 
           <Route path="shop" element={<Shop />}></Route>
           <Route path="telemed" element={<VideoChat />} />
+          <Route path="about-us" element={<AboutUs />} />
           </Route>
           <Route path="signinIn" element={<SignInPage/>}/>
           <Route path="signinUp" element={<SignUpPage/>}/>
