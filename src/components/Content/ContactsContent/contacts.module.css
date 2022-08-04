@@ -1,3 +1,4 @@
+
 .ContactContainer {
   margin-top: 6vw;
   margin-bottom: 1vw;
@@ -8,6 +9,7 @@
   display: flex;
   justify-content: space-around;
   margin-top: 3vw;
+  
 }
 
 .inp {
@@ -59,6 +61,7 @@
   position: absolute;
   margin-top: -0.5vw;
   margin-left: 30vw;
+
   color: red;
   width: 24%;
 }
@@ -70,6 +73,7 @@
   margin-top: 7vw;
 
 }
+
 
 
 

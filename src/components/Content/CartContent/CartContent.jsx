@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+import React from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsCart4 } from "react-icons/bs";
+import { Nav } from 'react-bootstrap';
 
 function CartComponent({ name, ...props }) {
-  console.log(props);
 
   return (
     <>
-      <Button variant="link" onClick={props.handleShow} className="mx-1">
+      <Nav variant="link" onClick={props.handleShow} className="mx-1">
         {<BsCart4 size={30} color={"#3695eb"} />}
-      </Button>
-      <Offcanvas show={props.show} onHide={props.handleClose} {...props}>
+      </Nav>
+      <Offcanvas show={props.show} onHide={props.handleclose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>

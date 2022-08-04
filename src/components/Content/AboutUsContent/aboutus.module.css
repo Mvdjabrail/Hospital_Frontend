@@ -1,3 +1,7 @@
+.title{
+    width: 70%;
+    margin-left: 5.2%;
+}
 .welcoming{
     background: url('https://health-center.vamtam.com/wp-content/uploads/2013/03/about_bg.png');
     background-repeat: no-repeat;
@@ -5,5 +9,39 @@
     background-size: auto;
     background-attachment: scroll;
     padding-top: 30px;
-    padding-bottom: 10px
+    padding-bottom: 10px;
+    height: 28vw;
+    display: flex;
+    flex-direction: column;
+    width: 93%;
+}
+.title2{
+    margin-left: 1%;
+}
+.main{
+    margin-top: 150px;
+}
+.text{
+    width: 65%;
+    margin-right: 100%;
+    font-size: 14px;
+}
+.text2{  
+    width: 65%;
+    margin-right: 100%;
+    font-size: 14px;
+}
+.links{
+    text-decoration: none;
+    color: #3695eb;
+    font-size: 14px;
+}
+.deps{
+    width: 50%;
+    height: 40%;
+    margin-right: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 6%;
 }

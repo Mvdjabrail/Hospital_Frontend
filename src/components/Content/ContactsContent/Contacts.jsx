@@ -7,6 +7,7 @@ import { callRieq } from "../../../features/callRieq/callRieqSlice";
 import logo from "../../../assets/66 (3).png"
 
 
+
 const Contacts = () => {
   const dispatch = useDispatch()
 
@@ -49,6 +50,7 @@ setMessage("")
         <Container>
           <Container className={contacts.logo_conteyner}>
          <Container><img className={contacts.logo} src={logo} alt="" /></Container>
+         
           </Container>
         </Container>
 
@@ -68,6 +70,8 @@ setMessage("")
             <Container className={contacts.text}>
              Ваш адрес Email (обязательно)
             </Container>
+
+            <Container className={contacts.error}>{error}</Container>
             <input
               type="email"
               className={styles.inp}
