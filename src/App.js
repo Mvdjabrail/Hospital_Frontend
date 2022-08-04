@@ -11,14 +11,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/*" element={<Layout />}></Route>
-        <Route path="/Shop" element={<Shop />}></Route>
         <Route path="/*" element={<Layout />}>
-          <Route path="contacts" element={<Contacts />}></Route>
+          <Route path="Shop" element={<Shop />}></Route>
+          <Route path="contacts" element={<Contacts />} />
+          <Route path="telemed" element={<VideoChat />} />
         </Route>
-        <Route path="signinIn" element={<SignInPage />} />
-        <Route path="signinUp" element={<SignUpPage />} />
-        <Route path="/telemed" element={<VideoChat />} />
       </Routes>
     </BrowserRouter>
   );

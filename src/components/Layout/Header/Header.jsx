@@ -97,7 +97,8 @@ const Header = () => {
                 isActive ? activePageStyle : inActivePageStyle
               }
               to={"/telemed"}
-              className={`${styles.shop} ${styles.allLinks}`}
+              className={`${styles.shop} ${styles.allLinks}`
+              }
             >
               Телемедецина
             </NavLink>
@@ -119,8 +120,8 @@ const Header = () => {
                 </Button>
               </Nav>
               <Nav>
-                <Button variant="link"  className="mx-1">
-                    {<BsCart4 size={30} color={"#3695eb"} />}
+                <Button variant="link" className="mx-1">
+                  {<BsCart4 size={30} color={"#3695eb"} />}
                 </Button>
               </Nav>
             </>
@@ -149,7 +150,7 @@ const Header = () => {
       </Container>
       <SignInPage />
       <SignUpPage />
-      <CartComponent/>
+      <CartComponent />
     </>
   );
 };
