@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 
-import useWebRTC, { LOCAL_VIDEO } from "../../hooks/useWebRTC";
+import useWebRTC, { LOCAL_VIDEO } from "../hooks/useWebRTC";
 
 
 function layout(clientsNumber = 1) {

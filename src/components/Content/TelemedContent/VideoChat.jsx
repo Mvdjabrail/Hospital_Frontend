@@ -97,7 +97,7 @@ const VideoChat = () => {
                         <span>{roomID} вебинар ведется</span>
                         <button
                            onClick={() => {
-                              navigate(`../course/room/${roomID}`);
+                              navigate(`room/${roomID}`);
                            }}
                         >
                            Присоединиться
@@ -106,7 +106,7 @@ const VideoChat = () => {
                   ))}
                </ul>
 
-               {user.role === "doctor" && (
+               {user.role !== "doctor" && (
                   <button
                      onClick={() => {
                         navigate(`room/${v4()}`);
