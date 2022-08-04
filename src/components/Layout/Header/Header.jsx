@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
-import AiOutlineUser from "react-icons/ai";
 import { ImUserPlus, ImEnter } from "react-icons/im";
 import { GiExitDoor } from "react-icons/gi";
-import { BsCart4 } from "react-icons/bs";
 import logo from "../../../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -23,6 +21,10 @@ import CartComponent from "../../Content/CartContent/CartContent";
 const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.usersReducer.token);
+  const [opened, setOpened] = useState(false)
+
+  const handleclose = () => setOpened(false);
+  const handleshow = () => setOpened(true);
 
   const handleShowSignin = () => {
     dispatch(showModalSignIn(true));
@@ -33,6 +35,8 @@ const Header = () => {
   const handleExit = () => {
     dispatch(clearToken());
   };
+
+  console.log(opened)
 
   const activePageStyle = {
     color: "#3695eb",
@@ -119,8 +123,8 @@ const Header = () => {
                 </Button>
               </Nav>
               <Nav>
-                <Button variant="link"  className="mx-1">
-                    {<BsCart4 size={30} color={"#3695eb"} />}
+                <Button onClick={() => setOpened(!opened)} variant="link"  className="mx-1">
+                    <CartComponent handleClose={handleclose} handleShow={handleshow} show={opened} placement={'end'} name={'end'} />
                 </Button>
               </Nav>
             </>
@@ -149,7 +153,6 @@ const Header = () => {
       </Container>
       <SignInPage />
       <SignUpPage />
-      <CartComponent/>
     </>
   );
 };

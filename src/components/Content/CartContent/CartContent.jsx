@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { BsCart4 } from "react-icons/bs";
 
 function CartComponent({ name, ...props }) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  console.log(props);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="me-2">
-        {name}
+      <Button variant="link" onClick={props.handleShow} className="mx-1">
+        {<BsCart4 size={30} color={"#3695eb"} />}
       </Button>
-      <Offcanvas show={show} onHide={handleClose} {...props}>
+      <Offcanvas show={props.show} onHide={props.handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
@@ -26,4 +24,4 @@ function CartComponent({ name, ...props }) {
   );
 }
 
-export default CartComponent
+export default CartComponent;
