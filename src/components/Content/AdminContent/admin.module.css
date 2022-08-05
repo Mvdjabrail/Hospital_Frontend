@@ -83,6 +83,10 @@
 .mainUser {
   width: 140%;
 }
+h1{
+    text-align: center;
+    margin-bottom: 2%;
+}
 .loginDiv {
   display: flex;
   width: 100%;
@@ -102,6 +106,7 @@
 }
 
 .addService {
+    padding-top: 4%;
     margin-left: 5%;
     width: 80%;
 }

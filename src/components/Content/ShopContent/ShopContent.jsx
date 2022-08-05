@@ -148,7 +148,6 @@ const ShopContent = () => {
                         <button className={styles.drug_on_cart}></button>
                       </div>
                     </Container>
-                    {/* <Container className={styles.drug_category}>{category.title}</Container> */}
                   </Container>
                 );
               });
@@ -157,7 +156,6 @@ const ShopContent = () => {
         ) : (
           <Container className={styles.drugs_block_stroka}>
             {sortDrugs().map((drug, index) => {
-              return categories.map((category, i) => {
                 return (
                   <Container key={index} className={styles.drug2}>
                     <Container>
@@ -182,10 +180,8 @@ const ShopContent = () => {
                         </div>
                       </Container>
                     </Container>
-                    {/* <Container className={styles.drug_category}>{category.title}</Container> */}
-                  </Container>
+                   </Container>
                 );
-              });
             })}
           </Container>
         )}

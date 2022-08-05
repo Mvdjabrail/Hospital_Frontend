@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   servic: false,
   showService: false,
-  showDrugs: false,
   error: null,
   services: [],
 };
@@ -40,9 +39,7 @@ export const serviceSlice = createSlice({
     showModalServices: (state, action) => {
       state.showService = action.payload;
     },
-    showModalDrugs: (state, action) => {
-      state.showDrugs = action.payload;
-    },
+    
     errorNull: (state) => {
       state.error = null;
     },

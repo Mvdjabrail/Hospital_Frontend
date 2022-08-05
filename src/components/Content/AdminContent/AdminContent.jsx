@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import css from "./admin.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "react-bootstrap";
 import { getUsers } from "../../../features/users/userSlice";
 import { showModalServices } from "../../../features/Services/ServicesSlice";
 import Services from "./Services";
+import { showModalDrugs } from "../../../features/drugs/drugsSlice";
+import Drugs from "./Drugs";
 
 const AdminContent = () => {
   const [photo, setPhoto] = useState("");
@@ -12,10 +13,13 @@ const AdminContent = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.usersReducer.users);
 
-const handleShowServices = () =>{
-    dispatch(showModalServices(true))
-}
+  const handleShowServices = () => {
+    dispatch(showModalServices(true));
+  };
 
+  const handleShowDrugs =() => {
+    dispatch(showModalDrugs(true))
+  }
 
   useEffect(() => {
     dispatch(getUsers());
@@ -89,6 +93,7 @@ const handleShowServices = () =>{
           </div>
         </div>
         <div className={css.mainUser}>
+          <h1>Пользователи</h1>
           {user.map((item) => {
             return (
               <>
@@ -102,15 +107,16 @@ const handleShowServices = () =>{
           })}
         </div>
         <div className={css.addService}>
-            <div>
+          <div>
             <button onClick={handleShowServices}>Добавить услугу</button>
-            </div>
-            <div>
-            <button>Добавить лекарство</button>
-            </div>
+          </div>
+          <div>
+            <button onClick={handleShowDrugs}>Добавить лекарство</button>
+          </div>
         </div>
       </div>
-      <Services/>
+      <Services />
+      <Drugs/>
     </>
   );
 };
