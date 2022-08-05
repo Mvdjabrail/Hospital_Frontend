@@ -8,6 +8,7 @@ import VideoChat from "./components/Content/TelemedContent/VideoChat";
 import AdminPage from "./pages/AdminPage";
 import AboutUsPage from "./pages/AboutUsPage";
 
+import Room from "./pages/Room";
 
 function App() {
   return (
@@ -20,8 +21,7 @@ function App() {
           <Route path="about-us" element={<AboutUsPage />} />
           <Route path="admin" element={<AdminPage />} />
           </Route>
-          <Route path="signinIn" element={<SignInPage/>}/>
-          <Route path="signinUp" element={<SignUpPage/>}/>
+          <Route path="/telemed/room/:id" element={<Room />} />
         </Routes>
       </BrowserRouter>
   );
