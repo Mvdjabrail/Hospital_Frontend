@@ -15,13 +15,13 @@ function App() {
         <Route path="/*" element={<Layout />}>
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="shop" element={<Shop />}></Route>
-          <Route path="telemed" element={<VideoChat />} />
           {/* <Route path="about-us" element={<AboutUs />} /> */}
           <Route path="admin" element={<AdminPage />} />
-          <Route path="telemed/room/:id" element={<Room />} />
           </Route>
           <Route path="signinIn" element={<SignInPage/>}/>
           <Route path="signinUp" element={<SignUpPage/>}/>
+          <Route path="/telemed" element={<VideoChat />} />
+          <Route path="/telemed/room/:id" element={<Room />} />
         </Routes>
       </BrowserRouter>
   );

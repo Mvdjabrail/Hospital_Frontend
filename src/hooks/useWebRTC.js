@@ -11,7 +11,7 @@ export default function useWebRTC(roomID) {
 
   const addNewClient = useCallback(
     (newClient, cb) => {
-      updateClients((list) => {
+      updateClients(list => {
         if (!list.includes(newClient)) {
           return [...list, newClient];
         }
