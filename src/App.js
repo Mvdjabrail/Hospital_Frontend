@@ -15,10 +15,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<Layout />}>
-          <Route path="contacts" element={<Contacts />}></Route>
-          <Route path="shop" element={<Shop />}></Route>
+          <Route path="contacts" element={<Contacts />}>
+          <Route path="shop" element={<Shop />}>
           <Route path="telemed" element={<VideoChat />} />
-          <Route path="about-us" element={<AboutUsPage />} />
+           <Route path="about-us" element={<AboutUs />} /> 
           <Route path="admin" element={<AdminPage />} />
           </Route>
           <Route path="/telemed/room/:id" element={<Room />} />
