@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { div } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./aboutus.module.css";
 import { getDeps } from "../../../features/departments/depsSlice";
