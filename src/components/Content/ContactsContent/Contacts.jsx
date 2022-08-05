@@ -4,35 +4,33 @@ import React, { useState } from "react";
 import styles from "./contacts.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { callRieq } from "../../../features/callRieq/callRieqSlice";
-import logo from "../../../assets/66 (3).png"
-
-
+import logo from "../../../assets/66 (3).png";
 
 const Contacts = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const error = useSelector(state => state.callRieqReduser.error)
+  const error = useSelector((state) => state.callRieqReduser.error);
   console.log(error);
 
   const handleValueName = (e) => {
-    setName(e.target.value)
+    setName(e.target.value);
   };
   const handleValueEmail = (e) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   };
   const handleValueMessage = (e) => {
-    setMessage(e.target.value)
+    setMessage(e.target.value);
   };
 
   const handleSubmit = () => {
-dispatch(callRieq({name, email, message}))
-setName("")
-setEmail("")
-setMessage("")
+    dispatch(callRieq({ name, email, message }));
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   return (
@@ -42,18 +40,17 @@ setMessage("")
         width="100%"
         height="500vw"
         allowfullscreen=""
-
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       />
       <Container className={contacts.info_bloc}>
         <Container>
           <Container className={contacts.logo_conteyner}>
-         <Container><img className={contacts.logo} src={logo} alt="" /></Container>
-         
+            <Container>
+              <img className={contacts.logo} src={logo} alt="" />
+            </Container>
           </Container>
         </Container>
-
         <Container fluid>
           <Container>
             <Container className={contacts.text}>
@@ -68,10 +65,8 @@ setMessage("")
           </Container>
           <Container>
             <Container className={contacts.text}>
-             Ваш адрес Email (обязательно)
+              Ваш адрес Email (обязательно)
             </Container>
-
-            <Container className={contacts.error}>{error}</Container>
             <input
               type="email"
               className={styles.inp}
