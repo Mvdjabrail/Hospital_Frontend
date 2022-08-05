@@ -7,7 +7,7 @@ body {
   line-height: 42px;
   font-family: "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 700;
-  margin: 7.6vw 0 3vw;
+  margin: 5.6vw 0 3vw;
 }
 
 .filter_block {
@@ -187,6 +187,8 @@ select {
   width: 25vw;
   height: 20vw;
   padding-left: 2vw;
+  padding-right: 5vw;
+  border-right: 1px solid #CCC;
 }
 
 .drug_title1 {

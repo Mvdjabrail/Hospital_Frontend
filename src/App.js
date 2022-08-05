@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignInPage from "./components/Content/SigninInContent/SigninIn";
 import SignUpPage from "./components/Content/SigninUpContent/SigninUp";
-import AboutUs from "./components/Content/AboutUsContent/AboutUs"
 import Layout from "./components/Layout/Layout";
 import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
@@ -17,7 +16,7 @@ function App() {
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="shop" element={<Shop />}></Route>
           <Route path="telemed" element={<VideoChat />} />
-          <Route path="about-us" element={<AboutUs />} />
+          {/* <Route path="about-us" element={<AboutUs />} /> */}
           <Route path="admin" element={<AdminPage />} />
           </Route>
           <Route path="signinIn" element={<SignInPage/>}/>
