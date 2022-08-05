@@ -7,7 +7,7 @@
   line-height: 42px;
   font-family: "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 700;
-  margin: 48px 0 24px;
+  margin: 7.6vw 0 3vw;
 }
 
 .filter_block {
@@ -18,6 +18,20 @@
   padding: 10px 5px 10px 0px;
   margin-top: 5vw;
   position: absolute;
+}
+
+.strelka_apteka_on {
+  cursor: pointer;
+  -webkit-transform: rotate(180deg); 
+  writing-mode:vertical-lr;
+  transition: 0.2s;
+}
+
+.strelka_apteka_off {
+  cursor: pointer;
+  -webkit-transform: rotate(0deg); 
+  writing-mode:vertical-lr;
+  transition: 0.2s;
 }
 
 .filter_recipe_block {
@@ -36,13 +50,13 @@
   width: 100vw;
   display: flex;
   justify-content: space-between;
+  margin-left: 5vw;
 }
 
 .sort_block_child1 {
   float: right;
   display: flex;
-  justify-content: space-between;
-  width: 25vw;
+  width: 45vw;
 }
 
 select {
@@ -81,7 +95,7 @@ select {
   width: 5vw;
 }
 
-.sortVid1_off {
+.kubikVid_off {
   cursor: pointer;
   height: 24px;
   width: 24px;
@@ -91,7 +105,7 @@ select {
   background: url("https://planetazdorovo.ru/pics/i/icon-grid1.svg");
 }
 
-.sortVid1_on {
+.kubikVid_on {
   cursor: pointer;
   height: 24px;
   width: 24px;
@@ -101,7 +115,7 @@ select {
   background: url("https://planetazdorovo.ru/pics/i/icon-grid2.svg");
 }
 
-.sortVid2_off {
+.strokaVid_off {
   cursor: pointer;
   height: 24px;
   width: 24px;
@@ -114,7 +128,7 @@ select {
   transition: transform 0.2s ease;
 }
 
-.sortVid2_on {
+.strokaVid_on {
   cursor: pointer;
   height: 24px;
   width: 24px;
@@ -127,6 +141,134 @@ select {
   transition: transform 0.2s ease;
 }
 
-.drugs_block {
-  
+.drugs_block_kubik {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100vw;
+  margin-top: 2.5vw;
+}
+
+.drugs_block_stroka {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2.5vw;
+}
+
+.drug1 {
+  background-color: #fff;
+  width: 20vw;
+  border-radius: 6px;
+  margin-bottom: 2vw;
+}
+
+.drug2 {
+  display: flex;
+  background-color: #fff;
+  width: 66vw;
+  border-radius: 6px;
+  margin-bottom: 2vw;
+  margin-left: 1vw;
+}
+
+.drug2_help {
+  display: flex;
+  flex-direction: column;
+}
+
+.drug_img1 {
+  text-align: center;
+  width: 16vw;
+  height: 15vw;
+}
+
+.drug_img2 {
+  text-align: center;
+  width: 25vw;
+  height: 20vw;
+  padding-left: 2vw;
+}
+
+.drug_title1 {
+  color: gray;
+  font-size: 18px;
+  margin-top: 2vw;
+}
+
+.drug_title2 {
+  color: gray;
+  font-size: 22px;
+  margin-top: 2vw;
+}
+
+.drug_recept1 {
+  margin-top: 1.5vw;
+  margin-bottom: 2vw;
+}
+
+.drug_recept2 {
+  margin-top: 2.5vw;
+  margin-bottom: 2vw;
+  font-size: 18px;
+}
+
+.drug_price1 {
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 1.8vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.drug_price2 {
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 5.5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.on_cart_back {
+  width: 35px;
+  height: 33px;
+  background-color: #2ad1c5;
+  border: 1px solid #2ad1c5;
+  border-radius: 50%;
+  transition: 0.25s;
+}
+
+.on_cart_back:hover {
+  width: 35px;
+  height: 33px;
+  background-color: #fbf71a;
+  border: 1px solid #fbf71a;
+  border-radius: 50%;
+  transition: 0.25s;
+}
+
+.drug_on_cart {
+  margin-top: 15%;
+  margin-left: 15%;
+  width: 22px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-image: url("https://planetazdorovo.ru/pics/i/icon-buy1.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.25s;
+}
+
+.drug_on_cart:hover {
+  margin-top: 15%;
+  margin-left: 15%;
+  width: 22px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-image: url("https://planetazdorovo.ru/pics/i/icon-buy2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.25s;
 }
