@@ -3,8 +3,7 @@ import css from "./admin.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
 import { getUsers } from "../../../features/users/userSlice";
-import { Button } from "bootstrap";
-import { showModalServices } from "../../../features/Services/Services";
+import { showModalServices } from "../../../features/Services/ServicesSlice";
 import Services from "./Services";
 
 const AdminContent = () => {
@@ -35,7 +34,7 @@ const handleShowServices = () =>{
 
   return (
     <>
-      <Container className={css.admin_page}>
+      <div className={css.admin_page}>
         <div className={css.admin_page_content}>
           <div className={css.createImage}>
             <div>
@@ -110,7 +109,7 @@ const handleShowServices = () =>{
             <button>Добавить лекарство</button>
             </div>
         </div>
-      </Container>
+      </div>
       <Services/>
     </>
   );

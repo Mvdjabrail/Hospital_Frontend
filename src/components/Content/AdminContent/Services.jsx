@@ -1,57 +1,62 @@
-import React, { useState } from "react";
+import Container from "@appbaseio/reactivesearch/lib/styles/Container";
+import React, { useEffect, useState } from "react";
 import { Form, Modal, Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  auth,
   errorNull,
-  showModalSignIn,
-} from "../../../features/users/userSlice";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+  postService,
+  showModalServices,
+} from "../../../features/Services/ServicesSlice";
+import css from "./admin2.module.css";
 const Services = () => {
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
+  const [title, setTitle] = useState("");
+  const [discription, setDiscription] = useState("");
+  const [price, setPrice] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [preview, setPreview] = useState("");
   const dispatch = useDispatch();
 
-  const signIn = useSelector((state) => state.usersReducer.signIn);
-  const error = useSelector((state) => state.usersReducer.error);
-  const showSignIn = useSelector((state) => state.usersReducer.showSignIn);
+  const servic = useSelector((state) => state.servicesReducer.servic);
+  const error = useSelector((state) => state.servicesReducer.error);
+  const showService = useSelector((state) => state.servicesReducer.showService);
 
-  const handleChangeLogin = (e) => setLogin(e.target.value);
-  const handleChangePassword = (e) => setPassword(e.target.value);
+  const handleChangeTitle = (e) => setTitle(e.target.value);
+  const handleChangeDiscription = (e) => setDiscription(e.target.value);
+  const handleChangePrice = (e) => setPrice(e.target.value);
 
-  const handleSubmit = () => {
-    dispatch(auth({ login, password }));
-    setLogin("");
-    setPassword("");
-  };
-
-  const handleChecked = (e) => {
-    if (e.target.checked) {
-      setShowPassword(true);
-    } else {
-      setShowPassword(false);
-    }
-  };
-
-  const handleOpenEye = () => {
-    setShowPassword(false);
-  };
-  const handleClouseEye = () => {
-    setShowPassword(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setTitle("");
+    setDiscription("");
+    setPrice("");
+    setPreview("");
+    dispatch(showModalServices(false));
+    const payload = { title, discription, price, photo };
+    dispatch(postService(payload));
   };
 
   const handleClose = () => {
-    dispatch(showModalSignIn(false));
+    dispatch(showModalServices(false));
     dispatch(errorNull());
+    setTitle("");
+    setDiscription("");
   };
   const colorTextError = error ? "red" : "black";
 
+  useEffect(() => {
+    if (photo) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(photo);
+    } else {
+      setPreview(null);
+    }
+  }, [dispatch, photo]);
   return (
     <Modal
-      show={showSignIn}
+      show={showService}
       onHide={handleClose}
       keyboard={true}
       backdrop="static"
@@ -64,12 +69,12 @@ const Services = () => {
             color: "black",
           }}
         >
-          АВТОРИЗАЦИЯ
+          Добавление услуги
         </Modal.Title>
         <Button
           onClick={handleClose}
           style={{
-            color: "#a80757",
+            color: "#3695eb",
             background: "transparent",
             border: "none",
             fontSize: "36px",
@@ -82,13 +87,13 @@ const Services = () => {
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3" controlId="formBasicLogin">
-            <Form.Label style={{ color: "black" }}>Логин</Form.Label>
+            <Form.Label style={{ color: "black" }}>Заголовок</Form.Label>
             <Form.Control
-              type="login"
-              placeholder="Введите логин"
-              onChange={handleChangeLogin}
-              value={login}
-              style={{borderRadius: "0%"}}
+              type="text"
+              placeholder="Введите текст..."
+              onChange={handleChangeTitle}
+              value={title}
+              style={{ borderRadius: "0%" }}
             />
             <span style={{ color: colorTextError, fontSize: 14 }}>
               {" "}
@@ -97,46 +102,32 @@ const Services = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label style={{ color: "black" }}>Пароль</Form.Label>
+            <Form.Label style={{ color: "black" }}>Описание</Form.Label>
             <Form.Control
-              type={showPassword ? "Text" : "Password"}
-              placeholder="Введите пароль"
-              onChange={handleChangePassword}
-              value={password}
-              style={{borderRadius: "0%"}}
+              type="Text"
+              placeholder="Введите текст..."
+              onChange={handleChangeDiscription}
+              value={discription}
+              style={{ borderRadius: "0%" }}
             />
-            {showPassword ? (
-              <div onClick={handleOpenEye}>
-                <AiOutlineEye
-                  onClick={handleChecked}
-                  style={{
-                    position: "absolute",
-                    bottom: "100",
-                    color: "black",
-                    cursor: "pointer",
-                    left: "445",
-                    fontSize: "25px",
-                  }}
-                />
-              </div>
-            ) : (
-              <div onClick={handleClouseEye}>
-                <AiOutlineEyeInvisible
-                  style={{
-                    position: "absolute",
-                    bottom: "100",
-                    color: "black",
-                    cursor: "pointer",
-                    left: "445",
-                    fontSize: "25px",
-                  }}
-                />
-              </div>
-            )}
 
             <span style={{ color: colorTextError, fontSize: 14 }}>
               {" "}
-              (больше 4 и меньше 10 символов){" "}
+              (обязательное поле){" "}
+            </span>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicLogin">
+            <Form.Label style={{ color: "black" }}>Цена</Form.Label>
+            <Form.Control
+              type="Number"
+              placeholder="Введите цену..."
+              onChange={handleChangePrice}
+              value={price}
+              style={{ borderRadius: "0%" }}
+            />
+            <span style={{ color: colorTextError, fontSize: 14 }}>
+              {" "}
+              (обязательное поле){" "}
             </span>
           </Form.Group>
 
@@ -145,27 +136,69 @@ const Services = () => {
               {error && error}{" "}
             </span>
           </Form.Group>
-
-          <Button
-            style={{
-              backgroundColor: "#a80757",
-              border: "none",
-              borderRadius: "2%",
-              padding: "6px 18px",
-            }}
-            variant="primary"
-            type="submit"
-            disabled={!login || password.length < 4}
-            onClick={(e) => handleSubmit(e)}
-          >
-            {signIn ? (
+          <Container className="d-flex justify-content-between align-items-end">
+            <div className={css.createImage}>
               <div>
-                <Spinner size={14} />
+                <input
+                  type="file"
+                  id="upload2"
+                  multiple
+                  hidden
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file && file.type.substring(0, 5) === "image") {
+                      setPhoto(file);
+                    } else {
+                      setPhoto(null);
+                    }
+                  }}
+                />
+                {preview ? (
+                  <>
+                    <div className={css.divImg}>
+                      <img className={css.img2} src={preview} alt="" />
+                    </div>
+                    <label htmlFor="upload2">
+                      <ion-icon name="create-outline"></ion-icon>
+                    </label>{" "}
+                  </>
+                ) : (
+                  <label htmlFor="upload2">
+                    <div className={css.addDiv}>
+                      <img
+                        className={css.img1}
+                        src="https://www.babypillowth.com/images/templates/upload.png"
+                        alt=""
+                      />
+                      <div className={css.add}>Выбрать файл</div>
+                    </div>
+                  </label>
+                )}
               </div>
-            ) : (
-              "Войти"
-            )}
-          </Button>
+            </div>
+
+            <Button
+              style={{
+                backgroundColor: "#3695eb",
+                border: "none",
+                borderRadius: "2%",
+                padding: "6px 18px",
+                height: "40px",
+              }}
+              variant="primary"
+              type="submit"
+              onClick={(e) => handleSubmit(e)}
+            >
+              {servic ? (
+                <div>
+                  <Spinner size={14} />
+                </div>
+              ) : (
+                "Отправить"
+              )}
+            </Button>
+          </Container>
         </Form>
       </Modal.Body>
     </Modal>
