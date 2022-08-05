@@ -3,26 +3,39 @@ import React, { useEffect, useState } from "react";
 import { Form, Modal, Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addDrugs,
   errorNull,
-  postService,
-  showModalServices,
-} from "../../../features/Services/ServicesSlice";
+  showModalDrugs,
+} from "../../../features/drugs/drugsSlice";
 import css from "./admin2.module.css";
-const Services = () => {
+import Col from "react-bootstrap/Col";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Row from "react-bootstrap/Row";
+import { getCategories } from "../../../features/category/categorySlice";
+const Drugs = () => {
   const [title, setTitle] = useState("");
   const [discription, setDiscription] = useState("");
   const [price, setPrice] = useState("");
   const [photo, setPhoto] = useState("");
   const [preview, setPreview] = useState("");
+  const [categor, setCategory] = useState("");
+  const [recept, setRecept] = useState(false);
   const dispatch = useDispatch();
+  const category = useSelector((state) => state.categoriesReducer.categories);
 
-  const servic = useSelector((state) => state.servicesReducer.servic);
-  const error = useSelector((state) => state.servicesReducer.error);
-  const showService = useSelector((state) => state.servicesReducer.showService);
+  const drug = useSelector((state) => state.drugsReducer.drug);
+  const error = useSelector((state) => state.drugsReducer.error);
+  const showDrugs = useSelector((state) => state.drugsReducer.showDrugs);
 
   const handleChangeTitle = (e) => setTitle(e.target.value);
   const handleChangeDiscription = (e) => setDiscription(e.target.value);
   const handleChangePrice = (e) => setPrice(e.target.value);
+
+  const changecategory = (e) => {
+    setCategory(e.target.value);
+  };
+
+  console.log(recept);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,20 +43,20 @@ const Services = () => {
     setDiscription("");
     setPrice("");
     setPreview("");
-    dispatch(showModalServices(false));
-    const payload = { title, discription, price, photo };
-    dispatch(postService(payload));
+    dispatch(showModalDrugs(false));
+    const payload = { title, discription, price, categor, photo, recept };
+    dispatch(addDrugs(payload));
   };
 
   const handleClose = () => {
-    dispatch(showModalServices(false));
+    dispatch(showModalDrugs(false));
     dispatch(errorNull());
     setTitle("");
     setDiscription("");
   };
   const colorTextError = error ? "red" : "black";
-
   useEffect(() => {
+    dispatch(getCategories());
     if (photo) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -56,7 +69,7 @@ const Services = () => {
   }, [dispatch, photo]);
   return (
     <Modal
-      show={showService}
+      show={showDrugs}
       onHide={handleClose}
       keyboard={true}
       backdrop="static"
@@ -69,7 +82,7 @@ const Services = () => {
             color: "black",
           }}
         >
-          Добавление услуги
+          Добавление Лекарство
         </Modal.Title>
         <Button
           onClick={handleClose}
@@ -136,6 +149,41 @@ const Services = () => {
               {error && error}{" "}
             </span>
           </Form.Group>
+          <Container
+            style={{ width: "40%" }}
+            className="d-flex justify-content-between"
+          >
+            <p>Требуется рецепт</p>
+            <Container>
+              <Form.Check
+                style={{ marginBottom: "5%" }}
+                type="switch"
+                id="custom-switch"
+                checked={recept}
+                onChange={() => setRecept(!recept)}
+              />
+            </Container>
+          </Container>
+          <Row className="g-2">
+            <Col md>
+              <FloatingLabel controlId="floatingSelectGrid" label="Категории">
+                <Form.Select
+                  onChange={(e) => changecategory(e)}
+                  value={categor}
+                  aria-label="Floating label select example"
+                >
+                  <option>Выберите категорию лекарства</option>
+                  {category.map((item, index) => {
+                    return (
+                      <option key={index} value={item._id}>
+                        {item.title}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+              </FloatingLabel>
+            </Col>
+          </Row>
           <Container className="d-flex justify-content-between align-items-end">
             <div className={css.createImage}>
               <div>
@@ -190,7 +238,7 @@ const Services = () => {
               type="submit"
               onClick={(e) => handleSubmit(e)}
             >
-              {servic ? (
+              {drug ? (
                 <div>
                   <Spinner size={14} />
                 </div>
@@ -205,4 +253,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Drugs;

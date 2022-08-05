@@ -2,7 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   drugs: [],
+  drug: false,
   loading: false,
+  showDrugs: false,
   error: null,
 };
 
@@ -18,15 +20,22 @@ export const getDrugs = createAsyncThunk("drugs/get", async (_, thunkAPI) => {
 
 export const addDrugs = createAsyncThunk(
   "drug/add",
-  async ({ title, recept, price, category }, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
+      const drug = new FormData();
+
+      drug.append("title", payload.title);
+      drug.append("text", payload.discription);
+      drug.append("price", payload.price);
+      drug.append("category", payload.categor);
+      drug.append("image", payload.photo);
+      drug.append("recept", payload.recept);
+
       const res = await fetch("http://localhost:4000/drug", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, recept, price, category }),
+        body: drug,
       });
+
       const data = await res.json();
 
       if (data.error) {
@@ -67,7 +76,11 @@ export const deleteDrugs = createAsyncThunk(
 export const drugsSlice = createSlice({
   name: "drugs",
   initialState,
-  reducers: {},
+  reducers: {
+    showModalDrugs: (state, action) => {
+      state.showDrugs = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getDrugs.pending, (state, action) => {
       state.loading = true;
@@ -88,7 +101,7 @@ export const drugsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(addDrugs.fulfilled, (state, action) => {
-      state.drugs = action.payload;
+      state.drugs.push(action.payload);
       state.loading = false;
       state.error = null;
     });
@@ -112,5 +125,7 @@ export const drugsSlice = createSlice({
     });
   },
 });
+
+export const { showModalDrugs, errorNull } = drugsSlice.actions;
 
 export default drugsSlice.reducer;
