@@ -13,6 +13,8 @@ import { Form, Modal, Button, Spinner, Container } from "react-bootstrap";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const SignUpPage = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -29,6 +31,8 @@ const SignUpPage = () => {
   const error = useSelector((state) => state.usersReducer.error);
   const key = useSelector((state) => state.usersReducer.key);
 
+  const handleChangeFirstName = (e) => setFirstName(e.target.value);
+  const handleChangeLastName = (e) => setLastName(e.target.value);
   const handleChangeLogin = (e) => setLogin(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
   const handleChangeEmail = (e) => setEmail(e.target.value);
@@ -40,7 +44,8 @@ const SignUpPage = () => {
 
   const handleSubmit = () => {
     if (key.toString() === keyEmail.toString()) {
-      dispatch(addUser({ login, password }));
+      dispatch(addUser({ firstName, lastName, login, password, email }));
+      console.log(email);
       dispatch(showModalSignIn(true));
       setLogin("");
       setPassword("");
@@ -173,6 +178,28 @@ const SignUpPage = () => {
             >
               {infoKey}
             </Container>
+
+            <Form.Group className="mb-3" controlId="formBasicFirstName">
+              <Form.Label style={{ color: "black" }}>Имя</Form.Label>
+              <Form.Control
+                type="firstName"
+                placeholder="Введите имя"
+                onChange={handleChangeFirstName}
+                value={firstName}
+                style={{ borderRadius: "0%" }}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicLastName">
+              <Form.Label style={{ color: "black" }}>Имя</Form.Label>
+              <Form.Control
+                type="lastName"
+                placeholder="Введите фамилию"
+                onChange={handleChangeLastName}
+                value={lastName}
+                style={{ borderRadius: "0%" }}
+              />
+            </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicLogin">
               <Form.Label style={{ color: "black" }}>Логин</Form.Label>

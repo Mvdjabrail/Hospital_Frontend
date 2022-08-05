@@ -14,7 +14,7 @@ const VideoChat = () => {
    const dispatch = useDispatch();
 
    const token = useSelector((state) => state.usersReducer.token);
-   const user = useSelector((state) => state.usersReducer.user);
+   const role = useSelector((state) => state.usersReducer.role);
 
    const [rooms, updateRooms] = useState([]);
    const [openModal, setOpenModal] = useState(!token);
@@ -30,19 +30,23 @@ const VideoChat = () => {
    const handleShowSignin = () => {
       setOpenModal(false);
       dispatch(showModalSignIn(true));
-    };
+   };
 
-    const handleShowSignup = () => {
+   const handleShowSignup = () => {
       setOpenModal(false);
       dispatch(showModalSignUp(true));
-    };
+   };
+
+   const hundleCloseModal = () => {
+      setOpenModal(false);
+   }
 
    const renderSwitch = () => {
-      if (user.role !== "doctor" && rooms.length === 0) {
-         return <h1>Нет начатых вебинаров, если у Вам назначена видеоконсультация, ожидайте</h1>
+      if (role !== "doctor" && rooms.length === 0) {
+         return <h1>Нет начатых вебинаров, если Вам назначена видеоконсультация, ожидайте</h1>
       }
 
-      switch (user?.role) {
+      switch (role) {
          case "user":
             return <h1>Присоединиться к вебинару</h1>;
          case "doctor":
@@ -52,10 +56,6 @@ const VideoChat = () => {
             return <h1>Нет начатых вебинаров</h1>;
       }
    };
-
-   const hundleCloseModal = () => {
-      setOpenModal(false);
-   }
 
    return (
       <div>
@@ -82,7 +82,7 @@ const VideoChat = () => {
                      или
                      <button className={styles.btn} onClick={handleShowSignin}>
                         авторизироваться
-                           </button>
+                     </button>
                   </Container>
                </Modal.Body>
             </Modal>
@@ -97,7 +97,7 @@ const VideoChat = () => {
                         <span>{roomID} вебинар ведется</span>
                         <button
                            onClick={() => {
-                              navigate(`../course/room/${roomID}`);
+                              navigate(`../telemed/room/${roomID}`);
                            }}
                         >
                            Присоединиться
@@ -106,10 +106,10 @@ const VideoChat = () => {
                   ))}
                </ul>
 
-               {user.role === "doctor" && (
+               {role === "doctor" && (
                   <button
                      onClick={() => {
-                        navigate(`room/${v4()}`);
+                        navigate(`../telemed/room/${v4()}`);
                      }}
                   >
                      Начать

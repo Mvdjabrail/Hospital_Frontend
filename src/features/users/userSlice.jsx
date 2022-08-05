@@ -26,14 +26,14 @@ export const getUsers = createAsyncThunk("users/get", async (_, thunkAPI) => {
 
 export const addUser = createAsyncThunk(
   "user/add",
-  async ({ login, password }, thunkAPI) => {
+  async ({email, firstName, lastName, login, password }, thunkAPI) => {
     try {
       const res = await fetch("http://localhost:4000/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ login, password }),
+        body: JSON.stringify({email, firstName, lastName, login, password }),
       });
       const data = await res.json();
 
