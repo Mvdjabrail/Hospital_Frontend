@@ -4,6 +4,7 @@ import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
 import VideoChat from "./components/Content/TelemedContent/VideoChat";
 import AdminPage from "./pages/AdminPage";
+import AboutPage from './pages/AboutUsPage'
 
 import Room from "./pages/Room";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="shop" element={<Shop />}></Route>
           <Route path="telemed" element={<VideoChat />} />
           <Route path="admin" element={<AdminPage />} />
+          <Route path="about-us" element={<AboutPage/>}/>
           </Route>
           <Route path="/telemed/room/:id" element={<Room />} />
         </Routes>

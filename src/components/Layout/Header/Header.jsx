@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button, Nav } from "react-bootstrap";
+import {  Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
 import { ImUserPlus, ImEnter } from "react-icons/im";
@@ -47,12 +47,12 @@ const Header = () => {
   };
   return (
     <>
-      <Container fluid className={styles.header}>
-        <Container className={styles.headerContent}>
+      <div fluid className={styles.header}>
+        <div className={styles.headerContent}>
           <Link to={"/"} className={styles.logoCnt}>
             <img className={styles.logo} alt="logo" src={logo} />
           </Link>
-          <Container className={styles.links}>
+          <div className={styles.links}>
             <NavLink
               style={({ isActive }) =>
                 isActive ? activePageStyle : inActivePageStyle
@@ -80,12 +80,12 @@ const Header = () => {
             >
               Отделения
             </NavLink>
-            <Container className={`${styles.timeTable} ${styles.allLinks} `}>
+            <div className={`${styles.timeTable} ${styles.allLinks} `}>
               Расписание
               <span className={styles.timePopUp}>
-                <Container>placeholder</Container>
+                <div>placeholder</div>
               </span>
-            </Container>
+            </div>
             <NavLink
               style={({ isActive }) =>
                 isActive ? activePageStyle : inActivePageStyle
@@ -114,7 +114,7 @@ const Header = () => {
             >
               Контакты
             </NavLink>
-          </Container>
+          </div>
           {token ? (
             <>
 
@@ -167,8 +167,8 @@ const Header = () => {
               </Nav>
             </>
           )}
-        </Container>
-      </Container>
+        </div>
+      </div>
       <SignInPage />
       <SignUpPage />
       <CartComponent />
