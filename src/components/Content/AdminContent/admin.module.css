@@ -26,7 +26,7 @@
   height: 80px;
   width: 160px;
   display: flex;
-  background-color: #eee;
+  /* background-color: #eee; */
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: center;
@@ -48,9 +48,10 @@
 }
 
 .img1 {
-  width: 150px;
-  height: 150px;
+  width: 280px;
+  height: 250px;
   padding: 0;
+  border-radius: 50%;
   cursor: pointer;
 }
 .input_block {
@@ -79,13 +80,12 @@
   color: black;
 }
 
-
 .mainUser {
   width: 140%;
 }
-h1{
-    text-align: center;
-    margin-bottom: 2%;
+h1 {
+  text-align: center;
+  margin-bottom: 2%;
 }
 .loginDiv {
   display: flex;
@@ -99,23 +99,25 @@ h1{
 }
 
 .btn {
-    color: white;
-    border-radius: 3px;
-    background-color: #3695eb;
-    border: none;
+  color: white;
+  width: 34%;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #3695eb;
+  border: none;
 }
 
 .addService {
-    padding-top: 4%;
-    margin-left: 5%;
-    width: 80%;
+  padding-top: 4%;
+  margin-left: 5%;
+  width: 80%;
 }
 
 .addService button {
-    width: 50%;
-    margin-bottom: 10%;
-    color: white;
-    border-radius: 3px;
-    background-color: #3695eb;
-    border: none;
+  width: 50%;
+  margin-bottom: 10%;
+  color: white;
+  border-radius: 3px;
+  background-color: #3695eb;
+  border: none;
 }

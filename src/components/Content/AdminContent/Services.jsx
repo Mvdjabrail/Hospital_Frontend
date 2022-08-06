@@ -7,7 +7,7 @@ import {
   postService,
   showModalServices,
 } from "../../../features/Services/ServicesSlice";
-import css from "./admin2.module.css";
+import css from "./drugsServices.module.css";
 const Services = () => {
   const [title, setTitle] = useState("");
   const [discription, setDiscription] = useState("");

@@ -7,11 +7,11 @@ import {
   errorNull,
   showModalDrugs,
 } from "../../../features/drugs/drugsSlice";
-import css from "./admin2.module.css";
 import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Row from "react-bootstrap/Row";
 import { getCategories } from "../../../features/category/categorySlice";
+import css from "./drugsServices.module.css";
 const Drugs = () => {
   const [title, setTitle] = useState("");
   const [discription, setDiscription] = useState("");
