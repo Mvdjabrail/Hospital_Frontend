@@ -1,3 +1,4 @@
+
 import { useCallback, useEffect, useRef } from "react";
 import freeice from "freeice";
 import socket from "../socket";
@@ -11,7 +12,7 @@ export default function useWebRTC(roomID) {
 
   const addNewClient = useCallback(
     (newClient, cb) => {
-      updateClients(list => {
+      updateClients((list) => {
         if (!list.includes(newClient)) {
           return [...list, newClient];
         }
@@ -22,6 +23,7 @@ export default function useWebRTC(roomID) {
     [clients, updateClients]
   );
 
+  let localVideoElement;
   const peerConnections = useRef({});
   const localMediaStream = useRef(null);
   const peerMediaElements = useRef({
@@ -173,7 +175,7 @@ export default function useWebRTC(roomID) {
       });
 
       addNewClient(LOCAL_VIDEO, () => {
-        const localVideoElement = peerMediaElements.current[LOCAL_VIDEO];
+         localVideoElement = peerMediaElements.current[LOCAL_VIDEO];
 
         if (localVideoElement) {
           localVideoElement.volume = 0;
@@ -191,8 +193,11 @@ export default function useWebRTC(roomID) {
     peerMediaElements.current[id] = node;
   }, []);
 
+  const stream = localMediaStream.current;
+
   return {
     clients,
     provideMediaRef,
+    stream,
   };
 }

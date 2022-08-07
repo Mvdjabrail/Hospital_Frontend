@@ -25,7 +25,7 @@ const VideoChat = () => {
             updateRooms(rooms);
          }
       });
-   });
+   }, []);
 
    const handleShowSignin = () => {
       setOpenModal(false);
@@ -109,7 +109,8 @@ const VideoChat = () => {
                {role === "doctor" && (
                   <button
                      onClick={() => {
-                        navigate(`../telemed/room/${v4()}`);
+                        const roomID = v4();
+                        navigate(`../telemed/room/${roomID}`);
                      }}
                   >
                      Начать

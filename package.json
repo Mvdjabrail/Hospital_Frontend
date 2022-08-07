@@ -12,6 +12,7 @@
     "express": "^4.18.1",
     "freeice": "^2.2.2",
     "moment": "^2.29.4",
+    "peer": "^0.6.1",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.6.4",
     "react-bootstrap": "^2.4.0",
@@ -26,7 +27,8 @@
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webrtc-adapter": "^8.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -17,11 +17,11 @@ function App() {
           <Route path="shop" element={<Shop />}></Route>
           {/* <Route path="about-us" element={<AboutUs />} /> */}
           <Route path="admin" element={<AdminPage />} />
+          <Route path="telemed" element={<VideoChat/>} />
           </Route>
           <Route path="signinIn" element={<SignInPage/>}/>
           <Route path="signinUp" element={<SignUpPage/>}/>
-          <Route path="/telemed" element={<VideoChat />} />
-          <Route path="/telemed/room/:id" element={<Room />} />
+          <Route path="/telemed/room/:id" element={<Room/>} />
         </Routes>
       </BrowserRouter>
   );
