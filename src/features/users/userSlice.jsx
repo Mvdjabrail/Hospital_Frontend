@@ -26,14 +26,14 @@ export const getUsers = createAsyncThunk("users/get", async (_, thunkAPI) => {
 
 export const addUser = createAsyncThunk(
   "user/add",
-  async ({ login, password }, thunkAPI) => {
+  async ({ email, firstName, lastName, login, password }, thunkAPI) => {
     try {
       const res = await fetch("http://localhost:4000/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ login, password }),
+        body: JSON.stringify({ email, firstName, lastName, login, password }),
       });
       const data = await res.json();
 
@@ -98,39 +98,25 @@ export const getKey = createAsyncThunk("email", async (email, thunkAPI) => {
   }
 });
 
-export const updateUser = createAsyncThunk(
-  "user/update",
-  async ({ firstName, lastName, email, login, password, role }, thunkAPI) => {
-    const state = thunkAPI.getState();
+export const patchUser = createAsyncThunk(
+  "user/patch",
+  async (item, thunkAPI) => {
     try {
-      const res = await fetch(
-        `http://localhost:4000/user/update/:${state.usersReducer.id}`,
-        {
-          method: "UPDATE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${state.usersReducer.token}`,
-          },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            login,
-            password,
-            role,
-          }),
-        }
-      );
+      const res = await fetch(`http://localhost:4000/user/${item._id}`, {
+        method: "PATCH",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ role: item.role === "user" ? "doctor" : "user" }),
+      });
       const data = await res.json();
 
+      console.log(data);
       if (data.error) {
         return thunkAPI.rejectWithValue(data.error);
       } else {
-        localStorage.setItem("token", data.token);
         return thunkAPI.fulfillWithValue(data);
       }
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err);
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -238,17 +224,16 @@ export const usersSlice = createSlice({
         state.error = action.payload;
         state.signIn = false;
       })
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.signIn = false;
-        state.error = null;
-        state.token = action.payload.token;
+      .addCase(patchUser.fulfilled, (state, action) => {
+        state.users = state.users.map((item) => {
+          if (item._id === action.payload.user._id) {
+            return action.payload.user;
+          }
+          return item;
+        });
       })
-      .addCase(updateUser.pending, (state, action) => {
-        state.signIn = true;
-      })
-      .addCase(updateUser.rejected, (state, action) => {
+      .addCase(patchUser.rejected, (state, action) => {
         state.error = action.payload;
-        state.signIn = false;
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.signIn = false;
