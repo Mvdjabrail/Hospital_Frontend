@@ -1,0 +1,24 @@
+.btn {
+    border: 3px solid #3695EB;
+    background: transparent;
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: #3695EB;
+    margin: 0 0 10px 0;
+}
+
+.btn:hover {
+    background: #3695EB;
+    color: white;
+}
+
+.btn {
+    animation-duration: 3s;
+    animation-delay: 5s;
+    animation-iteration-count: infinite;
+}
+
+pulse {
+    animation: 'x 1s';
+    animationName: "Radium.keyframes(pulse, 'pulse')"
+}

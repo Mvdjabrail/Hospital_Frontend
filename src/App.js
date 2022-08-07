@@ -6,7 +6,7 @@ import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
 import VideoChat from "./components/Content/TelemedContent/VideoChat";
 import AdminPage from "./pages/AdminPage";
-import Room from "./pages/Room";
+import Telemed from "./components/Content/TelemedContent/Telemed";
 
 function App() {
   return (
@@ -17,11 +17,11 @@ function App() {
           <Route path="shop" element={<Shop />}></Route>
           {/* <Route path="about-us" element={<AboutUs />} /> */}
           <Route path="admin" element={<AdminPage />} />
-          <Route path="telemed" element={<VideoChat/>} />
+          <Route path="telemed" element={<Telemed/>} />
           </Route>
           <Route path="signinIn" element={<SignInPage/>}/>
           <Route path="signinUp" element={<SignUpPage/>}/>
-          <Route path="/telemed/room/:id" element={<Room/>} />
+          <Route path="/telemed/room/:id" element={<Telemed/>} />
         </Routes>
       </BrowserRouter>
   );

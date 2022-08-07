@@ -1,9 +1,9 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import useWebRTC, { LOCAL_VIDEO } from "./../hooks/useWebRTC";
+import useWebRTC, { LOCAL_VIDEO } from "../../../hooks/useWebRTC";
 import { RiMailSendLine } from "react-icons/ri"
 import { BsCameraVideoFill, BsFillCameraVideoOffFill } from "react-icons/bs";
 import { AiFillAudio, AiOutlineAudioMuted } from "react-icons/ai";
@@ -15,7 +15,6 @@ function layout(clientsNumber = 1) {
          if (index % 2 === 0) {
             acc.push(arr.slice(index, index + 2));
          }
-
          return acc;
       },
       []
@@ -52,14 +51,15 @@ const Room = () => {
    const { clients, provideMediaRef, stream } = useWebRTC(roomID);
    const videoLayout = layout(clients.length);
 
+   const rootNode = useRef();
+
    const [showVideo, setShowVideo] = useState(false);
    const [mute, setMute] = useState(false);
 
    const hundleHideVideo = () => {
       setShowVideo(!showVideo);
-      const enabled = stream.getVideoTracks()[0].enabled;
-      stream.getVideoTracks()[0].enabled = !enabled;
-      console.log(window.localStorage)
+      stream.getVideoTracks()[0].enabled = showVideo;
+      console.log(rootNode.current);
    }
 
    const hundleHideMute = () => {
@@ -119,7 +119,7 @@ const Room = () => {
                   </Button>
                </div>
                <Link to='/'>
-                  <Button>Выход</Button>
+                  <Button >Выход</Button>
                </Link>
                <Button ><MdGroupAdd size={30} color="white" /></Button>
             </Container>
