@@ -1,51 +1,89 @@
 import { Modal, Form } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDeps } from "../../../features/departments/depsSlice";
 
 const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
-    const dispatch = useDispatch();
-    const [selectedService, setSelectedService] = useState();
+   const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch()
-    }, [dispatch]);
+   const deps = useSelector((state) => state.deps.departments);
 
-    const handleClose = () => {
-        setShowModalAppoint(false);
-    }
+   const [selectedService, setSelectedService] = useState();
+   const [selectedDoctor, setSelectedDoctor] = useState();
 
-    const handleSelectServices = (selected) => {
-        setSelectedService(selected);
-    }
+   useEffect(() => {
+      dispatch(getDeps());
+   }, [dispatch]);
 
-    return (
-        <Modal
-            show={showModalAppoint}
-            onHide={handleClose}
-            keyboard={true}
-            backdrop="static"
-            style={{ fontFamily: "Roboto Condensed, sans-serif" }}
-        >
-            <Modal.Header closeButton onClick={handleClose}>
-                <Modal.Title>
-                    Запись на телемедицину
-                </Modal.Title>
-            </Modal.Header>
+   const handleClose = () => {
+      setShowModalAppoint(false);
+   }
 
-            <Modal.Body>
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicLogin">
-                        <Form.Label style={{ color: "black" }}>Выберите услугу</Form.Label>
-                        <Form.Select onChange={(e) => handleSelectServices(e.target.value)}
-                            value={selectedService}>
-                            <option value="user"> user </option>
-                            <option value="admin"> admin </option>
-                            <option value="author"> author </option>
-                        </Form.Select>
-                    </Form.Group>
-                </Form>
-            </Modal.Body>
-        </Modal>
-    )
+   const handleSelectServices = (selected) => {
+      setSelectedService(selected);
+   }
+
+   const handleSelectDoctor = (selected) => {
+      setSelectedDoctor(selected);
+   }
+
+   return (
+      <Modal
+         show={showModalAppoint}
+         onHide={handleClose}
+         keyboard={true}
+         backdrop="static"
+         style={{ fontFamily: "Roboto Condensed, sans-serif" }}
+      >
+         <Modal.Header closeButton onClick={handleClose}>
+            <Modal.Title>
+               Запись на телемедицину
+            </Modal.Title>
+         </Modal.Header>
+
+         <Modal.Body>
+            <Form>
+               <Form.Group className="mb-3" controlId="formBasicServices">
+                  <Form.Label style={{ color: "black" }}>Выберите услугу</Form.Label>
+                  <Form.Select onChange={(e) => handleSelectServices(e.target.value)}
+                     value={selectedService}>
+                     <option />
+                     {deps.map((dep, index) => {
+                        return (
+                           <option style={index % 2 === 0 ?
+                              { fontSize: "18px", background: "white" }
+                              :
+                              { fontSize: "18px", background: "#7bbbf8" }}
+                              value={dep.title}>
+                              {dep.title}
+                           </option>
+                        )
+                     })}
+                  </Form.Select>
+               </Form.Group>
+
+               <Form.Group className="mb-3" controlId="formBasicDoctor">
+                  <Form.Label style={{ color: "black" }}>Выберите врача</Form.Label>
+                  <Form.Select onChange={(e) => handleSelectDoctor(e.target.value)}
+                     value={selectedDoctor}>
+                     <option />
+                     {deps.map((dep, index) => {
+                        return (
+                           <option style={index % 2 === 0 ?
+                              { fontSize: "18px", background: "white" }
+                              :
+                              { fontSize: "18px", background: "#7bbbf8" }
+                           }
+                              value={dep.title}>
+                              {dep.title}
+                           </option>
+                        )
+                     })}
+                  </Form.Select>
+               </Form.Group>
+            </Form>
+         </Modal.Body>
+      </Modal>
+   )
 };
 export default ModalAppointments;

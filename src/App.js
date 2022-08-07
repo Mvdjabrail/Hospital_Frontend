@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
-import Telemed from "./components/Content/TelemedContent/Telemed";
+import Telemed from "./pages/TelemedPage";
 import AdminPage from "./pages/AdminPage";
 import AboutPage from './pages/AboutUsPage'
 

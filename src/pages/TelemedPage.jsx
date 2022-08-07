@@ -1,4 +1,3 @@
-import react from 'react';
 import Telemed from '../components/Content/TelemedContent/Telemed';
 
 const TelemedPage = () => {

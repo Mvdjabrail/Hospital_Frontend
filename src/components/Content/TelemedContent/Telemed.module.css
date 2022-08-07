@@ -12,13 +12,12 @@
     color: white;
 }
 
-.btn {
-    animation-duration: 3s;
-    animation-delay: 5s;
-    animation-iteration-count: infinite;
+span {
+    font-weight: bold;
 }
 
-pulse {
-    animation: 'x 1s';
-    animationName: "Radium.keyframes(pulse, 'pulse')"
+h2 {
+    text-align: center;
+    color: #3695EB;
+    padding: 20px 0 10px 0;
 }
