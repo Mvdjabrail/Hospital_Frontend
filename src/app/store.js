@@ -5,6 +5,7 @@ import categoriesReducer from "../features/category/categorySlice";
 import departmentSlice from "../features/departments/depsSlice";
 import callRieqReduser from '../features/callRieq/callRieqSlice'
 import serviceSlice from "../features/Services/ServicesSlice";
+import cartSlice from "../features/Cart/cartSlice";
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         servicesReducer: serviceSlice,
         drugsReducer: drugsReducer,
         categoriesReducer: categoriesReducer,
+        cartReducer: cartSlice
     }
 });
 
