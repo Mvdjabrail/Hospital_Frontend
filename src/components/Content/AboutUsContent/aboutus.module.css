@@ -3,7 +3,7 @@ body {
 }
 .title {
   color: #526371;
-  margin-left: 13.5%;
+  margin-right: 66.5%;
 }
 .line{
     width: 72%;
@@ -79,9 +79,10 @@ li:before {
   height: 30px;
   margin-left: 50%;
   margin-top: 17.4%;
+  background-color: transparent;
 }
 .btn:hover {
-  color: #edf0f2;
+  color: white;
   background-color: #3695eb;
 }
 .splitter {
