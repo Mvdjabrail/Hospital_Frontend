@@ -4,15 +4,17 @@ import { getUsers } from "../../../features/users/userSlice";
 import css from "./admin.module.css";
 
 const UserContent = () => {
+  const dispatch = useDispatch();
+
   const [photo, setPhoto] = useState("");
   const [preview, setPreview] = useState("");
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.usersReducer.users);
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
+
   useEffect(() => {
     if (photo) {
       const reader = new FileReader();
@@ -24,6 +26,7 @@ const UserContent = () => {
       setPreview(null);
     }
   }, [dispatch, photo]);
+
   return (
     <>
       <div className={css.admin_page}>
@@ -68,22 +71,55 @@ const UserContent = () => {
             </div>
           </div>
           <div className={css.input_block}>
+            <div
+              style={{
+                fontSize: "30px",
+                fontWeight: "bold",
+                marginBottom: "15%",
+                marginTop: "10%",
+              }}
+            >
+              Account
+            </div>
             {user.map((user) => {
               return (
                 <>
                   {user._id === userId && (
                     <>
-                      <div>
-                        <div>Имя:{user.firstName}</div>
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div
+                          className={css.prof}
+                          style={{ marginBottom: "2%" }}
+                        >
+                          Имя:
+                        </div>
+                        <div>{user.firstName}</div>
                       </div>
-                      <div>
-                        <div>Фамилия:{user.lastName}</div>
+                      <hr />
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div
+                          className={css.prof}
+                          style={{ marginBottom: "2%" }}
+                        >
+                          Фамилия:
+                        </div>
+                        <div>{user.lastName}</div>
                       </div>
-                      <div>
-                        <div>Почта:{user.email}</div>
+                      <hr />
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div
+                          className={css.prof}
+                          style={{ marginBottom: "2%" }}
+                        >
+                          Почта:
+                        </div>
+                        <div>{user.email}</div>
+                        <hr />
                       </div>
-                      <div>
-                        <div>Баланс:{user.total}₽</div>
+                      <hr />
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div className={css.prof}>Баланс:</div>
+                        <div>{user.total}₽</div>
                       </div>
                     </>
                   )}
