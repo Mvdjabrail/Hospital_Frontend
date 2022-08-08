@@ -1,6 +1,9 @@
 body{
     margin: 0;
 }
+.rightFlang{
+  margin-top: 1%;
+}
 .mainFooter {
     background: #506171;
     bottom: 0;

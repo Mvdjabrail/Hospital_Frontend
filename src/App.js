@@ -7,6 +7,7 @@ import AdminPage from "./pages/AdminPage";
 import AboutPage from './pages/AboutUsPage'
 import Room from "./pages/Room";
 import User from "./components/Content/UserContent/User";
+import HomePage from "./pages/HomePage";
 
 const role = localStorage.getItem("role");
 
@@ -17,17 +18,18 @@ function App() {
       <Routes>
         <Route path="/*" element={<Layout />}>
           <Route path="contacts" element={<Contacts />}></Route>
-          <Route path="shop" element={<Shop />}></Route>
+          <Route path="shop" element={<Shop />} />
           <Route path="telemed" element={<VideoChat />} />
+          <Route path="" element={<HomePage />} />
           {role === 'admin' &&
             <Route path="admin" element={<AdminPage />}
             /> || role === 'user' && <Route path="user" element={<User />} />
           }
           <Route path="about-us" element={<AboutPage />} />
-        </Route>
+        </Route >
         <Route path="/telemed/room/:id" element={<Room />} />
-      </Routes>
-    </BrowserRouter>
+      </Routes >
+    </BrowserRouter >
   );
 }
 
