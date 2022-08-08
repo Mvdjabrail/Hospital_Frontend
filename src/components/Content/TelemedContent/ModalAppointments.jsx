@@ -2,6 +2,7 @@ import { Modal, Form } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getDeps } from "../../../features/departments/depsSlice";
+import styles from "./Telemed.module.css";
 
 const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
    const dispatch = useDispatch();
@@ -9,7 +10,10 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
    const deps = useSelector((state) => state.deps.departments);
 
    const [selectedService, setSelectedService] = useState();
-   const [selectedDoctor, setSelectedDoctor] = useState();
+
+   useEffect(() => {
+      dispatch(getDeps());
+   }, [dispatch]);
 
    useEffect(() => {
       dispatch(getDeps());
@@ -21,10 +25,6 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
 
    const handleSelectServices = (selected) => {
       setSelectedService(selected);
-   }
-
-   const handleSelectDoctor = (selected) => {
-      setSelectedDoctor(selected);
    }
 
    return (
@@ -63,23 +63,7 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
                </Form.Group>
 
                <Form.Group className="mb-3" controlId="formBasicDoctor">
-                  <Form.Label style={{ color: "black" }}>Выберите врача</Form.Label>
-                  <Form.Select onChange={(e) => handleSelectDoctor(e.target.value)}
-                     value={selectedDoctor}>
-                     <option />
-                     {deps.map((dep, index) => {
-                        return (
-                           <option style={index % 2 === 0 ?
-                              { fontSize: "18px", background: "white" }
-                              :
-                              { fontSize: "18px", background: "#7bbbf8" }
-                           }
-                              value={dep.title}>
-                              {dep.title}
-                           </option>
-                        )
-                     })}
-                  </Form.Select>
+                  <button className={styles.btn}>ЗАПИСАТЬСЯ</button>
                </Form.Group>
             </Form>
          </Modal.Body>

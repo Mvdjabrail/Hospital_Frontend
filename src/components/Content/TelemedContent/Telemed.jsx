@@ -9,7 +9,6 @@ import telemed2 from "../../../assets/telemed2.jpg";
 import telemed3 from "../../../assets/telemed3.jpg";
 import telemed4 from "../../../assets/telemed4.jpg";
 
-
 const Pulse = styled.div`animation: 5s ${keyframes`${pulse}`} infinite`;
 
 const Telemed = () => {
@@ -22,7 +21,7 @@ const Telemed = () => {
     return (
         <Container>
             <Container style={{ height: "8vh" }}></Container>
-            <Container >
+            <Container className="d-flex justify-content-end">
                 <Pulse>
                     <button onClick={handleOpenModal} className={styles.btn} >
                         ЗАПИСАТЬСЯ
@@ -48,11 +47,11 @@ const Telemed = () => {
                         поездку в медицинский центр.
                     </p>
 
-                    <Container className="d-flex flex-wrap justify-content-between">
-                        <img src={telemed1} alt="fotoTelemed" style={{width: "550px", height: "450px"}}/>
-                        <img src={telemed2} alt="fotoTelemed" style={{width: "550px", height: "450px"}}/>
-                        <img src={telemed3} alt="fotoTelemed" style={{width: "550px", height: "450px"}}/>
-                        <img src={telemed4} alt="fotoTelemed" style={{width: "550px", height: "450px"}}/>
+                    <Container className="d-flex flex-wrap justify-content-around">
+                        <img src={telemed1} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
+                        <img src={telemed2} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
+                        <img src={telemed3} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
+                        <img src={telemed4} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
                     </Container>
                 </Container>
             </Container>
