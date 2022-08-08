@@ -18,6 +18,8 @@ import SignInPage from "../../Content/SigninInContent/SigninIn";
 import SignUpPage from "../../Content/SigninUpContent/SigninUp";
 import { useSelector } from "react-redux";
 import CartComponent from "../../Content/CartContent/CartContent";
+import { BsCart4 } from "react-icons/bs";
+
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -129,15 +131,11 @@ const Header = () => {
                     variant="link"
                     className="mx-1"
                   >
-                    <CartComponent
-                      handleclose={handleclose}
-                      handleshow={handleshow}
-                      show={opened}
-                      placement={"end"}
-                      name={"end"}
-                    />
+                            {<BsCart4 size={30} color={"#3695eb"} />}
+
                   </Button>
                 </Nav>
+                   
 
                 <NavLink
                   to={
@@ -176,7 +174,14 @@ const Header = () => {
       </div>
       <SignInPage />
       <SignUpPage />
-      <CartComponent />
+      <CartComponent
+                      handleclose={handleclose}
+                      handleshow={handleshow}
+                      show={opened}
+                      placement={"end"}
+                      name={"end"}
+
+                    />
     </>
   );
 };

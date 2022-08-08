@@ -7,6 +7,7 @@ import styles from "./shop.module.css";
 import { addCart, getCart } from "../../../features/Cart/cartSlice";
 import { getUsers } from "../../../features/users/userSlice";
 
+
 const ShopContent = () => {
   const dispatch = useDispatch();
 
