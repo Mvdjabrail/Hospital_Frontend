@@ -1,6 +1,6 @@
- body {
+body {
   background: #edf0f2;
-} 
+}
 
 .apteka_title {
   font-size: 36px;
@@ -17,21 +17,22 @@
   float: left;
   padding: 10px 5px 10px 0px;
   margin-top: 5vw;
+  margin-left: -5%;
   position: absolute;
 }
 
 .strelka_apteka_on {
   cursor: pointer;
-  -webkit-transform: rotate(180deg); 
-  writing-mode:vertical-lr;
-  transition: 0.2s;
+  -webkit-transform: rotate(180deg);
+  writing-mode: vertical-lr;
+  transition: 0.35s;
 }
 
 .strelka_apteka_off {
   cursor: pointer;
-  -webkit-transform: rotate(0deg); 
-  writing-mode:vertical-lr;
-  transition: 0.2s;
+  -webkit-transform: rotate(0deg);
+  writing-mode: vertical-lr;
+  transition: 0.35s;
 }
 
 .filter_recipe_block {
@@ -188,7 +189,7 @@ select {
   height: 20vw;
   padding-left: 2vw;
   padding-right: 5vw;
-  border-right: 1px solid #CCC;
+  border-right: 1px solid #ccc;
 }
 
 .drug_title1 {
@@ -229,7 +230,6 @@ select {
   display: flex;
   justify-content: space-between;
 }
-
 
 .on_cart_back {
   width: 35px;
@@ -299,4 +299,9 @@ select {
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.25s;
+}
+
+.radio1 {
+  width: 14px;
+  height: 14px;
 }

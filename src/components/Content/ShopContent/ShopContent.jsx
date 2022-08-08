@@ -71,7 +71,6 @@ const ShopContent = () => {
     dispatch(getCart());
     dispatch(getCategories());
   }, [dispatch]);
-
   return (
     <>
       <Container className={styles.shop}>
@@ -160,8 +159,9 @@ const ShopContent = () => {
                             ) {
                               return (
                                 <div className={styles.on_cart_back2}>
-                                  <button className={styles.drug_on_cart2}>
-                                  </button>
+                                  <button
+                                    className={styles.drug_on_cart2}
+                                  ></button>
                                 </div>
                               );
                             }
