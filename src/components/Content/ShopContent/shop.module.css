@@ -249,6 +249,19 @@ select {
   transition: 0.25s;
 }
 
+.drug_on_cart2 {
+  margin-top: 15%;
+  margin-left: 15%;
+  width: 22px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-image: url("https://papik.pro/uploads/posts/2021-12/thumbs/1639194292_48-papik-pro-p-galochka-klipart-50.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.25s;
+}
+
 .drug_on_cart {
   margin-top: 15%;
   margin-left: 15%;

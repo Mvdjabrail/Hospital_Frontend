@@ -156,6 +156,14 @@ const ShopContent = () => {
                         <div className={styles.on_cart_back}>
                           {cart.map((cart) => {
                             if (cart.user === userId) {
+                              if (
+                                cart.products.find((item) => item === drug._id)
+                              ) {
+                                return <button
+                                
+                                className={styles.drug_on_cart}
+                              ></button>
+                              }
                               return (
                                 <button
                                   onClick={() =>
@@ -176,40 +184,40 @@ const ShopContent = () => {
                 });
               })}
             </Container>
-          ) : (
-            <Container className={styles.drugs_block_stroka}>
-              {sortDrugs().map((drug, index) => {
-                return categories.map((category, i) => {
-                  return (
-                    <Container key={index} className={styles.drug2}>
-                      <Container>
-                        <img
-                          className={styles.drug_img2}
-                          src="https://planetazdorovo.ru/pics/logotype.svg"
-                          alt=""
-                        />
-                      </Container>
-                      <Container className={styles.drug2_help}>
-                        <Container className={styles.drug_title2}>
-                          {drug.title}
-                        </Container>
-                        <Container className={styles.drug_recept2}>
-                          Рецепт:{"    "}
-                          {drug.recept === true ? "Требуется" : "Не требуется"}
-                        </Container>
-                        <Container className={styles.drug_price2}>
-                          от {drug.price} ₽{" "}
-                          <div className={styles.on_cart_back}>
-                            <button className={styles.drug_on_cart}></button>
-                          </div>
-                        </Container>
-                      </Container>
-                      {/* <Container className={styles.drug_category}>{category.title}</Container> */}
-                    </Container>
-                  );
-                });
-              })}
-            </Container>
+          ) : (''
+            // <Container className={styles.drugs_block_stroka}>
+            //   {sortDrugs().map((drug, index) => {
+            //     return categories.map((category, i) => {
+            //       return (
+            //         <Container key={index} className={styles.drug2}>
+            //           <Container>
+            //             <img
+            //               className={styles.drug_img2}
+            //               src="https://planetazdorovo.ru/pics/logotype.svg"
+            //               alt=""
+            //             />
+            //           </Container>
+            //           <Container className={styles.drug2_help}>
+            //             <Container className={styles.drug_title2}>
+            //               {drug.title}
+            //             </Container>
+            //             <Container className={styles.drug_recept2}>
+            //               Рецепт:{"    "}
+            //               {drug.recept === true ? "Требуется" : "Не требуется"}
+            //             </Container>
+            //             <Container className={styles.drug_price2}>
+            //               от {drug.price} ₽{" "}
+            //               <div className={styles.on_cart_back}>
+            //                 <button className={styles.drug_on_cart}></button>
+            //               </div>
+            //             </Container>
+            //           </Container>
+            //           {/* <Container className={styles.drug_category}>{category.title}</Container> */}
+            //         </Container>
+            //       );
+            //     });
+            //   })}
+            // </Container>
           )}
         </Container>
       </Container>
