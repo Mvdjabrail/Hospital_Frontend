@@ -123,29 +123,32 @@ const Header = () => {
                     {<GiExitDoor size={35} color={"#3695eb"} />}
                   </Button>
                 </Nav>
-                  <Nav>
-                    <Button
-                      onClick={() => setOpened(!opened)}
-                      variant="link"
-                      className="mx-1"
-                    >
-                      <CartComponent
-                        handleclose={handleclose}
-                        handleshow={handleshow}
-                        show={opened}
-                        placement={"end"}
-                        name={"end"}
-                      />
-                    </Button>
-                  </Nav>
-                  {role === "admin" && (
+                <Nav>
+                  <Button
+                    onClick={() => setOpened(!opened)}
+                    variant="link"
+                    className="mx-1"
+                  >
+                    <CartComponent
+                      handleclose={handleclose}
+                      handleshow={handleshow}
+                      show={opened}
+                      placement={"end"}
+                      name={"end"}
+                    />
+                  </Button>
+                </Nav>
 
-                <NavLink to={"/admin"}>
+                <NavLink
+                  to={
+                    (role === "admin" && "/admin") ||
+                    (role === "user" && "/user")
+                  }
+                >
                   <Button variant="link" className="mx-1">
                     {<RiAdminFill size={30} color={"#3695eb"} />}
                   </Button>
                 </NavLink>
-                )}
               </Nav>
             </>
           ) : (

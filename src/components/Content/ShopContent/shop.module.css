@@ -240,6 +240,7 @@ select {
   transition: 0.25s;
 }
 
+
 .on_cart_back:hover {
   width: 35px;
   height: 33px;
@@ -247,6 +248,31 @@ select {
   border: 1px solid #fbf71a;
   border-radius: 50%;
   transition: 0.25s;
+}
+
+.on_cart_back2 {
+  width: 35px;
+  height: 33px;
+  background-color: red;
+  border: 1px solid #2ad1c5;
+  border-radius: 50%;
+  transition: 0.25s;
+  cursor: none;
+
+}
+
+.drug_on_cart2 {
+  margin-top: 15%;
+  margin-left: 15%;
+  width: 22px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-image: url("https://planetazdorovo.ru/pics/i/icon-buy1.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.25s;
+  cursor: none;
 }
 
 .drug_on_cart {
