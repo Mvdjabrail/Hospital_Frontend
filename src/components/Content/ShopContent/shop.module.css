@@ -1,6 +1,6 @@
- body {
+body {
   background: #edf0f2;
-} 
+}
 
 .apteka_title {
   font-size: 36px;
@@ -17,21 +17,22 @@
   float: left;
   padding: 10px 5px 10px 0px;
   margin-top: 5vw;
+  margin-left: -5%;
   position: absolute;
 }
 
 .strelka_apteka_on {
   cursor: pointer;
-  -webkit-transform: rotate(180deg); 
-  writing-mode:vertical-lr;
-  transition: 0.2s;
+  -webkit-transform: rotate(180deg);
+  writing-mode: vertical-lr;
+  transition: 0.35s;
 }
 
 .strelka_apteka_off {
   cursor: pointer;
-  -webkit-transform: rotate(0deg); 
-  writing-mode:vertical-lr;
-  transition: 0.2s;
+  -webkit-transform: rotate(0deg);
+  writing-mode: vertical-lr;
+  transition: 0.35s;
 }
 
 .filter_recipe_block {
@@ -188,7 +189,7 @@ select {
   height: 20vw;
   padding-left: 2vw;
   padding-right: 5vw;
-  border-right: 1px solid #CCC;
+  border-right: 1px solid #ccc;
 }
 
 .drug_title1 {
@@ -230,7 +231,6 @@ select {
   justify-content: space-between;
 }
 
-
 .on_cart_back {
   width: 35px;
   height: 33px;
@@ -239,6 +239,7 @@ select {
   border-radius: 50%;
   transition: 0.25s;
 }
+
 
 .on_cart_back:hover {
   width: 35px;
@@ -249,6 +250,17 @@ select {
   transition: 0.25s;
 }
 
+.on_cart_back2 {
+  width: 35px;
+  height: 33px;
+  background-color: red;
+  border: 1px solid #2ad1c5;
+  border-radius: 50%;
+  transition: 0.25s;
+  cursor: none;
+
+}
+
 .drug_on_cart2 {
   margin-top: 15%;
   margin-left: 15%;
@@ -256,10 +268,11 @@ select {
   height: 20px;
   border: none;
   background-color: transparent;
-  background-image: url("https://papik.pro/uploads/posts/2021-12/thumbs/1639194292_48-papik-pro-p-galochka-klipart-50.jpg");
+  background-image: url("https://planetazdorovo.ru/pics/i/icon-buy1.svg");
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.25s;
+  cursor: none;
 }
 
 .drug_on_cart {
@@ -286,4 +299,9 @@ select {
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.25s;
+}
+
+.radio1 {
+  width: 14px;
+  height: 14px;
 }

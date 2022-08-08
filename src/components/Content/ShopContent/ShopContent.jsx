@@ -71,7 +71,6 @@ const ShopContent = () => {
     dispatch(getCart());
     dispatch(getCategories());
   }, [dispatch]);
-
   return (
     <>
       <Container className={styles.shop}>
@@ -153,30 +152,33 @@ const ShopContent = () => {
                       </Container>
                       <Container className={styles.drug_price1}>
                         от {drug.price} ₽{" "}
-                        <div className={styles.on_cart_back}>
-                          {cart.map((cart) => {
-                            if (cart.user === userId) {
-                              if (
-                                cart.products.find((item) => item === drug._id)
-                              ) {
-                                return <button
-                                
-                                className={styles.drug_on_cart}
-                              ></button>
-                              }
+                        {cart.map((cart) => {
+                          if (cart.user === userId) {
+                            if (
+                              cart.products.find((item) => item === drug._id)
+                            ) {
                               return (
+                                <div className={styles.on_cart_back2}>
+                                  <button
+                                    className={styles.drug_on_cart2}
+                                  ></button>
+                                </div>
+                              );
+                            }
+                            return (
+                              <div className={styles.on_cart_back}>
                                 <button
                                   onClick={() =>
                                     handleAddOfCart(cart._id, drug._id)
                                   }
                                   className={styles.drug_on_cart}
                                 ></button>
-                              );
-                            } else {
-                              return "";
-                            }
-                          })}
-                        </div>
+                              </div>
+                            );
+                          } else {
+                            return "";
+                          }
+                        })}
                       </Container>
                       {/* <Container className={styles.drug_category}>{category.title}</Container> */}
                     </Container>
@@ -184,7 +186,8 @@ const ShopContent = () => {
                 });
               })}
             </Container>
-          ) : (''
+          ) : (
+            ""
             // <Container className={styles.drugs_block_stroka}>
             //   {sortDrugs().map((drug, index) => {
             //     return categories.map((category, i) => {
