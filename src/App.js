@@ -6,6 +6,7 @@ import VideoChat from "./components/Content/TelemedContent/VideoChat";
 import AdminPage from "./pages/AdminPage";
 import AboutPage from './pages/AboutUsPage'
 import Room from "./pages/Room";
+import HomePage from "./pages/HomePage";
 
 const role = localStorage.getItem("role");
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="shop" element={<Shop />}></Route>
           <Route path="telemed" element={<VideoChat />} />
+          <Route path="" element ={<HomePage />}/>
           {role === 'admin' ? (
             <Route path="admin" element={<AdminPage />}
             />) : (<Route path="admin" element={<Navigate to='/' replace />} />)
