@@ -6,25 +6,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../../features/Cart/cartSlice";
 import { getDrugs } from "../../../features/drugs/drugsSlice";
 
-function CartComponent({ name, ...props }) {
+function CartComponent(props) {
   const cart = useSelector((state) => state.cartReducer.cart);
   const userId = localStorage.getItem("userId");
   const drugs = useSelector((state) => state.drugsReducer.drugs);
+
+  
   const dispatch = useDispatch();
+
+
   useEffect(() => {
     dispatch(getCart());
     dispatch(getDrugs());
   }, [dispatch]);
 
+  console.log(props)
+
   const currentCart = cart?.find((item) => item.user === userId);
   if (!currentCart) {
-    return "";
+    return ''
   }
   console.log(currentCart);
   return (
     <>
       <Nav variant="link" onClick={props.handleShow} className="mx-1">
-        {<BsCart4 size={30} color={"#3695eb"} />}
       </Nav>
       <Offcanvas show={props.show} onHide={props.handleclose} {...props}>
         <Offcanvas.Header closeButton>
@@ -48,10 +53,7 @@ function CartComponent({ name, ...props }) {
                       <tr>
                         <td>{drug.price}₽</td>
                         <td>{drug.title}</td>
-                        <td>
-                          {" "}
-                          <button>-</button> 1 <button>+</button>
-                        </td>
+                        <td> <button>-</button> 1 <button>+</button></td>
                       </tr>
                     </tbody>
                   );
