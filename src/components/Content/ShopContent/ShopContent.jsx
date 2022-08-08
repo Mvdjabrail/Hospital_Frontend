@@ -14,7 +14,7 @@ const ShopContent = () => {
   const [kubikVid, setKubikVid] = useState(true);
   const [strokaVid, setStrokaVid] = useState(false);
   const [strelka, setStrelka] = useState(true);
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState("");
 
   const kubikOn = styles.kubikVid_on;
   const kubikOff = styles.kubikVid_off;
@@ -23,20 +23,33 @@ const ShopContent = () => {
   const strelkaOff = styles.strelka_apteka_off;
   const strelkaOn = styles.strelka_apteka_on;
 
-  const collatore = new Intl.Collator('ru-RU');
+  const selectRecipe = document.querySelector("input[name='1']:checked")
+
+  const collatore = new Intl.Collator("ru-RU");
 
   const sortDrugs = () => {
     switch (sort) {
-      case 'title-asc':
-        return drugs.slice().sort((a, b) => collatore.compare(a.title, b.title));
-      case 'price-asc':
+      case "title-asc":
+        return drugs
+          .slice()
+          .sort((a, b) => collatore.compare(a.title, b.title));
+      case "price-asc":
         return drugs.slice().sort((a, b) => a.price - b.price);
-      case 'price-desc':
-        return drugs.slice().sort((a, b) => b.price - a.price);
+      case "price-desc":
+        return drugs.slice().sort((a, b) => b.price - a.price);  
       default:
         return drugs;
     }
   };
+
+  const sortDrugs2 = () => {
+    switch (selectRecipe) {
+      case "withRecipe":
+        return sortDrugs()
+      default:
+        return sortDrugs()
+    }
+  }
 
   const handleSort = (e) => {
     setSort(e.target.value);
@@ -77,12 +90,6 @@ const ShopContent = () => {
             <option value="price-desc">Сначала дорогие</option>
             <option value="price-asc">Сначала дешевые</option>
           </select>
-          <select style={{ marginLeft: "4vw" }}>
-            <option>Все</option>
-            {categories.map((category) => {
-              return <option value="">{category.title}</option>;
-            })}
-          </select>
         </Container>
         <Container className={styles.sort_block_child2}>
           <Container
@@ -107,13 +114,56 @@ const ShopContent = () => {
             </span>
           </Container>
           {strelka ? (
-            <Container style={{ transition: "0.2s" }}>
-              <label className={styles.radio1} htmlFor="" name="1"></label>
-              <label className={styles.radio1} htmlFor="" name="1"></label>
+            <Container
+              style={{
+                transition: "0.2s",
+                display: "flex",
+                flexDirection: "column",
+                marginTop: "5.5%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  width: "63%",
+                  overflow: "hidden",
+                  justifyContent: "space-between",
+                }}
+              >
+                <input
+                  type="radio"
+                  className={styles.radio1}
+                  htmlFor=""
+                  name="1"
+                  value="withRecipe"
+                ></input>
+                <div style={{ fontSize: "14px" }}>С рецептом</div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  width: "65%",
+                  overflow: "hidden",
+                  justifyContent: "space-between",
+                  marginTop: "1%",
+                }}
+              >
+                <input
+                  type="radio"
+                  className={styles.radio1}
+                  htmlFor=""
+                  name="1"
+                  value="noRecipe"
+                ></input>
+                <div style={{ fontSize: "14px" }}>Без рецепта</div>
+              </div>
             </Container>
           ) : null}
         </Container>
       </Container>
+      <div>
+
+      </div>
       <Container
         style={{
           display: "flex",
@@ -125,70 +175,66 @@ const ShopContent = () => {
         {kubikVid ? (
           <Container className={styles.drugs_block_kubik}>
             {sortDrugs().map((drug, index) => {
-              return categories.map((category, i) => {
-                return (
-                  <Container key={index} className={styles.drug1}>
-                    <Container>
-                      <img
-                        className={styles.drug_img1}
-                        src="https://planetazdorovo.ru/pics/logotype.svg"
-                        alt=""
-                      />
-                    </Container>
-                    <Container className={styles.drug_title1}>
-                      {drug.title}
-                    </Container>
-                    <Container className={styles.drug_recept1}>
-                      Рецепт:{"    "}
-                      {drug.recept === true ? "Требуется" : "Не требуется"}
-                    </Container>
-                    <Container className={styles.drug_price1}>
-                      от {drug.price} ₽{" "}
-                      <div className={styles.on_cart_back}>
-                        <button className={styles.drug_on_cart}></button>
-                      </div>
-                    </Container>
-                    {/* <Container className={styles.drug_category}>{category.title}</Container> */}
+              return (
+                <Container key={index} className={styles.drug1}>
+                  <Container>
+                    <img
+                      className={styles.drug_img1}
+                      src="https://planetazdorovo.ru/pics/logotype.svg"
+                      alt=""
+                    />
+                    <hr />
                   </Container>
-                );
-              });
+                  <Container className={styles.drug_title1}>
+                    {drug.title}
+                  </Container>
+                  <Container className={styles.drug_recept1}>
+                    Рецепт:{"    "}
+                    {drug.recept === true ? "Требуется" : "Не требуется"}
+                  </Container>
+                  <Container className={styles.drug_price1}>
+                    от {drug.price} ₽{" "}
+                    <div className={styles.on_cart_back}>
+                      <button className={styles.drug_on_cart}></button>
+                    </div>
+                  </Container>
+                </Container>
+              )
             })}
           </Container>
         ) : (
           <Container className={styles.drugs_block_stroka}>
             {sortDrugs().map((drug, index) => {
-              return categories.map((category, i) => {
-                return (
-                  <Container key={index} className={styles.drug2}>
-                    <Container>
-                      <img
-                        className={styles.drug_img2}
-                        src="https://planetazdorovo.ru/pics/logotype.svg"
-                        alt=""
-                      />
-                    </Container>
-                    <Container className={styles.drug2_help}>
-                      <Container className={styles.drug_title2}>
-                        {drug.title}
-                      </Container>
-                      <Container className={styles.drug_recept2}>
-                        Рецепт:{"    "}
-                        {drug.recept === true ? "Требуется" : "Не требуется"}
-                      </Container>
-                      <Container className={styles.drug_price2}>
-                        от {drug.price} ₽{" "}
-                        <div className={styles.on_cart_back}>
-                          <button className={styles.drug_on_cart}></button>
-                        </div>
-                      </Container>
-                    </Container>
-                    {/* <Container className={styles.drug_category}>{category.title}</Container> */}
+              return (
+                <Container key={index} className={styles.drug2}>
+                  <Container>
+                    <img
+                      className={styles.drug_img2}
+                      src="https://planetazdorovo.ru/pics/logotype.svg"
+                      alt=""
+                    />
                   </Container>
-                );
-              });
+                  <Container className={styles.drug2_help}>
+                    <Container className={styles.drug_title2}>
+                      {drug.title}
+                    </Container>
+                    <Container className={styles.drug_recept2}>
+                      Рецепт:{"    "}
+                      {drug.recept === true ? "Требуется" : "Не требуется"}
+                    </Container>
+                    <Container className={styles.drug_price2}>
+                      от {drug.price} ₽{" "}
+                      <div className={styles.on_cart_back}>
+                        <button className={styles.drug_on_cart}></button>
+                      </div>
+                    </Container>
+                  </Container>
+                </Container>
+              );
             })}
           </Container>
-        )}
+        )
+        }
       </Container>
     </Container>
   );
