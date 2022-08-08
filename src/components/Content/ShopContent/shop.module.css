@@ -48,10 +48,9 @@ body {
 
 .sort_block {
   float: left;
-  width: 100vw;
+  width: 86.5vw;
   display: flex;
   justify-content: space-between;
-  margin-left: 5vw;
 }
 
 .sort_block_child1 {
