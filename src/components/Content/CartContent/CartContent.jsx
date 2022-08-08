@@ -18,7 +18,7 @@ function CartComponent({ name, ...props }) {
 
   const currentCart = cart?.find((item) => item.user === userId);
   if (!currentCart) {
-    return ''
+    return "";
   }
   console.log(currentCart);
   return (
@@ -28,7 +28,7 @@ function CartComponent({ name, ...props }) {
       </Nav>
       <Offcanvas show={props.show} onHide={props.handleclose} {...props}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Корзина</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <table>
@@ -46,8 +46,12 @@ function CartComponent({ name, ...props }) {
                   return (
                     <tbody>
                       <tr>
-                        <td>{drug.price}</td>
+                        <td>{drug.price}₽</td>
                         <td>{drug.title}</td>
+                        <td>
+                          {" "}
+                          <button>-</button> 1 <button>+</button>
+                        </td>
                       </tr>
                     </tbody>
                   );
