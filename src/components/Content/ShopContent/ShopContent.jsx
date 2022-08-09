@@ -12,7 +12,6 @@ const ShopContent = () => {
   const dispatch = useDispatch();
 
   const drugs = useSelector((state) => state.drugsReducer.drugs);
-  const categories = useSelector((state) => state.categoriesReducer.categories);
   const cart = useSelector((state) => state.cartReducer.cart);
   const userId = localStorage.getItem("userId");
 
@@ -112,6 +111,7 @@ const ShopContent = () => {
                         src="https://planetazdorovo.ru/pics/logotype.svg"
                         alt=""
                       />
+                      <hr />
                     </Container>
                     <Container className={styles.drug_title1}>
                       {drug.title}

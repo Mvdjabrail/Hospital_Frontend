@@ -1,6 +1,6 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { BsCart4 } from "react-icons/bs";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../../features/Cart/cartSlice";
@@ -20,13 +20,13 @@ function CartComponent(props) {
     dispatch(getDrugs());
   }, [dispatch]);
 
-  console.log(props)
+
 
   const currentCart = cart?.find((item) => item.user === userId);
   if (!currentCart) {
     return ''
   }
-  console.log(currentCart);
+
   return (
     <>
       <Nav variant="link" onClick={props.handleShow} className="mx-1">

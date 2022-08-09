@@ -35,8 +35,6 @@ const Drugs = () => {
     setCategory(e.target.value);
   };
 
-  console.log(recept);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitle("");
