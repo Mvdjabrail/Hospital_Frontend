@@ -45,7 +45,6 @@ const SignUpPage = () => {
   const handleSubmit = () => {
     if (key.toString() === keyEmail.toString()) {
       dispatch(addUser({ firstName, lastName, login, password, email }));
-      console.log(email);
       dispatch(showModalSignIn(true));
       setLogin("");
       setPassword("");

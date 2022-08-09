@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+/* eslint-disable no-mixed-operators */
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";

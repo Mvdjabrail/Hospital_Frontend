@@ -18,7 +18,6 @@ export const getCart = createAsyncThunk("cart/get", async (_, thunkAPI) => {
 export const addCart = createAsyncThunk(
   "cart/patch",
   async ({ idCart, product }, thunkAPI) => {
-    console.log("Id", idCart, product);
     try {
       const state = thunkAPI.getState();
       await fetch(`http://localhost:4000/user/cart/${idCart}`, {
