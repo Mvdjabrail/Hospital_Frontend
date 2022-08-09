@@ -29,7 +29,7 @@ function App() {
         <Route path="/telemed/room/:id" element={<Room />} />
       </Routes>
     </BrowserRouter>
-  );
+  ); 
 }
 
 export default App;

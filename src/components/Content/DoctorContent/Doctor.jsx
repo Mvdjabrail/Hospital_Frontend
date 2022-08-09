@@ -8,7 +8,6 @@ const Doctor = () => {
   const [preview, setPreview] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.usersReducer.users);
-  // const userId = localStorage.getItem("userId");
   const userId = useSelector(state => state.usersReducer.userId)
 
 
