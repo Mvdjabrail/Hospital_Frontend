@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./aboutus.module.css";
-import { getDeps } from "../../../features/departments/depsSlice";
 import { NavLink } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css"
+import { getService } from "../../../features/Services/ServicesSlice";
 
 
 const Welcoming = () => {
 
   const dispatch = useDispatch()
 
+  const deps = useSelector((state)=>state.servicesReducer.services)
+
   useEffect(() => {
-    dispatch(getDeps());
+    dispatch(getService());
   }, [dispatch]);
 
   useEffect(()=>{
     Aos.init({duration: 2000})
 }, [])
-
-  const deps = useSelector((state)=>state.deps.departments)
 
   return (
     <div className={styles.main}>

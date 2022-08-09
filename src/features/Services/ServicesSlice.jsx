@@ -32,7 +32,7 @@ export const postService = createAsyncThunk(
     }
   }
 );
-export const getService = createAsyncThunk('deps/get', async(_, thunkAPI)=>{
+export const getService = createAsyncThunk('services/get', async(_, thunkAPI)=>{
   try {
       const res = await fetch("http://localhost:4000/services")
       const data = await res.json()
@@ -66,7 +66,7 @@ export const serviceSlice = createSlice({
         state.servic = false;
       })
       .addCase(getService.fulfilled, (state, action)=>{
-        state.departments = action.payload
+        state.services = action.payload
         state.error = null
         state.loading = false
       })

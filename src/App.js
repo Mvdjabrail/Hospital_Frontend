@@ -10,6 +10,7 @@ import Room from "./pages/Room";
 import User from "./components/Content/UserContent/User";
 import HomePage from "./pages/HomePage";
 import Departments from "./pages/Departments";
+import Docs from "./components/Content/DocsContent/Docs";
 
 const role = localStorage.getItem("role");
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="telemed" element={<VideoChat />} />
           <Route path="" element={<HomePage />} />
           <Route path="departments" element={<Departments />} />
+          <Route path="departments/:id" element={<Docs />}/>
           {role === 'admin' &&
             <Route path="admin" element={<AdminPage />}
             /> || role === 'user' && <Route path="user" element={<User />} />

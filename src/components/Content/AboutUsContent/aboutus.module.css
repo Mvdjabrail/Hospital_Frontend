@@ -27,6 +27,7 @@ body {
 .main {
   margin-top: 90px;
   overflow: hidden;
+  margin-bottom: 4%;
 }
 .title2{
     margin-left: 9%;
@@ -89,7 +90,6 @@ li:before {
   background: url("https://health-center.vamtam.com/wp-content/uploads/2014/01/bg_quote.jpg");
   background-size: cover;
   background-attachment: fixed;
-  margin: 4% 0 0 0;
   width: 100%;
   max-width: 100%;
   height: 450px;
