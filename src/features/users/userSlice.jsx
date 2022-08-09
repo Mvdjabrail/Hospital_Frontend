@@ -18,6 +18,7 @@ export const getUsers = createAsyncThunk("users/get", async (_, thunkAPI) => {
   try {
     const res = await fetch("http://localhost:4000/user");
     const data = await res.json();
+    console.log(data);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -121,6 +122,35 @@ export const patchUser = createAsyncThunk(
   }
 );
 
+export const deleteUserId = createAsyncThunk(
+  "user/delete/:id",
+  async (id, thunkAPI) => {
+    const state = thunkAPI.getState();
+    try {
+      const res = await fetch(
+        `http://localhost:4000/user/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.usersReducer.token}`,
+          },
+        }
+      );
+      const data = await res.json();
+     
+
+      if (data.error) {
+        return thunkAPI.rejectWithValue(data.error);
+      } else {
+        localStorage.setItem("token", data.token);
+        return id
+      }
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
 export const deleteUser = createAsyncThunk(
   "user/delete",
   async (_, thunkAPI) => {
@@ -250,6 +280,10 @@ export const usersSlice = createSlice({
       .addCase(clearToken.fulfilled, (state, action) => {
         state.token = null;
       });
+      builder
+      .addCase(deleteUserId.fulfilled, (state, action) => {
+        state.users = state.users.filter(item => item._id !== action.payload)
+      })
   },
 });
 
