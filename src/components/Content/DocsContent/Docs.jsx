@@ -5,16 +5,22 @@ import { getService } from "../../../features/Services/ServicesSlice";
 import { getUsers } from "../../../features/users/userSlice";
 import Splitter from "../AboutUsContent/Splitter";
 import styles from "./docs.module.css";
+import Aos from "aos";
+import "aos/dist/aos.css"
 
 const Docs = () => {
   const deps = useSelector((state) => state.servicesReducer.services);
-  const doc = useSelector((state)=> state.usersReducer.users)
+  const doc = useSelector((state) => state.usersReducer.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers())
+    dispatch(getUsers());
     dispatch(getService());
   }, [dispatch]);
+
+  useEffect(()=>{
+    Aos.init({duration: 2000})
+}, [])
 
   const { id } = useParams();
 
@@ -24,33 +30,49 @@ const Docs = () => {
         if (id === el._id) {
           return (
             <>
-            <h1 className={styles.title}>{el.title}</h1>
-            <Splitter />
-            <h4 className={styles.title2}>Наши специалисты</h4>
-            <hr className={styles.line}/>
-            <div className={styles.text}>{el.text}</div>
-            <div className={styles.docsCnt}>
-                {doc.map((element)=>{
-                    if (element.role === 'doctor') {
-                        if (element.service === id) {
-                            return (
-                                <div className={styles.card}>
-                                   <div className={styles.imgCnt}> <img className={styles.img} alt='photo' src={`http://localhost:4000/${element.image}`}/> </div>
-                                   <div className={styles.name}> <div className={styles.fName}>{element.firstName}</div>
-                                    <div className={styles.lName}>{element.lastName}</div>  </div>
-                                    <div className={styles.rank}>Кандидат медицинских наук</div>
-                                    <div className={styles.hidden}>
-                                        <button className={styles.btn}>Записаться</button>
-                                        <div className={styles.price}>Стоимость приема от{el.price}₽</div>
-                                    </div>
-                                </div>
-                            )
-                        }
+              <h1 className={styles.title}>{el.title}</h1>
+              <Splitter />
+              <h4 className={styles.title2}>Наши специалисты</h4>
+              <hr className={styles.line} />
+              <div className={styles.text}>{el.text}</div>
+              <div className={styles.docsCnt}>
+                {doc.map((element) => {
+                  if (element.role === "doctor") {
+                    if (element.service === id) {
+                      return (
+                        <div data-aos="fade-right" className={styles.card}>
+                          <div className={styles.imgCnt}>
+                            <img
+                              className={styles.img}
+                              alt="photo"
+                              src={`http://localhost:4000/${element.image}`}
+                            />
+                          </div>
+                          <div className={styles.name}>
+                            <div className={styles.fName}>
+                              {element.firstName}
+                            </div>
+                            <div className={styles.lName}>
+                              {element.lastName}
+                            </div>
+                          </div>
+                          <div className={styles.rank}>
+                            Кандидат медицинских наук
+                          </div>
+                          <div className={styles.hidden}>
+                            <button className={styles.btn}>Записаться</button>
+                            <div className={styles.price}>
+                              Стоимость приема от{el.price}₽
+                            </div>
+                          </div>
+                        </div>
+                      );
                     }
+                  }
                 })}
-            </div>
+              </div>
             </>
-          )
+          );
         }
       })}
     </>
