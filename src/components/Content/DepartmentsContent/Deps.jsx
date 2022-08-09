@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getDeps } from "../../../features/departments/depsSlice";
 import styles from "./deps.module.css";
 import Aos from "aos";
 import "aos/dist/aos.css"
+import { getService } from "../../../features/Services/ServicesSlice";
 
 const Deps = () => {
   const dispatch = useDispatch();
 
-  const deps = useSelector((state)=>state.deps.departments)
+  const deps = useSelector((state)=>state.servicesReducer.services)
 
   useEffect(() => {
-    dispatch(getDeps());
+    dispatch(getService());
   }, [dispatch]);
 
   useEffect(()=>{
@@ -30,7 +30,7 @@ const Deps = () => {
       <div className={styles.depsCnt}>
         {deps.map((el) => {
           return (
-            <Link to={`/services/${el._id}`}> <div data-aos="fade-up" className={styles.deps}>
+            <Link to={`/departments/${el._id}`}> <div data-aos="fade-up" className={styles.deps}>
               <img alt="pic" className={styles.img} src={`http://localhost:4000/${el.image}`} />
               <div className={styles.depTitle}>{el.title}</div>
               <div className={styles.depText}>
