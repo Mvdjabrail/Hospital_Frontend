@@ -20,15 +20,17 @@ export const addCart = createAsyncThunk(
   async ({ idCart, product }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-      await fetch(`http://localhost:4000/user/cart/${idCart}`, {
+     const res =  await fetch(`http://localhost:4000/user/cart/${idCart}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${state.usersReducer.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ products: product }),
+        body: JSON.stringify({ products: {productId: product, amount: 1} }),
       });
-     return {product, idCart}
+
+      const data = await res.json()
+     return {product, idCart, data}
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -44,8 +46,8 @@ export const cartSlice = createSlice({
       .addCase(addCart.fulfilled, (state, action) => {
         state.cart = state.cart.map(item => {
           if (item._id === action.payload.idCart) {
-            item.products.push(action.payload.product)
-            return item
+            
+            return action.payload.data
           }
           return item
         })
