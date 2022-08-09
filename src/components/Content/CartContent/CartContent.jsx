@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Nav } from "react-bootstrap";

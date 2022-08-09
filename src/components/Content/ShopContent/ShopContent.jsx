@@ -118,6 +118,7 @@ const ShopContent = () => {
                         src="https://planetazdorovo.ru/pics/logotype.svg"
                         alt=""
                       />
+                      <hr />
                     </Container>
                     <Container className={styles.drug_title1}>
                       {drug.title}

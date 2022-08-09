@@ -153,20 +153,18 @@ const Header = () => {
             <>
               {" "}
               <Nav className={styles.signinInUp}>
-                <NavLink
-                  to={"sign-in"}
+                <div
                   className={`${styles.signUp} ${styles.icons}`}
                   onClick={handleShowSignin}
                 >
                   <ImUserPlus size={28} />
-                </NavLink>
-                <NavLink
-                  to={"sign-up"}
+                </div>
+                <div
                   onClick={handleShowSignup}
                   className={`${styles.signIn} ${styles.icons}`}
                 >
                   <ImEnter size={28} />
-                </NavLink>
+                </div>
               </Nav>
             </>
           )}
