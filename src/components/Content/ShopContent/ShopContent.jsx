@@ -161,7 +161,7 @@ const ShopContent = () => {
                     <Container>
                       <img
                         className={styles.drug_img2}
-                        src="https://planetazdorovo.ru/pics/logotype.svg"
+                        src={`http://localhost:4000/${drug.image}`}
                         alt=""
                       />
                     </Container>
