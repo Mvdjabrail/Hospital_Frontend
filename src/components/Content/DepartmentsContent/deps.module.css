@@ -50,7 +50,6 @@ hr{
 }
 .deps:hover{
     background-color: #e7f6ff;
-    transition: 0.5s;
 }
 a{
     text-decoration: none;
