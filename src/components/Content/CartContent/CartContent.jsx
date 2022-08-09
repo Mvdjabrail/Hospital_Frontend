@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, getCart } from "../../../features/Cart/cartSlice";
+import { addCart, getCart, plusCartIem } from "../../../features/Cart/cartSlice";
 import { getDrugs } from "../../../features/drugs/drugsSlice";
 
 function CartComponent(props) {
@@ -11,8 +11,15 @@ function CartComponent(props) {
   const userId = localStorage.getItem("userId");
   const drugs = useSelector((state) => state.drugsReducer.drugs);
 
-  const handlePlus = (idCart, product ) => {
-    dispatch(addCart({idCart, product}));
+  const handlePlus = (idCart, id, product ) => {
+    const products = product.map(item => {
+      if (item._id === id) {
+        item.amount += 1
+        return item
+      }
+      return item
+    })
+    dispatch(plusCartIem({idCart, products}));
   };
 
   const handleMinus = () => {
@@ -58,13 +65,13 @@ function CartComponent(props) {
                           <td>
                             {" "}
                             <button
-                              onClick={() =>
-                                handlePlus(currentCart._id, drug._id)
-                              }
+                               onClick={() =>
+                                 handlePlus(currentCart._id, drug._id, currentCart.products)
+                               }
                             >
                               +
                             </button>{" "}
-                            {item.amount} {console.log("PLUS", currentCart._id, drug._id)}{" "}
+                            {item.amount} 
                             <button onClick={() => handleMinus()}>-</button>
                           </td>
                           <td>{item.amount * drug.price}</td> 

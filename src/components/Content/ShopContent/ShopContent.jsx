@@ -130,20 +130,23 @@ const ShopContent = () => {
                     <Container className={styles.drug_price1}>
                       от {drug.price} ₽{" "}
                       {onCart(drug._id) ? (
-
-                      <div className={styles.on_cart_back2}>
-                        <button
-                          onClick={() => handleAddOfCart(currentCart._id, drug._id)}
-                          className={  styles.drug_on_cart2 }
-                        ></button>
-                      </div>
+                        <div className={styles.on_cart_back2}>
+                          <button
+                            onClick={() =>
+                              handleAddOfCart(currentCart._id, drug._id)
+                            }
+                            className={styles.drug_on_cart2}
+                          ></button>
+                        </div>
                       ) : (
                         <div className={styles.on_cart_back}>
-                        <button
-                          onClick={() => handleAddOfCart(currentCart._id, drug._id)}
-                          className={  styles.drug_on_cart }
-                        ></button>
-                      </div>
+                          <button
+                            onClick={() =>
+                              handleAddOfCart(currentCart._id, drug._id)
+                            }
+                            className={styles.drug_on_cart}
+                          ></button>
+                        </div>
                       )}
                     </Container>
                   </Container>
@@ -172,34 +175,25 @@ const ShopContent = () => {
                       </Container>
                       <Container className={styles.drug_price2}>
                         от {drug.price} ₽{" "}
-                        {cart.map((cart) => {
-                          if (cart.user === userId) {
-                            if (
-                              cart.products.find((item) => item === drug._id)
-                            ) {
-                              return (
-                                <div className={styles.on_cart_back2}>
-                                  <button
-                                    className={styles.drug_on_cart2}
-                                  ></button>
-                                  {console.log("Cart", cart)}{" "}
-                                </div>
-                              );
-                            }
-                            return (
-                              <div className={styles.on_cart_back}>
-                                <button
-                                  onClick={() =>
-                                    handleAddOfCart(cart._id, drug._id)
-                                  }
-                                  className={styles.drug_on_cart}
-                                ></button>
-                              </div>
-                            );
-                          } else {
-                            return "";
-                          }
-                        })}
+                        {onCart(drug._id) ? (
+                          <div className={styles.on_cart_back2}>
+                            <button
+                              onClick={() =>
+                                handleAddOfCart(currentCart._id, drug._id)
+                              }
+                              className={styles.drug_on_cart2}
+                            ></button>
+                          </div>
+                        ) : (
+                          <div className={styles.on_cart_back}>
+                            <button
+                              onClick={() =>
+                                handleAddOfCart(currentCart._id, drug._id)
+                              }
+                              className={styles.drug_on_cart}
+                            ></button>
+                          </div>
+                        )}
                       </Container>
                     </Container>
                   </Container>

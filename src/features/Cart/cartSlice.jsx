@@ -37,6 +37,28 @@ export const addCart = createAsyncThunk(
   }
 );
 
+export const plusCartIem = createAsyncThunk(
+  "cart/plus",
+  async ({ idCart, products }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+     const res =  await fetch(`http://localhost:4000/plus/cart/${idCart}`, {
+        method: "PATCH",
+        headers: {
+          // Authorization: `Bearer ${state.usersReducer.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ products: products }),
+      });
+
+      const data = await res.json()
+     return {products, idCart, data}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -53,6 +75,11 @@ export const cartSlice = createSlice({
         })
         state.error = null;
       })
+
+      .addCase(plusCartIem.fulfilled, (state, action) => {
+        // state.error = action.payload;
+      })
+      
       .addCase(patchUser.rejected, (state, action) => {
         state.error = action.payload;
       })
