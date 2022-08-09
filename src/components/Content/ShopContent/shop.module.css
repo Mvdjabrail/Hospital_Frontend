@@ -177,17 +177,17 @@ select {
 }
 
 .drug_img1 {
-  text-align: center;
+  margin-top: 6%;
+  margin-left: 2.5%;
+  border-radius: 5px;
   width: 16vw;
   height: 15vw;
 }
 
 .drug_img2 {
-  text-align: center;
-  width: 25vw;
+  border-radius: 5px;
+  width: 31vw; 
   height: 20vw;
-  padding-left: 2vw;
-  padding-right: 5vw;
   border-right: 1px solid #ccc;
 }
 
