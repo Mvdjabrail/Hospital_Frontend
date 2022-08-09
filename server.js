@@ -11,7 +11,6 @@ const PORT = process.env.PORT || 3001;
 
 function getClientRooms() {
    const { rooms } = io.sockets.adapter;
-   console.log(io.sockets.adapter);
 
    return Array.from(rooms.keys()).filter(roomID => validate(roomID) && version(roomID) === 4);
 }

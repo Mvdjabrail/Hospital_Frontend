@@ -111,11 +111,11 @@ const ShopContent = () => {
             <Container className={styles.drugs_block_kubik}>
               {sortDrugs().map((drug, index) => {
                 return (
-                  <Container className={styles.drug1}>
+                  <Container key={drug._id} className={styles.drug1}>
                     <Container>
                       <img
                         className={styles.drug_img1}
-                        src="https://planetazdorovo.ru/pics/logotype.svg"
+                        src={`http://localhost:4000/${drug.image}`}
                         alt=""
                       />
                       <hr />
@@ -154,7 +154,7 @@ const ShopContent = () => {
             <Container className={styles.drugs_block_stroka}>
               {sortDrugs().map((drug, index) => {
                 return (
-                  <Container className={styles.drug2}>
+                  <Container key={drug._id} className={styles.drug2}>
                     <Container>
                       <img
                         className={styles.drug_img2}
