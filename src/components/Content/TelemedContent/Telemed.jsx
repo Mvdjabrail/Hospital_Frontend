@@ -1,27 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import styles from "./Telemed.module.css";
 import { pulse } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import ModalAppointments from './ModalAppointments';
+import { fetchAppointments } from "../../../features/appointment/appointmentSlice";
 import telemed1 from "../../../assets/telemed1.jpg";
 import telemed2 from "../../../assets/telemed2.jpg";
 import telemed3 from "../../../assets/telemed3.jpg";
 import telemed4 from "../../../assets/telemed4.jpg";
 
-const Pulse = styled.div`animation: 5s ${keyframes`${pulse}`} infinite`;
+const Pulse = styled.div`animation: 2s ${keyframes`${pulse}`} infinite`;
 
 const Telemed = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchAppointments());
+    }, [dispatch]);
+
+    const appointment = useSelector((state) => state.appointmentsReducer.appointment);
+
     const [showModalAppoint, setShowModalAppoint] = useState(false);
+
+    const userId = localStorage.getItem("userId");
+
+    const appointmentsUser = appointment.filter((appointment) => appointment.user === userId);
+
+    console.log(appointmentsUser);
 
     const handleOpenModal = () => {
         { setShowModalAppoint(true) }
     }
-
     return (
         <Container>
             <Container style={{ height: "8vh" }}></Container>
             <Container className="d-flex justify-content-end">
+                <button className={styles.btn}>Ваши заявки...</button>
                 <Pulse>
                     <button onClick={handleOpenModal} className={styles.btn} >
                         ЗАПИСАТЬСЯ
@@ -48,10 +64,10 @@ const Telemed = () => {
                     </p>
 
                     <Container className="d-flex flex-wrap justify-content-around">
-                        <img src={telemed1} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
-                        <img src={telemed2} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
-                        <img src={telemed3} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
-                        <img src={telemed4} alt="fotoTelemed" style={{width: "550px", height: "450px", margin: "10px 0"}}/>
+                        <img src={telemed1} alt="fotoTelemed" style={{ width: "550px", height: "450px", margin: "10px 0" }} />
+                        <img src={telemed2} alt="fotoTelemed" style={{ width: "550px", height: "450px", margin: "10px 0" }} />
+                        <img src={telemed3} alt="fotoTelemed" style={{ width: "550px", height: "450px", margin: "10px 0" }} />
+                        <img src={telemed4} alt="fotoTelemed" style={{ width: "550px", height: "450px", margin: "10px 0" }} />
                     </Container>
                 </Container>
             </Container>

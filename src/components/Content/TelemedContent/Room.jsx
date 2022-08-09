@@ -59,7 +59,6 @@ const Room = () => {
    const hundleHideVideo = () => {
       setShowVideo(!showVideo);
       stream.getVideoTracks()[0].enabled = showVideo;
-      console.log(rootNode.current);
    }
 
    const hundleHideMute = () => {

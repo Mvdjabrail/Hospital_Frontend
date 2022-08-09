@@ -7,13 +7,15 @@ const initialState = {
    token: localStorage.getItem('token'),
 }
 
-export const fetchAppointments = createAsyncThunk("appointments/fetch", async (_, thunkAPI) => {
+export const fetchAppointments = createAsyncThunk("/appointments/fetch", async (_, thunkAPI) => {
    try {
-      const res = await fetch("http://localhost:3000/appointments/fetch",
+      const state = thunkAPI.getState();
+      const res = await fetch("http://localhost:4000/appointments/fetch",
          {
             method: "GET",
             headers: {
-               'Content-Type': 'application/json'
+               'Content-Type': 'application/json',
+               Authorization: `Bearer ${state.usersReducer.token}`,
             },
          }
       );
@@ -30,17 +32,17 @@ export const fetchAppointments = createAsyncThunk("appointments/fetch", async (_
    }
 });
 
-export const addAppointment = createAsyncThunk("appointments/add", async ({user, service}, thunkAPI) => {
+export const addAppointment = createAsyncThunk("appointments/add", async ({doctorId, user, service}, thunkAPI) => {
    try {
       const state = thunkAPI.getState();
-      const res = await fetch("http://localhost:3000/appointments/add",
+      const res = await fetch("http://localhost:4000/appointments/add",
          {
             method: "POST",
             headers: {
                'Content-Type': 'application/json',
                Authorization: `Bearer ${state.usersReducer.token}`,
             },
-            body: JSON.stringify({user, service})
+            body: JSON.stringify({doctorId, user, service})
          }
       );
       const appointment = await res.json();
@@ -59,7 +61,7 @@ export const addAppointment = createAsyncThunk("appointments/add", async ({user,
 export const updateAppointment = createAsyncThunk("appointments/update", async ({id, dateAndTime}, thunkAPI) => {
    try {
       const state = thunkAPI.getState();
-      const res = await fetch(`http://localhost:3000/appointments/update/:${id}`,
+      const res = await fetch(`http://localhost:4000/appointments/update/:${id}`,
          {
             method: "PATCH",
             headers: {
@@ -85,7 +87,7 @@ export const updateAppointment = createAsyncThunk("appointments/update", async (
 export const deleteAppointment = createAsyncThunk("appointments/delete", async (id, thunkAPI) => {
    try {
       const state = thunkAPI.getState();
-      const res = await fetch(`http://localhost:3000/appointments/delete/:${id}`,
+      const res = await fetch(`http://localhost:4000/appointments/delete/:${id}`,
          {
             method: "DELETE",
             headers: {
