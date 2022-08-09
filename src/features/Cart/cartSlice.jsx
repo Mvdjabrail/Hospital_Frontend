@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import { patchUser } from "./../users/userSlice";
 const initialState = {
   cart: [],
@@ -20,41 +21,61 @@ export const addCart = createAsyncThunk(
   async ({ idCart, product }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-     const res =  await fetch(`http://localhost:4000/user/cart/${idCart}`, {
+      const res = await fetch(`http://localhost:4000/user/cart/${idCart}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${state.usersReducer.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ products: {productId: product, amount: 1} }),
+        body: JSON.stringify({ products: { productId: product, amount: 1 } }),
       });
 
-      const data = await res.json()
-     return {product, idCart, data}
+      const data = await res.json();
+      return { product, idCart, data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
-export const plusCartIem = createAsyncThunk(
-  "cart/plus",
-  async ({ idCart, products }, thunkAPI) => {
+export const minusCartIem = createAsyncThunk(
+  "minus/plus",
+  async ({ idCart, id }, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-     const res =  await fetch(`http://localhost:4000/plus/cart/${idCart}`, {
+      const res = await fetch(`http://localhost:4000/minus/cart/${idCart}`, {
         method: "PATCH",
         headers: {
-          // Authorization: `Bearer ${state.usersReducer.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ products: products }),
+        body: JSON.stringify({ id }),
       });
 
-      const data = await res.json()
-     return {products, idCart, data}
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      const cart = await res.json();
+
+      return cart;
+    } catch (e) {
+      thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
+export const plusCartIem = createAsyncThunk(
+  "cart/plus",
+  async ({ idCart, id }, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/plus/cart/${idCart}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      const cart = await res.json();
+
+      return cart;
+    } catch (e) {
+      thunkAPI.rejectWithValue(e);
     }
   }
 );
@@ -66,20 +87,30 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addCart.fulfilled, (state, action) => {
-        state.cart = state.cart.map(item => {
+        state.cart = state.cart.map((item) => {
           if (item._id === action.payload.idCart) {
-            
-            return action.payload.data
+            return action.payload.data;
           }
-          return item
-        })
+          return item;
+        });
         state.error = null;
       })
-
       .addCase(plusCartIem.fulfilled, (state, action) => {
-        // state.error = action.payload;
+        state.cart = state.cart.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
       })
-      
+      .addCase(minusCartIem.fulfilled, (state, action) => {
+        state.cart = state.cart.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
+      })
       .addCase(patchUser.rejected, (state, action) => {
         state.error = action.payload;
       })
