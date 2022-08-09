@@ -4,12 +4,12 @@ import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
 import VideoChat from "./components/Content/TelemedContent/VideoChat";
 import AdminPage from "./pages/AdminPage";
-import AboutPage from './pages/AboutUsPage'
+import AboutPage from "./pages/AboutUsPage";
 import Room from "./pages/Room";
 import User from "./components/Content/UserContent/User";
+import Doctor from "./components/Content/DoctorContent/Doctor";
 
 const role = localStorage.getItem("role");
-
 
 function App() {
   return (
@@ -19,10 +19,11 @@ function App() {
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="shop" element={<Shop />}></Route>
           <Route path="telemed" element={<VideoChat />} />
-          {role === 'admin' &&
-            <Route path="admin" element={<AdminPage />}
-            /> || role === 'user' && <Route path="user" element={<User />} />
-          }
+          {(role === "admin" && (
+            <Route path="admin" element={<AdminPage />} />
+          )) ||
+            (role === "user" && <Route path="user" element={<User />} />) ||
+            (role === "doctor" && <Route path="doctor" element={<Doctor />} />)}
           <Route path="about-us" element={<AboutPage />} />
         </Route>
         <Route path="/telemed/room/:id" element={<Room />} />

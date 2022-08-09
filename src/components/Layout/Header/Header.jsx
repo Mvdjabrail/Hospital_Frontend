@@ -142,7 +142,8 @@ const Header = () => {
                 <NavLink
                   to={
                     (role === "admin" && "/admin") ||
-                    (role === "user" && "/user")
+                    (role === "user" && "/user") ||
+                    (role === "doctor" && "/doctor") 
                   }
                 >
                   <Button variant="link" className="mx-1">

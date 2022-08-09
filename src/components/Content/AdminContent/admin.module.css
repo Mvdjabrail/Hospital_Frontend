@@ -1,6 +1,6 @@
 .admin_page {
   width: 100%;
-  margin: 40px;
+  margin: 30px;
   margin-top: 7.5vw;
   padding: 0;
   display: flex;
@@ -80,25 +80,46 @@
   color: black;
 }
 
-.mainUser {
-  width: 140%;
+.main_employees {
+  width: 60%;
+  margin-left: -70%;
+  margin-top: -4vw;
 }
+
 h1 {
   text-align: center;
   margin-bottom: 2%;
 }
+
+
+.doctor_conteyner {
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.loginDivDoctor {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 0 1vw 1vw 1vw;
+}
+
 .loginDiv {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 2%;
+  padding: 0 1vw 1vw 1vw;
 }
 
 .loginDiv div {
   width: 15%;
 }
 
-.btn {
+.btn{
   color: white;
   width: 34%;
   height: 30px;
@@ -106,18 +127,64 @@ h1 {
   background-color: #3695eb;
   border: none;
 }
+.btnDoctor {
+  color: white;
+  width: 34%;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #3695eb;
+  border: none;
+}
+.btnDoctor:hover {
+  color: white;
+  width: 34%;
+  height: 30px;
+  border-radius: 5px;
+  background-color: red;
+  border: none;
+}
+.btn:hover {
+  color: white;
+  width: 34%;
+  height: 30px;
+  border-radius: 5px;
+  background-color:lime;
+  border: none;
+}
 
 .addService {
-  padding-top: 4%;
-  margin-left: 5%;
-  width: 80%;
+  padding-top: 2%;
+  margin-left: 1%;
+  width: 30%;
+
 }
 
 .addService button {
   width: 50%;
-  margin-bottom: 10%;
+  margin-bottom: 1%;
   color: white;
   border-radius: 3px;
-  background-color: #3695eb;
+  background-color: grey;
   border: none;
+}
+
+.admin_profil {
+  width: 22vw;
+
+ 
+}
+
+.users {
+  margin-top: 4vw;
+  background-color: black;
+  color: white;
+}
+
+.admin_profil_text {
+  font-size: -1 vw;
+}
+
+.mainUser {
+  background-color: white;
+
 }
