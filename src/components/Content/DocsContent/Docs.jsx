@@ -5,6 +5,8 @@ import { getService } from "../../../features/Services/ServicesSlice";
 import { getUsers } from "../../../features/users/userSlice";
 import Splitter from "../AboutUsContent/Splitter";
 import styles from "./docs.module.css";
+import Aos from "aos";
+import "aos/dist/aos.css"
 
 const Docs = () => {
   const deps = useSelector((state) => state.servicesReducer.services);
@@ -15,6 +17,10 @@ const Docs = () => {
     dispatch(getUsers());
     dispatch(getService());
   }, [dispatch]);
+
+  useEffect(()=>{
+    Aos.init({duration: 2000})
+}, [])
 
   const { id } = useParams();
 
@@ -34,7 +40,7 @@ const Docs = () => {
                   if (element.role === "doctor") {
                     if (element.service === id) {
                       return (
-                        <div className={styles.card}>
+                        <div data-aos="fade-right" className={styles.card}>
                           <div className={styles.imgCnt}>
                             <img
                               className={styles.img}
