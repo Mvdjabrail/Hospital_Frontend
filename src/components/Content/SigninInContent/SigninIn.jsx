@@ -88,7 +88,7 @@ const SignInPage = () => {
               placeholder="Введите логин"
               onChange={handleChangeLogin}
               value={login}
-              style={{borderRadius: "0%"}}
+              style={{ borderRadius: "0%" }}
             />
             <span style={{ color: colorTextError, fontSize: 14 }}>
               {" "}
@@ -103,7 +103,7 @@ const SignInPage = () => {
               placeholder="Введите пароль"
               onChange={handleChangePassword}
               value={password}
-              style={{borderRadius: "0%"}}
+              style={{ borderRadius: "0%" }}
             />
             {showPassword ? (
               <div onClick={handleOpenEye}>

@@ -18,6 +18,8 @@ import SignInPage from "../../Content/SigninInContent/SigninIn";
 import SignUpPage from "../../Content/SigninUpContent/SigninUp";
 import { useSelector } from "react-redux";
 import CartComponent from "../../Content/CartContent/CartContent";
+import { BsCart4 } from "react-icons/bs";
+
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -123,49 +125,46 @@ const Header = () => {
                     {<GiExitDoor size={35} color={"#3695eb"} />}
                   </Button>
                 </Nav>
-                  <Nav>
-                    <Button
-                      onClick={() => setOpened(!opened)}
-                      variant="link"
-                      className="mx-1"
-                    >
-                      <CartComponent
-                        handleclose={handleclose}
-                        handleshow={handleshow}
-                        show={opened}
-                        placement={"end"}
-                        name={"end"}
-                      />
-                    </Button>
-                  </Nav>
-                  {role === "admin" && (
+                <Nav>
+                  <Button
+                    onClick={() => setOpened(!opened)}
+                    variant="link"
+                    className="mx-1"
+                  >
+                            {<BsCart4 size={30} color={"#3695eb"} />}
 
-                <NavLink to={"/admin"}>
+                  </Button>
+                </Nav>
+                   
+
+                <NavLink
+                  to={
+                    (role === "admin" && "/admin") ||
+                    (role === "user" && "/user")
+                  }
+                >
                   <Button variant="link" className="mx-1">
                     {<RiAdminFill size={30} color={"#3695eb"} />}
                   </Button>
                 </NavLink>
-                )}
               </Nav>
             </>
           ) : (
             <>
               {" "}
               <Nav className={styles.signinInUp}>
-                <NavLink
-                  to={"sign-in"}
+                <div
                   className={`${styles.signUp} ${styles.icons}`}
                   onClick={handleShowSignin}
                 >
                   <ImUserPlus size={28} />
-                </NavLink>
-                <NavLink
-                  to={"sign-up"}
+                </div>
+                <div
                   onClick={handleShowSignup}
                   className={`${styles.signIn} ${styles.icons}`}
                 >
                   <ImEnter size={28} />
-                </NavLink>
+                </div>
               </Nav>
             </>
           )}
@@ -173,7 +172,14 @@ const Header = () => {
       </div>
       <SignInPage />
       <SignUpPage />
-      <CartComponent />
+      <CartComponent
+                      handleclose={handleclose}
+                      handleshow={handleshow}
+                      show={opened}
+                      placement={"end"}
+                      name={"end"}
+
+                    />
     </>
   );
 };
