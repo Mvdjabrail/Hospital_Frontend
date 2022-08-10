@@ -23,10 +23,9 @@ const Docs = () => {
   const deps = useSelector((state) => state.servicesReducer.services);
   const doc = useSelector((state) => state.usersReducer.users);
   const reviews = useSelector((state) => state.reviewReducer.reviews);
-  // const services = useSelector((state) => state.servicesReducer.services);`
-  // const error = useSelector((state) => state.reviewReducer.error);
+  const loadingR = useSelector((state) => state.reviewReducer.loading);
+  const loadingU = useSelector((state) => state.usersReducer.loading);
   const users = useSelector((state) => state.usersReducer.users);
-  // const role = useSelector((state) => state.usersReducer.role);
   const token = useSelector((state) => state.usersReducer.token);
   const userId = localStorage.getItem("userId");
   const [sortNew, setSortNew] = useState(false);
@@ -88,7 +87,74 @@ const Docs = () => {
 
   return (
     <>
-      {deps.map((el) => {
+    {loadingU ? 
+    <div className={styles.preloader}>
+    <div className={styles.preloader__ring}>
+      <div className={styles.preloader__sector}>L</div>
+      <div className={styles.preloader__sector}>o</div>
+      <div className={styles.preloader__sector}>a</div>
+      <div className={styles.preloader__sector}>d</div>
+      <div className={styles.preloader__sector}>i</div>
+      <div className={styles.preloader__sector}>n</div>
+      <div className={styles.preloader__sector}>g</div>
+      <div className={styles.preloader__sector}>.</div>
+      <div className={styles.preloader__sector}>.</div>
+      <div className={styles.preloader__sector}>.</div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+    </div>
+    <div className={styles.preloader__ring}>
+      <div className={styles.preloader__sector}>L</div>
+      <div className={styles.preloader__sector}>o</div>
+      <div className={styles.preloader__sector}>a</div>
+      <div className={styles.preloader__sector}>d</div>
+      <div className={styles.preloader__sector}>i</div>
+      <div className={styles.preloader__sector}>n</div>
+      <div className={styles.preloader__sector}>g</div>
+      <div className={styles.preloader__sector}>.</div>
+      <div className={styles.preloader__sector}>.</div>
+      <div className={styles.preloader__sector}>.</div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+      <div className={styles.preloader__sector}></div>
+    </div>
+  </div> :
+      deps.map((el) => {
         if (id === el._id) {
           return (
             <>
@@ -137,155 +203,229 @@ const Docs = () => {
           );
         }
       })}
-      <hr style={{ border: "1px solid gray" }} />
-      <div style={{ marginTop: "2%", marginLeft: "5%" }}>
-        <div className={styles.tab}>
-          Отзывы ({reviews.length})
-          <br />
-          <div style={{ fontSize: "18px" }}>
-            Общий рейтинг: {reviews.length ? handleAllRating() : 0}
+      {loadingR ? (
+        <div className={styles.preloader}>
+          <div className={styles.preloader__ring}>
+            <div className={styles.preloader__sector}>L</div>
+            <div className={styles.preloader__sector}>o</div>
+            <div className={styles.preloader__sector}>a</div>
+            <div className={styles.preloader__sector}>d</div>
+            <div className={styles.preloader__sector}>i</div>
+            <div className={styles.preloader__sector}>n</div>
+            <div className={styles.preloader__sector}>g</div>
+            <div className={styles.preloader__sector}>.</div>
+            <div className={styles.preloader__sector}>.</div>
+            <div className={styles.preloader__sector}>.</div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+          </div>
+          <div className={styles.preloader__ring}>
+            <div className={styles.preloader__sector}>L</div>
+            <div className={styles.preloader__sector}>o</div>
+            <div className={styles.preloader__sector}>a</div>
+            <div className={styles.preloader__sector}>d</div>
+            <div className={styles.preloader__sector}>i</div>
+            <div className={styles.preloader__sector}>n</div>
+            <div className={styles.preloader__sector}>g</div>
+            <div className={styles.preloader__sector}>.</div>
+            <div className={styles.preloader__sector}>.</div>
+            <div className={styles.preloader__sector}>.</div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
+            <div className={styles.preloader__sector}></div>
           </div>
         </div>
-        <div className={styles.sort_block}>
-          <div className={styles.sort_text}>Сортировать по:</div>
-          <div className={styles.sort_new} onClick={handleSortNew}>
-            Новизне{sortNew ? " ↓" : " ↑"}
-          </div>
-        </div>
-        {token ? (
-          <div className={styles.get_review_block}>
-            <div style={{ fontSize: "24px" }}>Ваш отзыв:</div>
-            <div className={styles.rating_area}>
-              <input
-                onChange={() => handleRating(5)}
-                type="radio"
-                id="star-5"
-                name="rating"
-                value={rating}
-              />
-              <label htmlFor="star-5" title="Оценка «5»"></label>
-              <input
-                onChange={() => handleRating(4)}
-                type="radio"
-                id="star-4"
-                name="rating"
-                value={rating}
-              />
-              <label htmlFor="star-4" title="Оценка «4»"></label>
-              <input
-                onChange={() => handleRating(3)}
-                type="radio"
-                id="star-3"
-                name="rating"
-                value={rating}
-              />
-              <label htmlFor="star-3" title="Оценка «3»"></label>
-              <input
-                onChange={() => handleRating(2)}
-                type="radio"
-                id="star-2"
-                name="rating"
-                value={rating}
-              />
-              <label htmlFor="star-2" title="Оценка «2»"></label>
-              <input
-                type="radio"
-                defaultChecked={true}
-                id="star-1"
-                name="rating"
-                value={rating}
-              />
-              <label htmlFor="star-1" title="Оценка «1»"></label>
+      ) : (
+        <>
+          <hr style={{ border: "1px solid gray" }} />
+          <div style={{ marginTop: "2%", marginLeft: "5%" }}>
+            <div className={styles.tab}>
+              Отзывы ({reviews.length})
+              <br />
+              <div style={{ fontSize: "18px" }}>
+                Общий рейтинг: {reviews.length ? handleAllRating() : 0}
+              </div>
             </div>
-            <div
-              style={{
-                marginTop: "1.5%",
-                marginBottom: "0.25%",
-                fontSize: "19px",
-              }}
-            >
-              Описание:
+            <div className={styles.sort_block}>
+              <div className={styles.sort_text}>Сортировать по:</div>
+              <div className={styles.sort_new} onClick={handleSortNew}>
+                Новизне{sortNew ? " ↓" : " ↑"}
+              </div>
             </div>
-            <textarea
-              required
-              onChange={(e) => handleText(e)}
-              value={text}
-              className={styles.plus_text}
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-            ></textarea>
-            <button onClick={handleCreate} className={styles.review_button}>
-              Добавить
-            </button>
-          </div>
-        ) : (
-          <div className={styles.token_error}>
-            <span
-              style={{ cursor: "pointer", color: "blue" }}
-              onClick={handleOpen}
-            >
-              Войдите
-            </span>{" "}
-            в аккаунт, чтобы оставлять отзывы
-          </div>
-        )}
-        <hr style={{ marginTop: "3%", border: "1px solid" }} />
-        <div className={sortNew ? rlTrue : rlFalse}>
-          {reviews &&
-            reviews.map((item) => {
-              return (
-                users &&
-                users.map((user) => {
-                  if (user._id === item.user) {
-                    let star = "";
-                    for (let index = 0; index < item.rating; index++) {
-                      star += "★";
-                    }
-                    return (
-                      <>
-                        <hr />
-                        <div className={styles.review}>
-                          <div className={styles.user_img_login}>
-                            <img
-                              className={styles.user_img}
-                              src="https://otzovik.com/static/img/2018/icons/default_photo.svg"
-                              alt=""
-                            />
-                            <div className={styles.user_name}>{user.login}</div>
-                            {userId === item.user && (
-                              <div
-                                onClick={() => handleDeleteReview(item._id)}
-                                className={styles.delete_review}
-                              >
-                                ×
+            {token ? (
+              <div className={styles.get_review_block}>
+                <div style={{ fontSize: "24px" }}>Ваш отзыв:</div>
+                <div className={styles.rating_area}>
+                  <input
+                    onChange={() => handleRating(5)}
+                    type="radio"
+                    id="star-5"
+                    name="rating"
+                    value={rating}
+                  />
+                  <label htmlFor="star-5" title="Оценка «5»"></label>
+                  <input
+                    onChange={() => handleRating(4)}
+                    type="radio"
+                    id="star-4"
+                    name="rating"
+                    value={rating}
+                  />
+                  <label htmlFor="star-4" title="Оценка «4»"></label>
+                  <input
+                    onChange={() => handleRating(3)}
+                    type="radio"
+                    id="star-3"
+                    name="rating"
+                    value={rating}
+                  />
+                  <label htmlFor="star-3" title="Оценка «3»"></label>
+                  <input
+                    onChange={() => handleRating(2)}
+                    type="radio"
+                    id="star-2"
+                    name="rating"
+                    value={rating}
+                  />
+                  <label htmlFor="star-2" title="Оценка «2»"></label>
+                  <input
+                    type="radio"
+                    defaultChecked={true}
+                    id="star-1"
+                    name="rating"
+                    value={rating}
+                  />
+                  <label htmlFor="star-1" title="Оценка «1»"></label>
+                </div>
+                <div
+                  style={{
+                    marginTop: "1.5%",
+                    marginBottom: "0.25%",
+                    fontSize: "19px",
+                  }}
+                >
+                  Описание:
+                </div>
+                <textarea
+                  required
+                  onChange={(e) => handleText(e)}
+                  value={text}
+                  className={styles.plus_text}
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+                <button onClick={handleCreate} className={styles.review_button}>
+                  Добавить
+                </button>
+              </div>
+            ) : (
+              <div className={styles.token_error}>
+                <span
+                  style={{ cursor: "pointer", color: "blue" }}
+                  onClick={handleOpen}
+                >
+                  Войдите
+                </span>{" "}
+                в аккаунт, чтобы оставлять отзывы
+              </div>
+            )}
+            <hr style={{ marginTop: "3%", border: "1px solid" }} />
+            <div className={sortNew ? rlTrue : rlFalse}>
+              {reviews &&
+                reviews.map((item) => {
+                  return (
+                    users &&
+                    users.map((user) => {
+                      if (user._id === item.user) {
+                        let star = "";
+                        for (let index = 0; index < item.rating; index++) {
+                          star += "★";
+                        }
+                        return (
+                          <>
+                            <hr />
+                            <div className={styles.review}>
+                              <div className={styles.user_img_login}>
+                                <img
+                                  className={styles.user_img}
+                                  src="https://otzovik.com/static/img/2018/icons/default_photo.svg"
+                                  alt=""
+                                />
+                                <div className={styles.user_name}>
+                                  {user.login}
+                                </div>
+                                {userId === item.user && (
+                                  <div
+                                    onClick={() => handleDeleteReview(item._id)}
+                                    className={styles.delete_review}
+                                  >
+                                    ×
+                                  </div>
+                                )}
                               </div>
-                            )}
-                          </div>
-                          <div className={styles.review_block}>
-                            <div className={styles.user_name_2}>
-                              {user.login}
+                              <div className={styles.review_block}>
+                                <div className={styles.user_name_2}>
+                                  {user.login}
+                                </div>
+                                <div className={styles.data}>
+                                  {item.data.slice(0, 10)}{" "}
+                                  {item.data.slice(11, 16)}
+                                </div>
+                                <div className={styles.rating}>{star}</div>
+                                <div style={{ marginBottom: "0.5%" }}>
+                                  Описание:
+                                </div>
+                                <div className={styles.plus}>{item.text}</div>
+                              </div>
                             </div>
-                            <div className={styles.data}>
-                              {item.data.slice(0, 10)} {item.data.slice(11, 16)}
-                            </div>
-                            <div className={styles.rating}>{star}</div>
-                            <div style={{ marginBottom: "0.5%" }}>
-                              Описание:
-                            </div>
-                            <div className={styles.plus}>{item.text}</div>
-                          </div>
-                        </div>
-                        <hr />
-                      </>
-                    );
-                  }
-                })
-              );
-            })}
-        </div>
-      </div>
+                            <hr />
+                          </>
+                        );
+                      }
+                    })
+                  );
+                })}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
