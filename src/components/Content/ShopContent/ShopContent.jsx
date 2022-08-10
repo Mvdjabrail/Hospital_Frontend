@@ -131,12 +131,7 @@ const ShopContent = () => {
                       от {drug.price} ₽{" "}
                       {onCart(drug._id) ? (
                         <div className={styles.on_cart_back2}>
-                          <button
-                            onClick={() =>
-                              handleAddOfCart(currentCart._id, drug._id)
-                            }
-                            className={styles.drug_on_cart2}
-                          ></button>
+                          <button className={styles.drug_on_cart2}></button>
                         </div>
                       ) : (
                         <div className={styles.on_cart_back}>
@@ -177,12 +172,7 @@ const ShopContent = () => {
                         от {drug.price} ₽{" "}
                         {onCart(drug._id) ? (
                           <div className={styles.on_cart_back2}>
-                            <button
-                              onClick={() =>
-                                handleAddOfCart(currentCart._id, drug._id)
-                              }
-                              className={styles.drug_on_cart2}
-                            ></button>
+                            <button className={styles.drug_on_cart2}></button>
                           </div>
                         ) : (
                           <div className={styles.on_cart_back}>

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
 import { patchUser } from "./../users/userSlice";
 const initialState = {
   cart: [],
@@ -32,6 +31,28 @@ export const addCart = createAsyncThunk(
 
       const data = await res.json();
       return { product, idCart, data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const delProduct = createAsyncThunk(
+  "del/product",
+  async ({ idCart, idProduct }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const res = await fetch(`http://localhost:4000/cart/delete/${idCart}`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${state.usersReducer.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idProduct }),
+      });
+      console.log("ID", idProduct);
+      const cart = await res.json();
+      return cart;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -104,6 +125,14 @@ export const cartSlice = createSlice({
         });
       })
       .addCase(minusCartIem.fulfilled, (state, action) => {
+        state.cart = state.cart.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
+      })
+      .addCase(delProduct.fulfilled, (state, action) => {
         state.cart = state.cart.map((item) => {
           if (item._id === action.payload._id) {
             return action.payload;
