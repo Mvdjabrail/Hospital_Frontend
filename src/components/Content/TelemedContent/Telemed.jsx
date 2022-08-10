@@ -22,16 +22,14 @@ const Telemed = () => {
     }, [dispatch]);
 
     const appointments = useSelector((state) => state.appointmentsReducer.appointments);
+    const userId = localStorage.getItem("userId");
+    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
 
     const [showModalAppoint, setShowModalAppoint] = useState(false);
     const [showModalMyAppoint, setShowModalMyAppoint] = useState(false);
 
-    const userId = localStorage.getItem("userId");
-
-    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
-
     const handleOpenModal = () => {
-        setShowModalAppoint(true)
+        setShowModalAppoint(true);
     }
 
     const handleOpenModalMyAppoint = () => {
@@ -42,9 +40,11 @@ const Telemed = () => {
         <Container>
             <Container style={{ height: "13vh" }}></Container>
             <Container className="d-flex justify-content-end">
-                <button onClick={handleOpenModalMyAppoint} className={styles.btn}>
-                    Ваши заявки...
-                </button>
+                {appointmentsUser.length > 0 &&
+                    <button onClick={handleOpenModalMyAppoint} className={styles.btn}>
+                        Ваши заявки...
+                    </button>
+                }
                 <Pulse>
                     <button onClick={handleOpenModal} className={styles.btn} >
                         ЗАПИСАТЬСЯ

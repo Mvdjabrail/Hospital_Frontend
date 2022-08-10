@@ -32,7 +32,8 @@ export const fetchAppointments = createAsyncThunk("appointments/fetch", async (_
    }
 });
 
-export const addAppointment = createAsyncThunk("appointments/add", async ({doctorId, user, service}, thunkAPI) => {
+export const addAppointment = createAsyncThunk("appointments/add", async ({doctorId, user, service, roomId}, 
+   thunkAPI) => {
    try {
       const state = thunkAPI.getState();
       const res = await fetch("http://localhost:4000/appointments/add",
@@ -42,7 +43,7 @@ export const addAppointment = createAsyncThunk("appointments/add", async ({docto
                'Content-Type': 'application/json',
                Authorization: `Bearer ${state.usersReducer.token}`,
             },
-            body: JSON.stringify({doctorId, user, service})
+            body: JSON.stringify({doctorId, user, service, roomId})
          }
       );
       const appointment = await res.json();
@@ -87,11 +88,10 @@ export const updateAppointment = createAsyncThunk("appointments/update", async (
 export const deleteAppointment = createAsyncThunk("appointments/delete", async (id, thunkAPI) => {
    try {
       const state = thunkAPI.getState();
-      const res = await fetch(`http://localhost:4000/appointments/delete/:${id}`,
+      const res = await fetch(`http://localhost:4000/appointments/delete/${id}`,
          {
             method: "DELETE",
             headers: {
-               'Content-Type': 'application/json',
                Authorization: `Bearer ${state.usersReducer.token}`,
             },
          }
@@ -102,7 +102,7 @@ export const deleteAppointment = createAsyncThunk("appointments/delete", async (
          return thunkAPI.rejectWithValue(appointment.error);
       }
       else {
-         return thunkAPI.fulfillWithValue(appointment);
+         return thunkAPI.fulfillWithValue(id);
       }
    } catch (err) {
       return thunkAPI.rejectWithValue(err);
@@ -118,7 +118,7 @@ export const appointmentsSlice = createSlice({
    extraReducers: (builder) => {
       builder
          .addCase(fetchAppointments.fulfilled, (state, action) => {
-            state.appointments = action.payload;
+            state.appointments = (action.payload);
             state.loading = false;
             state.error = null;
          })
@@ -130,7 +130,7 @@ export const appointmentsSlice = createSlice({
             state.signUp = false;
          })
          .addCase(addAppointment.fulfilled, (state, action) => {
-            state.appointments = action.payload;
+            state.appointments.push(action.payload);
             state.loading = false;
             state.error = null;
          })
@@ -154,6 +154,7 @@ export const appointmentsSlice = createSlice({
             state.signUp = false;
          })
          .addCase(deleteAppointment.fulfilled, (state, action) => {
+            state.appointments = state.appointments.filter((appoint) => appoint._id !== action.payload)
             state.loading = false;
             state.error = null;
          })

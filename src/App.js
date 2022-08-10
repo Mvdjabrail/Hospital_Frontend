@@ -36,6 +36,7 @@ function App() {
           <Route path="about-us" element={<AboutPage />} />
 
         </Route>
+        <Route path = "telemed/room/:id" element={<Room />} />
       </Routes>
     </BrowserRouter>
   );

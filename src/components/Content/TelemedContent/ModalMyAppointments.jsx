@@ -1,13 +1,16 @@
 import { Modal } from 'react-bootstrap';
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAppointments } from "../../../features/appointment/appointmentSlice";
+import { fetchAppointments, deleteAppointment } from "../../../features/appointment/appointmentSlice";
 import { MdDelete } from "react-icons/md";
 import styles from "./Telemed.module.css";
 import { BsCollectionPlayFill } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
 const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
     const userId = localStorage.getItem("userId");
+
+    const navigate = useNavigate();
 
     const appointments = useSelector((state) => state.appointmentsReducer.appointments);
 
@@ -21,6 +24,14 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
 
     const handleClose = () => {
         setShowModalMyAppoint(false);
+    }
+
+    const handleEnterChat = (roomId) => {
+        navigate(`../telemed/room/${roomId}`);
+    }
+
+    const handleDeleteAppoinment = (id) => {
+        dispatch(deleteAppointment(id));
     }
 
     return (
@@ -39,7 +50,7 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
 
             <Modal.Body>
                 <table className="table table-hover">
-                    <thead style={{ textAlign: "center" }}>
+                    <thead >
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Доктор</th>
@@ -50,20 +61,26 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {appointments.map((appoint, index) => {
+                        {appointmentsUser.map((appoint, index) => {
+                            const date = appoint.dateAndTime ? 
+                            `${appoint.dateAndTime.slice(0, 10)} ${appoint.dateAndTime.slice(11, 16)}`
+                            :
+                            "ожидайте..."
                             return (
                                 <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{appoint.doctorId.lastName} {appoint.doctorId.firstName[0]}.</td>
                                     <td>{appoint.service.title}</td>
-                                    <td>{appoint.dateAndTime.slice(0, 10)} {appoint.dateAndTime.slice(11, 16)}</td>
-                                    <td className={styles.text_align}>
+                                    <td>{date}</td>
+                                    <td className={styles.text_align}
+                                    onClick={() => handleEnterChat(appoint.roomId)}>
                                         <button className={styles.btnDelAppoint}>
                                             <BsCollectionPlayFill color="red" size={20} />
                                         </button>
                                     </td>
                                     <td className={styles.text_align}>
-                                        <button className={styles.btnDelAppoint}>
+                                        <button className={styles.btnDelAppoint}
+                                            onClick={() => handleDeleteAppoinment(appoint._id)}>
                                             <MdDelete color="red" size={20} />
                                         </button>
                                     </td>

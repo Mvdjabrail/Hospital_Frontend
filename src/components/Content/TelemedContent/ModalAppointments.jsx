@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getService } from "../../../features/Services/ServicesSlice";
 import { getUsers } from "../../../features/users/userSlice";
 import { addAppointment } from "../../../features/appointment/appointmentSlice";
+import { v4 } from "uuid";
 import styles from "./Telemed.module.css";
 
 const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
@@ -29,9 +30,26 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
 
    const doctors = users.filter((doc) => doc.role === "doctor");
 
-   const notAppointServices = services.filter((service) => {
-      return appointmentsUser.filter((appoint) => service._id !== appoint.service)
-   })
+   const notAppointServices = () => {
+      let result = [];
+      if (appointmentsUser.length > 0) {
+         for (let i = 0; i < appointmentsUser.length; i++) {
+            for (let j = 0; j < services.length; j++) {
+               if (appointmentsUser[i].service._id !== services[j]._id) {
+                  result.push(services[j]);
+               }
+            }
+         }
+      }
+      else {
+         return services
+      }
+      return result;
+   }
+
+   if (!notAppointServices) {
+      return ''
+   }
 
    const handleClose = () => {
       setShowModalAppoint(false);
@@ -49,9 +67,10 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
       const doctorId = selectedDoctor;
       const user = userId;
       const service = selectedService;
+      const roomId = v4();
 
       e.preventDefault();
-      dispatch(addAppointment({ doctorId, user, service }));
+      dispatch(addAppointment({ doctorId, user, service, roomId }));
    }
 
    return (
@@ -75,7 +94,7 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
                   <Form.Select onChange={(e) => handleSelectServices(e.target.value)}
                      value={selectedService}>
                      <option />
-                     {notAppointServices.map((service, index) => {
+                     {notAppointServices().map((service, index) => {
                         return (
                            <option style={index % 2 === 0 ?
                               { fontSize: "18px", background: "white" }
