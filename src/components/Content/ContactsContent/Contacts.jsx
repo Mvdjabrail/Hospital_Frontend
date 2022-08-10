@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import { Container } from "react-bootstrap";
 import contacts from "./contacts.module.css";
 import React, { useState } from "react";
@@ -14,7 +15,7 @@ const Contacts = () => {
   const [message, setMessage] = useState("");
 
   const error = useSelector((state) => state.callRieqReduser.error);
-  console.log(error);
+
 
   const handleValueName = (e) => {
     setName(e.target.value);

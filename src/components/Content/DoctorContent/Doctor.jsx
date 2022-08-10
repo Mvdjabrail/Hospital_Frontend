@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../../features/users/userSlice";
+import { deleteUserId, getUsers } from "../../../features/users/userSlice";
 import css from "./doctor.module.css";
 
 const Doctor = () => {
+  const dispatch = useDispatch();
+
   const [photo, setPhoto] = useState("");
   const [preview, setPreview] = useState("");
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.usersReducer.users);
-  const userId = useSelector(state => state.usersReducer.userId)
-
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
+
   useEffect(() => {
     if (photo) {
       const reader = new FileReader();
@@ -25,8 +26,41 @@ const Doctor = () => {
       setPreview(null);
     }
   }, [dispatch, photo]);
+
+  const handleUserRemove = (id) => {
+    dispatch(deleteUserId(id));
+  };
+
   return (
     <>
+         <div className={css.pacientConteyner}>
+          <div className={css.mainUser}>
+            <h1 className={css.users}>Пациенты</h1>
+            {user.map((item) => {
+              if (item.role !== "admin" && item.role !== "doctor") {
+                return (
+                  <>
+                    <div className={css.loginDiv}>
+                      <div>{item.login}</div>
+                      <div>{item.role}</div>
+                      {item.role === "admin" ? (
+                        <div style={{ width: "34%" }}></div>
+                      ) : (
+                        <button
+                          onClick={() => handleUserRemove(item._id)}
+                          className={css.btn}
+                        >
+                          {item.role === "user" && "Назначить врачем"}
+                        </button>
+                      )}
+                    </div>
+                    <hr />
+                  </>
+                );
+              }
+            })}
+          </div>
+       </div>
       <div className={css.admin_page}>
         <div className={css.admin_page_content}>
           <div className={css.createImage}>
@@ -69,20 +103,61 @@ const Doctor = () => {
             </div>
           </div>
           <div className={css.input_block}>
+            <div
+              style={{
+                fontSize: "30px",
+                fontWeight: "bold",
+                marginBottom: "15%",
+                marginTop: "10%",
+              }}
+            >
+              Account
+            </div>
             {user.map((user) => {
               return (
                 <>
                   {user._id === userId && (
                     <>
-                      <div>
-                        <div>Имя:{user.firstName}</div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div
+                          className={css.prof}
+                          style={{ marginBottom: "2%" }}
+                        >
+                          Имя: {user.firstName}
+                        </div>
+                        <div></div>
                       </div>
-                      <div>
-                        <div>Фамилия:{user.lastName}</div>
+                      <hr className={css.hr_doctor} />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <h2 className={css.prof} style={{ marginBottom: "2%" }}>
+                          Фамилия: {user.lastName}
+                        </h2>
                       </div>
-                      <div>
-                        <div>Почта:{user.email}</div>
+                      <hr className={css.hr_doctor} />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div
+                          className={css.prof}
+                          style={{ marginBottom: "2%" }}
+                        >
+                          Почта: {user.email}
+                        </div>
                       </div>
+                      <hr className={css.hr_doctor} />
                     </>
                   )}
                 </>

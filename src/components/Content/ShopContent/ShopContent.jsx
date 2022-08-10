@@ -11,7 +11,6 @@ const ShopContent = () => {
   const dispatch = useDispatch();
 
   const drugs = useSelector((state) => state.drugsReducer.drugs);
-  const categories = useSelector((state) => state.categoriesReducer.categories);
   const cart = useSelector((state) => state.cartReducer.cart);
   const userId = localStorage.getItem("userId");
 
@@ -66,6 +65,14 @@ const ShopContent = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
+  const currentCart = cart?.find((item) => item.user === userId);
+  if (!currentCart) {
+    return "";
+  }
+
+  const onCart = (id) =>
+    currentCart.products.find((item) => item.productId === id);
+
   return (
     <>
       <Container className={styles.shop}>
@@ -104,13 +111,14 @@ const ShopContent = () => {
             <Container className={styles.drugs_block_kubik}>
               {sortDrugs().map((drug, index) => {
                 return (
-                  <Container className={styles.drug1}>
+                  <Container key={drug._id} className={styles.drug1}>
                     <Container>
                       <img
                         className={styles.drug_img1}
-                        src="https://planetazdorovo.ru/pics/logotype.svg"
+                        src={`http://localhost:4000/${drug.image}`}
                         alt=""
                       />
+                      <hr />
                     </Container>
                     <Container className={styles.drug_title1}>
                       {drug.title}
@@ -121,31 +129,25 @@ const ShopContent = () => {
                     </Container>
                     <Container className={styles.drug_price1}>
                       от {drug.price} ₽{" "}
-                      {cart.map((cart) => {
-                        if (cart.user === userId) {
-                          if (cart.products.find((item) => item === drug._id)) {
-                            return (
-                              <div className={styles.on_cart_back2}>
-                                <button
-                                  className={styles.drug_on_cart2}
-                                ></button>
-                              </div>
-                            );
-                          }
-                          return (
-                            <div className={styles.on_cart_back}>
-                              <button
-                                onClick={() =>
-                                  handleAddOfCart(cart._id, drug._id)
-                                }
-                                className={styles.drug_on_cart}
-                              ></button>
-                            </div>
-                          );
-                        } else {
-                          return "";
-                        }
-                      })}
+                      {onCart(drug._id) ? (
+                        <div className={styles.on_cart_back2}>
+                          <button
+                            onClick={() =>
+                              handleAddOfCart(currentCart._id, drug._id)
+                            }
+                            className={styles.drug_on_cart2}
+                          ></button>
+                        </div>
+                      ) : (
+                        <div className={styles.on_cart_back}>
+                          <button
+                            onClick={() =>
+                              handleAddOfCart(currentCart._id, drug._id)
+                            }
+                            className={styles.drug_on_cart}
+                          ></button>
+                        </div>
+                      )}
                     </Container>
                   </Container>
                 );
@@ -155,11 +157,11 @@ const ShopContent = () => {
             <Container className={styles.drugs_block_stroka}>
               {sortDrugs().map((drug, index) => {
                 return (
-                  <Container className={styles.drug2}>
+                  <Container key={drug._id} className={styles.drug2}>
                     <Container>
                       <img
                         className={styles.drug_img2}
-                        src="https://planetazdorovo.ru/pics/logotype.svg"
+                        src={`http://localhost:4000/${drug.image}`}
                         alt=""
                       />
                     </Container>
@@ -173,33 +175,25 @@ const ShopContent = () => {
                       </Container>
                       <Container className={styles.drug_price2}>
                         от {drug.price} ₽{" "}
-                        {cart.map((cart) => {
-                          if (cart.user === userId) {
-                            if (
-                              cart.products.find((item) => item === drug._id)
-                            ) {
-                              return (
-                                <div className={styles.on_cart_back2}>
-                                  <button
-                                    className={styles.drug_on_cart2}
-                                  ></button>
-                                </div>
-                              );
-                            }
-                            return (
-                              <div className={styles.on_cart_back}>
-                                <button
-                                  onClick={() =>
-                                    handleAddOfCart(cart._id, drug._id)
-                                  }
-                                  className={styles.drug_on_cart}
-                                ></button>
-                              </div>
-                            );
-                          } else {
-                            return "";
-                          }
-                        })}
+                        {onCart(drug._id) ? (
+                          <div className={styles.on_cart_back2}>
+                            <button
+                              onClick={() =>
+                                handleAddOfCart(currentCart._id, drug._id)
+                              }
+                              className={styles.drug_on_cart2}
+                            ></button>
+                          </div>
+                        ) : (
+                          <div className={styles.on_cart_back}>
+                            <button
+                              onClick={() =>
+                                handleAddOfCart(currentCart._id, drug._id)
+                              }
+                              className={styles.drug_on_cart}
+                            ></button>
+                          </div>
+                        )}
                       </Container>
                     </Container>
                   </Container>

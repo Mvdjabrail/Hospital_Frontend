@@ -1,0 +1,103 @@
+.cardCnt{
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    width: 79.1%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+.noPadding{
+    width: 300px;
+    display: inline-block;
+}
+.cards{
+    width: 300px;
+    height: 270px;
+    padding: 10px;
+    position: absolute;
+    bottom: 0%;
+    transition: all 200ms ease-in-out;
+}
+.card1{
+    background-color: #36A8EB;
+}
+.icon{
+    color: white;
+}
+.line{
+    color: white;
+    border-width: 3px;
+}
+.title{
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: white;
+}
+.days{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: white;
+}
+.popUp{
+    padding: 10px;
+    background-color: #476B8D;
+}
+.noPadding:hover .cards{
+    transform: translate(0px, 0.69px);
+    transition: all 200ms ease-in-out;
+    bottom: 100%;
+}
+
+.btn{
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    background-color: transparent;
+    font-size: 14px;
+    height: 30px;
+    width: 130px;
+}
+.btn:hover{
+    border: 1px solid #36A8EB;
+    background-color: #36A8EB;
+}
+.dash{
+    position: absolute;
+    top: 56%;
+    left: 62.5%;
+}
+.dash2{
+    position: absolute;
+    top: 77%;
+    left: 62.5%;
+}
+.card2{
+    background-color: #088EDD;
+}
+.card3{
+    background-color: #1977CC;
+}
+.card4{
+    background-color: #1063AF;
+}
+.timeTable{
+    color: white;
+    font-size: 14px;
+    margin-top: 12%;
+}
+.cardText2{
+    color: white;
+    margin-top: 5%;
+    font-size: 14px;
+}
+.phoneNumber{
+    color: white;
+    font-size: 24px;
+    margin-top: 12%;
+}
+.sliderCnt{
+    width: 100%;
+    height: 700px;
+    background-color: black;
+}

@@ -19,7 +19,7 @@ export const callRieq = createAsyncThunk(
         body: JSON.stringify({name, email, message})
       })
       const data = await res.json()
-console.log(data);
+
       if(data.error) {
         return thunkAPI.rejectWithValue(data.message)
       }

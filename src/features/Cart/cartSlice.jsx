@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import { patchUser } from "./../users/userSlice";
 const initialState = {
   cart: [],
@@ -18,20 +19,63 @@ export const getCart = createAsyncThunk("cart/get", async (_, thunkAPI) => {
 export const addCart = createAsyncThunk(
   "cart/patch",
   async ({ idCart, product }, thunkAPI) => {
-    console.log("Id", idCart, product);
     try {
       const state = thunkAPI.getState();
-      await fetch(`http://localhost:4000/user/cart/${idCart}`, {
+      const res = await fetch(`http://localhost:4000/user/cart/${idCart}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${state.usersReducer.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ products: product }),
+        body: JSON.stringify({ products: { productId: product, amount: 1 } }),
       });
-     return {product, idCart}
+
+      const data = await res.json();
+      return { product, idCart, data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const minusCartIem = createAsyncThunk(
+  "minus/plus",
+  async ({ idCart, id }, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/minus/cart/${idCart}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      const cart = await res.json();
+
+      return cart;
+    } catch (e) {
+      thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
+export const plusCartIem = createAsyncThunk(
+  "cart/plus",
+  async ({ idCart, id }, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/plus/cart/${idCart}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      const cart = await res.json();
+
+      return cart;
+    } catch (e) {
+      thunkAPI.rejectWithValue(e);
     }
   }
 );
@@ -43,14 +87,29 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addCart.fulfilled, (state, action) => {
-        state.cart = state.cart.map(item => {
+        state.cart = state.cart.map((item) => {
           if (item._id === action.payload.idCart) {
-            item.products.push(action.payload.product)
-            return item
+            return action.payload.data;
           }
-          return item
-        })
+          return item;
+        });
         state.error = null;
+      })
+      .addCase(plusCartIem.fulfilled, (state, action) => {
+        state.cart = state.cart.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
+      })
+      .addCase(minusCartIem.fulfilled, (state, action) => {
+        state.cart = state.cart.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
       })
       .addCase(patchUser.rejected, (state, action) => {
         state.error = action.payload;

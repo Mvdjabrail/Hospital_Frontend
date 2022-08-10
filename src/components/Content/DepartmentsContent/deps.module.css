@@ -1,0 +1,56 @@
+.title{
+    margin-top: 7%;
+    color: #526371;
+    margin-right: 66.5%;
+}
+hr{
+    width: 80%;
+    margin-left: 10.1%;
+}
+.quote{
+    margin-left: 26%;
+    margin-top: 3%;
+}
+.author{
+    color: #3695eb;
+    margin-left: 43%;
+    margin-bottom: 3%;
+}
+.depsCnt{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: 10.5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.deps{
+    width: 300px;
+    height: 260px;
+}
+.img{
+    width: 75px;
+    height: 100px;
+    margin-left: 35%;
+    margin-top: 20px;
+}
+.depTitle{
+    font-size: 21px;
+    text-align: center;
+    margin-top: 3%;
+    color: black;
+}
+.depText{
+    font-size: 14px;
+    color: gray;
+    margin-left: 11%;
+    margin-top: 4%;
+    width: 80%;
+    text-align: center;
+}
+.deps:hover{
+    background-color: #e7f6ff;
+}
+a{
+    text-decoration: none;
+}
