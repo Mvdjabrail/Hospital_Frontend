@@ -5,6 +5,7 @@ import styles from "./Telemed.module.css";
 import { pulse } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import ModalAppointments from './ModalAppointments';
+import ModalMyAppointments from './ModalMyAppointments';
 import { fetchAppointments } from "../../../features/appointment/appointmentSlice";
 import telemed1 from "../../../assets/telemed1.jpg";
 import telemed2 from "../../../assets/telemed2.jpg";
@@ -20,24 +21,30 @@ const Telemed = () => {
         dispatch(fetchAppointments());
     }, [dispatch]);
 
-    const appointment = useSelector((state) => state.appointmentsReducer.appointment);
+    const appointments = useSelector((state) => state.appointmentsReducer.appointments);
 
     const [showModalAppoint, setShowModalAppoint] = useState(false);
+    const [showModalMyAppoint, setShowModalMyAppoint] = useState(false);
 
     const userId = localStorage.getItem("userId");
 
-    const appointmentsUser = appointment.filter((appointment) => appointment.user === userId);
-
-    console.log(appointmentsUser);
+    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
 
     const handleOpenModal = () => {
-        { setShowModalAppoint(true) }
+        setShowModalAppoint(true)
     }
+
+    const handleOpenModalMyAppoint = () => {
+        setShowModalMyAppoint(true)
+    }
+
     return (
         <Container>
-            <Container style={{ height: "8vh" }}></Container>
+            <Container style={{ height: "13vh" }}></Container>
             <Container className="d-flex justify-content-end">
-                <button className={styles.btn}>Ваши заявки...</button>
+                <button onClick={handleOpenModalMyAppoint} className={styles.btn}>
+                    Ваши заявки...
+                </button>
                 <Pulse>
                     <button onClick={handleOpenModal} className={styles.btn} >
                         ЗАПИСАТЬСЯ
@@ -72,6 +79,7 @@ const Telemed = () => {
                 </Container>
             </Container>
             {ModalAppointments(showModalAppoint, setShowModalAppoint)}
+            {ModalMyAppointments(showModalMyAppoint, setShowModalMyAppoint)}
         </Container>
     )
 };

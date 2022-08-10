@@ -16,11 +16,8 @@
     "peer": "^0.6.1",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.6.4",
-<<<<<<< HEAD
     "react-animations": "^1.0.0",
-=======
     "react-animate-on-scroll": "^2.1.5",
->>>>>>> main
     "react-bootstrap": "^2.4.0",
     "react-calendar": "^3.7.0",
     "react-countup": "^6.3.0",

@@ -26,7 +26,6 @@ function App() {
           <Route path="telemed" element={<Telemed />} />
 
           <Route path="shop" element={<Shop />} />
-          <Route path="telemed" element={<VideoChat />} />
           <Route path="" element={<HomePage />} />
           <Route path="departments" element={<Departments />} />
           <Route path="departments/:id" element={<Docs />}/>

@@ -1,7 +1,7 @@
 import { Modal, Form } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getDeps } from "../../../features/departments/depsSlice";
+import { getService } from "../../../features/Services/ServicesSlice";
 import { getUsers } from "../../../features/users/userSlice";
 import { addAppointment } from "../../../features/appointment/appointmentSlice";
 import styles from "./Telemed.module.css";
@@ -9,18 +9,18 @@ import styles from "./Telemed.module.css";
 const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
    const dispatch = useDispatch();
 
-   const deps = useSelector((state) => state.deps.departments);
+   const services = useSelector((state) => state.servicesReducer.services);
    const users = useSelector((state) => state.usersReducer.users);
    const userId = useSelector((state) => state.usersReducer.userId);
-   const appointment = useSelector((state) => state.appointmentsReducer.appointment);
+   const appointments = useSelector((state) => state.appointmentsReducer.appointments);
 
-   const appointmentsUser = appointment.filter((appointment) => appointment.user === userId);
+   const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
 
    const [selectedService, setSelectedService] = useState();
    const [selectedDoctor, setSelectedDoctor] = useState();
 
    useEffect(() => {
-      dispatch(getDeps());
+      dispatch(getService());
    }, [dispatch]);
 
    useEffect(() => {
@@ -28,6 +28,10 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
    }, [dispatch]);
 
    const doctors = users.filter((doc) => doc.role === "doctor");
+
+   const notAppointServices = services.filter((service) => {
+      return appointmentsUser.filter((appoint) => service._id !== appoint.service)
+   })
 
    const handleClose = () => {
       setShowModalAppoint(false);
@@ -45,8 +49,9 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
       const doctorId = selectedDoctor;
       const user = userId;
       const service = selectedService;
+
       e.preventDefault();
-      dispatch(addAppointment({doctorId, user, service}));
+      dispatch(addAppointment({ doctorId, user, service }));
    }
 
    return (
@@ -70,18 +75,19 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
                   <Form.Select onChange={(e) => handleSelectServices(e.target.value)}
                      value={selectedService}>
                      <option />
-                     {deps.map((dep, index) => {
+                     {notAppointServices.map((service, index) => {
                         return (
                            <option style={index % 2 === 0 ?
                               { fontSize: "18px", background: "white" }
                               :
                               { fontSize: "18px", background: "#7bbbf8" }}
-                              value={dep._id}
+                              value={service._id}
                               key={index}>
-                              {dep.title}
+                              {service.title}
                            </option>
                         )
-                     })}
+                     })
+                     }
                   </Form.Select>
                </Form.Group>
 

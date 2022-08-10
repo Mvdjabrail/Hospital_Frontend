@@ -21,3 +21,12 @@ h2 {
     color: #3695EB;
     padding: 20px 0 10px 0;
 }
+
+.btnDelAppoint {
+    background: transparent;
+    border: none;
+}
+
+.text_align {
+    text-align: center;
+}

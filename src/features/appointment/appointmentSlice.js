@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-   appointment: [],
+   appointments: [],
    loading: false,
    error: null,
    token: localStorage.getItem('token'),
 }
 
-export const fetchAppointments = createAsyncThunk("/appointments/fetch", async (_, thunkAPI) => {
+export const fetchAppointments = createAsyncThunk("appointments/fetch", async (_, thunkAPI) => {
    try {
       const state = thunkAPI.getState();
       const res = await fetch("http://localhost:4000/appointments/fetch",
@@ -118,7 +118,7 @@ export const appointmentsSlice = createSlice({
    extraReducers: (builder) => {
       builder
          .addCase(fetchAppointments.fulfilled, (state, action) => {
-            state.appointment = action.payload;
+            state.appointments = action.payload;
             state.loading = false;
             state.error = null;
          })
@@ -130,7 +130,7 @@ export const appointmentsSlice = createSlice({
             state.signUp = false;
          })
          .addCase(addAppointment.fulfilled, (state, action) => {
-            state.appointment = action.payload;
+            state.appointments = action.payload;
             state.loading = false;
             state.error = null;
          })
@@ -142,7 +142,7 @@ export const appointmentsSlice = createSlice({
             state.signUp = false;
          })
          .addCase(updateAppointment.fulfilled, (state, action) => {
-            state.appointment = action.payload;
+            state.appointments = action.payload;
             state.loading = false;
             state.error = null;
          })
