@@ -36,12 +36,12 @@ function layout(clientsNumber = 1) {
          }
 
          return row.map(() => ({
-            width: "50%",
+            width: "45%",
             height,
          }));
       })
       .flat();
- }
+}
 
 const hundleSendMessage = () => {
 
@@ -76,7 +76,7 @@ const Room = () => {
                style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "between",
+                  justifyContent: "space-around",
                   flexWrap: "wrap",
                   height: "100vh",
                }}
@@ -99,7 +99,6 @@ const Room = () => {
                   );
                })}
             </Container>
-
             <Container fluid className="d-flex p-2 justify-content-between m-0"
                style={{ background: "#242F41" }}>
                <div style={{ margin: "0 10px", padding: 0, display: "flex" }}>
