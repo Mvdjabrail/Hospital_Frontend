@@ -29,15 +29,14 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
    }, [dispatch]);
 
    const doctors = users.filter((doc) => doc.role === "doctor");
+   const doctorsProvidingService = doctors.filter((doc) => doc.service === selectedService)
 
    const notAppointServices = () => {
       let result = [];
       if (appointmentsUser.length > 0) {
-         for (let i = 0; i < appointmentsUser.length; i++) {
-            for (let j = 0; j < services.length; j++) {
-               if (appointmentsUser[i].service._id !== services[j]._id) {
-                  result.push(services[j]);
-               }
+         for (let i = 0; i < services.length; i++) {
+            if(!findElInArray(services[i]._id)) {
+               result.push(services[i]);
             }
          }
       }
@@ -45,6 +44,17 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
          return services
       }
       return result;
+   }
+
+   const findElInArray = (serviceId) => {
+      let isAppointment = false;
+
+      for (let i = 0; i < appointmentsUser.length; i++) {
+         if(appointmentsUser[i].service._id === serviceId) {
+            isAppointment = true;
+         }
+      }
+      return isAppointment;
    }
 
    if (!notAppointServices) {
@@ -115,7 +125,7 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
                   <Form.Select onChange={(e) => handleSelectDoctor(e.target.value)}
                      value={selectedDoctor}>
                      <option />
-                     {doctors.map((doc, index) => {
+                     {doctorsProvidingService.map((doc, index) => {
                         return (
                            <option style={index % 2 === 0 ?
                               { fontSize: "18px", background: "white" }

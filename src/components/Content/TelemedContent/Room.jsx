@@ -8,6 +8,7 @@ import { RiMailSendLine } from "react-icons/ri"
 import { BsCameraVideoFill, BsFillCameraVideoOffFill } from "react-icons/bs";
 import { AiFillAudio, AiOutlineAudioMuted } from "react-icons/ai";
 import { MdGroupAdd } from "react-icons/md";
+import socket from "../../../socket";
 
 function layout(clientsNumber = 1) {
    const pairs = Array.from({ length: clientsNumber }).reduce(
@@ -40,7 +41,7 @@ function layout(clientsNumber = 1) {
          }));
       })
       .flat();
-}
+ }
 
 const hundleSendMessage = () => {
 
@@ -118,7 +119,7 @@ const Room = () => {
                   </Button>
                </div>
                <Link to='/'>
-                  <Button >Выход</Button>
+                  <Button onClick={() => socket.diconnekt()}>Выход</Button>
                </Link>
                <Button ><MdGroupAdd size={30} color="white" /></Button>
             </Container>
