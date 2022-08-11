@@ -69,7 +69,7 @@ const SignInPage = () => {
         <Button
           onClick={handleClose}
           style={{
-            color: "#a80757",
+            color: "#3695eb",
             background: "transparent",
             border: "none",
             fontSize: "36px",
@@ -148,9 +148,9 @@ const SignInPage = () => {
 
           <Button
             style={{
-              backgroundColor: "#a80757",
+              backgroundColor: "#3695eb",
               border: "none",
-              borderRadius: "2%",
+              borderRadius: "20px",
               padding: "6px 18px",
             }}
             variant="primary"
