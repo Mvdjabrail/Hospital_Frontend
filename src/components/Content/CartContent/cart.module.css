@@ -1,0 +1,11 @@
+.icc {
+    cursor: pointer;
+    font-size: 23px;
+    color: red;
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    font-size: 20px;
+}
