@@ -4,6 +4,7 @@ import drugsReducer from "../features/drugs/drugsSlice";
 import categoriesReducer from "../features/category/categorySlice";
 import callRieqReduser from '../features/callRieq/callRieqSlice'
 import serviceSlice from "../features/Services/ServicesSlice";
+import appointmentsSlice from "../features/appointment/appointmentSlice";
 import cartSlice from "../features/Cart/cartSlice";
 import reviewsSlice from "../features/Reviews/reviewsSlice";
 
@@ -14,9 +15,8 @@ export const store = configureStore({
         servicesReducer: serviceSlice,
         drugsReducer: drugsReducer,
         categoriesReducer: categoriesReducer,
+        appointmentsReducer: appointmentsSlice,
         cartReducer: cartSlice,
         reviewReducer: reviewsSlice,
     }
 });
-
-
