@@ -23,8 +23,7 @@ const Telemed = () => {
 
     const appointments = useSelector((state) => state.appointmentsReducer.appointments);
     const userId = localStorage.getItem("userId");
-    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
-
+    const appointmentsUser = appointments.filter((appointment) => appointment.user._id === userId);
     const [showModalAppoint, setShowModalAppoint] = useState(false);
     const [showModalMyAppoint, setShowModalMyAppoint] = useState(false);
 

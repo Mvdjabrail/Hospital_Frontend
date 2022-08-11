@@ -8,7 +8,6 @@ import { RiMailSendLine } from "react-icons/ri"
 import { BsCameraVideoFill, BsFillCameraVideoOffFill } from "react-icons/bs";
 import { AiFillAudio, AiOutlineAudioMuted } from "react-icons/ai";
 import { MdGroupAdd } from "react-icons/md";
-import socket from "../../../socket";
 
 function layout(clientsNumber = 1) {
    const pairs = Array.from({ length: clientsNumber }).reduce(
@@ -51,8 +50,6 @@ const Room = () => {
    const { id: roomID } = useParams();
    const { clients, provideMediaRef, stream } = useWebRTC(roomID);
    const videoLayout = layout(clients.length);
-
-   const rootNode = useRef();
 
    const [showVideo, setShowVideo] = useState(false);
    const [mute, setMute] = useState(false);
@@ -118,7 +115,7 @@ const Room = () => {
                   </Button>
                </div>
                <Link to='/'>
-                  <Button onClick={() => socket.diconnekt()}>Выход</Button>
+                  <Button onClick={() => clients.Disconnect(true)}>Выход</Button>
                </Link>
                <Button ><MdGroupAdd size={30} color="white" /></Button>
             </Container>

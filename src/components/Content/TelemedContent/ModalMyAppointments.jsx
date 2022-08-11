@@ -14,7 +14,7 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
 
     const appointments = useSelector((state) => state.appointmentsReducer.appointments);
 
-    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
+    const appointmentsUser = appointments.filter((appointment) => appointment.user._id === userId);
 
     const dispatch = useDispatch();
 

@@ -12,7 +12,6 @@ import Doctor from "./components/Content/DoctorContent/Doctor";
 import HomePage from "./pages/HomePage";
 import Departments from "./pages/Departments";
 import Docs from "./components/Content/DocsContent/Docs";
-import VideoChat from "./components/Content/TelemedContent/VideoChat";
 
 const role = localStorage.getItem("role");
 
@@ -23,7 +22,6 @@ function App() {
         <Route path="/*" element={<Layout />}>
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="shop" element={<Shop />} />
-          <Route path="telemed" element={<VideoChat />} />
             <Route path="" element={<HomePage />} />
             <Route path="departments" element={<Departments />} />
             <Route path="departments/:id" element={<Docs />}/>

@@ -13,9 +13,6 @@ const socket = io('http://localhost:3001', options);
 export default socket;
 
 
-
-
-
 // const socket = io(options, {  
 //   cors: {
 //   origin: "http://localhost:3001",

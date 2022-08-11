@@ -23,7 +23,6 @@ export default function useWebRTC(roomID) {
     [clients, updateClients]
   );
 
-  let localVideoElement;
   const peerConnections = useRef({});
   const localMediaStream = useRef(null);
   const peerMediaElements = useRef({
@@ -175,7 +174,7 @@ export default function useWebRTC(roomID) {
       });
 
       addNewClient(LOCAL_VIDEO, () => {
-         localVideoElement = peerMediaElements.current[LOCAL_VIDEO];
+         const localVideoElement = peerMediaElements.current[LOCAL_VIDEO];
 
         if (localVideoElement) {
           localVideoElement.volume = 0;
@@ -199,5 +198,6 @@ export default function useWebRTC(roomID) {
     clients,
     provideMediaRef,
     stream,
+    
   };
 }
