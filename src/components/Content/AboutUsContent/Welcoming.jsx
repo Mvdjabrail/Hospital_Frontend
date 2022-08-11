@@ -18,7 +18,7 @@ const Welcoming = () => {
   }, [dispatch]);
 
   useEffect(()=>{
-    Aos.init({duration: 2000})
+    Aos.init({duration: 1000})
 }, [])
 
   return (
@@ -48,7 +48,7 @@ const Welcoming = () => {
             {deps.map((el)=>{
               return(
                 <li data-aos="fade-right" className={styles.depsList}>
-                  <NavLink className={styles.links} to={'x'}>{el.title}</NavLink> 
+                  <NavLink className={styles.links} to={`/departments/${el._id}`}>{el.title}</NavLink> 
                 </li>
               )
             })}

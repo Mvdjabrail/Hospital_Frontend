@@ -4,6 +4,7 @@ import { BsClock } from "react-icons/bs"
 import { BsCalendarEvent } from "react-icons/bs"
 import { AiOutlinePhone } from "react-icons/ai"
 import { FaMedkit } from "react-icons/fa"
+import { Link } from 'react-router-dom';
 
 const Cards = () => {
     return (
@@ -49,7 +50,7 @@ const Cards = () => {
                 </div>
                 </div>
                 <div className={styles.popUp}>
-                    <button className={styles.btn}>Записаться</button>
+                    <Link to='/departments'> <button className={styles.btn}>Записаться</button> </Link>
                 </div>
             </div>
            <div className={styles.noPadding}> <div className={`${styles.cards} ${styles.card4}`}>
