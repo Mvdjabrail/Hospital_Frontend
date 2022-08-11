@@ -1,9 +1,13 @@
-/* eslint-disable array-callback-return */
 import React, { useEffect } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, getCart, plusCartIem } from "../../../features/Cart/cartSlice";
+import {
+  delProduct,
+  getCart,
+  minusCartIem,
+  plusCartIem,
+} from "../../../features/Cart/cartSlice";
 import { getDrugs } from "../../../features/drugs/drugsSlice";
 
 function CartComponent(props) {
@@ -11,19 +15,16 @@ function CartComponent(props) {
   const userId = localStorage.getItem("userId");
   const drugs = useSelector((state) => state.drugsReducer.drugs);
 
-  const handlePlus = (idCart, id, product ) => {
-    const products = product.map(item => {
-      if (item._id === id) {
-        item.amount += 1
-        return item
-      }
-      return item
-    })
-    dispatch(plusCartIem({idCart, products}));
+  const handlePlus = (idCart, id) => {
+    dispatch(plusCartIem({ idCart, id }));
   };
 
-  const handleMinus = () => {
-    dispatch();
+  const handleMinus = (idCart, id) => {
+    dispatch(minusCartIem({ idCart, id }));
+  };
+
+  const handleDelete = (idCart, idProduct) => {
+    dispatch(delProduct({ idCart, idProduct }));
   };
 
   const dispatch = useDispatch();
@@ -37,6 +38,33 @@ function CartComponent(props) {
   if (!currentCart) {
     return "";
   }
+
+  const arrayPrice = currentCart.products.map((item) => {
+    return drugs.map((drug) => {
+      if (drug._id === item.productId) {
+        return drug.price;
+      }
+    });
+  });
+
+  const arrayAmount = currentCart.products.map((item) => {
+    return item.amount;
+  });
+
+  function sum(a, b) {
+    let arr = [];
+    for (let i = 0; i < a.length; i++) {
+      for (let q = 0; q < b.length; q++) {
+        arr.push(a[i] * b[q]);
+      }
+    }
+    return arr;
+  }
+
+  const qw = sum(arrayPrice.flat(), arrayAmount).filter((item) => !isNaN(item));
+
+  console.log(qw);
+
   return (
     <>
       <Nav variant="link" onClick={props.handleShow} className="mx-1"></Nav>
@@ -52,6 +80,7 @@ function CartComponent(props) {
                   <th>Цена</th>
                   <th>Продукт</th>
                   <th>Количество</th>
+                  <th>Сумма</th>
                 </tr>
               </thead>
               {currentCart.products?.map((item) => {
@@ -65,24 +94,44 @@ function CartComponent(props) {
                           <td>
                             {" "}
                             <button
-                               onClick={() =>
-                                 handlePlus(currentCart._id, drug._id, currentCart.products)
-                               }
+                              onClick={() =>
+                                handlePlus(currentCart._id, drug._id)
+                              }
                             >
                               +
                             </button>{" "}
-                            {item.amount} 
-                            <button onClick={() => handleMinus()}>-</button>
+                            {item.amount}
+                            <button
+                              onClick={() =>
+                                handleMinus(currentCart._id, drug._id)
+                              }
+                            >
+                              -
+                            </button>
                           </td>
-                          <td>{item.amount * drug.price}</td> 
+                          <td>{item.amount * drug.price}</td>
+                          <td>
+                            <button
+                              onClick={() =>
+                                handleDelete(currentCart._id, drug._id)
+                              }
+                            >
+                              Удалить
+                            </button>
+                          </td>
                         </tr>
                       </tbody>
                     );
                   }
                 });
               })}
+              <tfoot>
+                <tr>
+                  <td>К оплате</td>
+                  <td>{}</td>
+                </tr>
+              </tfoot>
             </td>
-           
           </table>
         </Offcanvas.Body>
       </Offcanvas>
