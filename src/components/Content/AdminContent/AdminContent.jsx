@@ -12,6 +12,8 @@ const AdminContent = () => {
   const [preview, setPreview] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.usersReducer.users);
+  const userId = useSelector((state) => state.usersReducer.userId);
+
   const handleShowServices = () => {
     dispatch(showModalServices(true));
   };
@@ -85,54 +87,93 @@ const AdminContent = () => {
             {user.map((user) => {
               return (
                 <>
-                {user.role === 'admin' && (
-              <>
-                  <div>
-                    <div>Имя:{user.firstName}</div>
-                  </div>
-                  <div>
-                    <div>Фамилия:{user.lastName}</div>
-                  </div>
-                  <div>
-                    <div>Почта:{user.email}</div>
-                  </div>
-                  </>)
-                }
+                  {user.role === "admin" && user._id === userId && (
+                    <div className={css.admin_profil}>
+                      <div>
+                        <h1 className={css.admin_profil}>Admin</h1>
+                      </div>
+                      <hr />
+                      <div>
+                        <h3>Имя: {user.firstName}</h3>
+                      </div>
+                      <hr />
+                      <div>
+                        <h4>Фамилия: {user.lastName}</h4>
+                      </div>
+                      <hr />
+                      <div>
+                        <h5>Почта: {user.email}</h5>
+                      </div>
+                      <hr />
+                    </div>
+                  )}
                 </>
               );
             })}
           </div>
-        </div>
-        <div className={css.mainUser}>
-          <h1>Пользователи</h1>
-          {user.map((item) => {
-            return (
-              <>
-                <div className={css.loginDiv}>
-                  <div>{item.login}</div>
-                  <div>{item.role}</div>
-                  {item.role === "admin" ? (
-                    <div style={{ width: "34%" }}></div>
-                  ) : (
-                    <button
-                      onClick={() => handleAdmin(item)}
-                      className={css.btn}
-                    >
-                      {(item.role === "user" && "Назначить врачем") ||
-                        (item.role === "doctor" && "Назначить пользователем")}
-                    </button>
-                  )}
-                </div>
-              </>
-            );
-          })}
-        </div>
-        <div className={css.addService}>
-          <div>
-            <button onClick={handleShowServices}>Добавить услугу</button>
+          <div className={css.addService}>
+            <div>
+              <button onClick={handleShowServices}>Добавить услугу</button>
+            </div>
+            <div>
+              <button onClick={handleShowDrugs}>Добавить лекарство</button>
+            </div>
           </div>
-          <div>
-            <button onClick={handleShowDrugs}>Добавить лекарство</button>
+        </div>
+        <div className={css.main_employees}>
+          <div className={css.mainUser}>
+            <h1 className={css.users}>Сотрудники</h1>
+            <div className={css.doctor_conteyner}>
+              {user.map((item) => {
+                if (item.role !== "admin" && item.role === "doctor") {
+                  return (
+                    <>
+                      <div className={css.loginDivDoctor}>
+                        <div>{item.login}</div>
+                        <div>{item.role}</div>
+                        {item.role === "admin" ? (
+                          <div style={{ width: "34%" }}></div>
+                        ) : (
+                          <button
+                            onClick={() => handleAdmin(item)}
+                            className={css.btnDoctor}
+                          >
+                            {item.role === "doctor" && "Уволить"}
+                          </button>
+                        )}
+                      </div>
+                <hr />
+                    </>
+                  );
+                }
+              })}
+            </div>
+          </div>
+          <div className={css.mainUser}>
+            <h1 className={css.users}>Пользователи</h1>
+            {user.map((item) => {
+              if (item.role !== "admin" && item.role !== "doctor") {
+                return (
+                  <>
+                    <div className={css.loginDiv}>
+                      <div>{item.login}</div>
+                      <div>{item.role}</div>
+                      {item.role === "admin" ? (
+                        <div style={{ width: "34%" }}></div>
+                      ) : (
+                        <button
+                          onClick={() => handleAdmin(item)}
+                          className={css.btn}
+                        >
+                          {item.role === "user" && "Назначить врачем"}
+                        </button>
+                      )}
+                    </div>
+                 <hr />
+                  </>
+                );
+              }
+            })}
           </div>
         </div>
       </div>
