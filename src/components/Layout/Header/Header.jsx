@@ -50,7 +50,7 @@ const Header = () => {
   };
   return (
     <>
-      <div fluid className={styles.header}>
+      <div className={styles.header}>
         <div className={styles.headerContent}>
           <Link to={"/"} className={styles.logoCnt}>
             <img className={styles.logo} alt="logo" src={logo} />

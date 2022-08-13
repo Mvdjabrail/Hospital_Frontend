@@ -3,11 +3,14 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  delProduct,
   getCart,
   minusCartIem,
   plusCartIem,
 } from "../../../features/Cart/cartSlice";
 import { getDrugs } from "../../../features/drugs/drugsSlice";
+import { AiFillDelete } from "react-icons/ai";
+import styles from "./cart.module.css";
 
 function CartComponent(props) {
   const cart = useSelector((state) => state.cartReducer.cart);
@@ -22,6 +25,10 @@ function CartComponent(props) {
     dispatch(minusCartIem({ idCart, id }));
   };
 
+  const handleDelete = (idCart, idProduct) => {
+    dispatch(delProduct({ idCart, idProduct }));
+  };
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,6 +40,33 @@ function CartComponent(props) {
   if (!currentCart) {
     return "";
   }
+
+  const arrayPrice = currentCart.products.map((item) => {
+    const drugss = drugs.filter((drug) => drug._id === item.productId);
+    const amount = drugss.map((drug) => drug.price);
+    return amount;
+  });
+
+  const arrayAmount = currentCart.products.map((item) => {
+    return item.amount;
+  });
+
+  function sum() {
+    let arr = [];
+    for (let i = 0; i < arrayAmount.flat().length; i++) {
+      for (let q = 0; q < arrayPrice.flat().length; q++) {
+        if (i === q) {
+          arr.push(arrayAmount[i] * arrayPrice[q]);
+        }
+      }
+    }
+    return arr;
+  }
+
+  const total = !sum().length ? 0 : sum().reduce((item, acc) => (item += acc));
+
+  // console.log(total);
+
   return (
     <>
       <Nav variant="link" onClick={props.handleShow} className="mx-1"></Nav>
@@ -61,15 +95,16 @@ function CartComponent(props) {
                           <td>{drug.title}</td>
                           <td>
                             {" "}
-                            <button
+                            <button className={styles.btn}
                               onClick={() =>
                                 handlePlus(currentCart._id, drug._id)
                               }
                             >
-                              +
+                              +   
                             </button>{" "}
                             {item.amount}
                             <button
+                            className={styles.btn}
                               onClick={() =>
                                 handleMinus(currentCart._id, drug._id)
                               }
@@ -77,13 +112,27 @@ function CartComponent(props) {
                               -
                             </button>
                           </td>
-                          <td>{item.amount * drug.price}</td>
+                          <td>{item.amount * drug.price}₽</td>
+                          <td>
+                            <AiFillDelete
+                              className={styles.icc}
+                              onClick={() =>
+                                handleDelete(currentCart._id, drug._id)
+                              }
+                            />
+                          </td>
                         </tr>
                       </tbody>
                     );
                   }
                 });
               })}
+              <tfoot>
+                <tr>
+                  <td>К оплате</td>
+                  <td>{total} ₽</td>
+                </tr>
+              </tfoot>
             </td>
           </table>
         </Offcanvas.Body>

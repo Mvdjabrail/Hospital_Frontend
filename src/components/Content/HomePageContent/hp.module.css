@@ -98,6 +98,31 @@
 }
 .sliderCnt{
     width: 100%;
-    height: 700px;
-    background-color: black;
+    height: 714px;
+    background: url(../../../assets/slider-2.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: #F1F1F1F1;
 }
+.doc{
+    position: absolute;
+    top: 20%;
+    left: 37.3%;
+    width: 430px;
+    height: 580px;
+}
+/* .info{
+    position: absolute;
+    top: 30%;
+}
+.services{
+    color: #506171;
+    font-size: 50px;
+}
+.iconsCnt{
+    display: flex;
+}
+.icons{
+    margin-left: 7%;
+} */

@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Shop from "./pages/Shop";
 import Contacts from "./pages/ContactsPages";
-import VideoChat from "./components/Content/TelemedContent/VideoChat";
+import Telemed from "./pages/TelemedPage";
 import AdminPage from "./pages/AdminPage";
-import AboutPage from "./pages/AboutUsPage";
-import Room from "./pages/Room";
+import AboutPage from './pages/AboutUsPage'
+import RoomPage from "./pages/RoomPage";
 import User from "./components/Content/UserContent/User";
 import Doctor from "./components/Content/DoctorContent/Doctor";
 import HomePage from "./pages/HomePage";
@@ -22,7 +22,6 @@ function App() {
         <Route path="/*" element={<Layout />}>
           <Route path="contacts" element={<Contacts />}></Route>
           <Route path="shop" element={<Shop />} />
-          <Route path="telemed" element={<VideoChat />} />
             <Route path="" element={<HomePage />} />
             <Route path="departments" element={<Departments />} />
             <Route path="departments/:id" element={<Docs />}/>
@@ -32,8 +31,9 @@ function App() {
             (role === "user" && <Route path="user" element={<User />} />) ||
             (role === "doctor" && <Route path="doctor" element={<Doctor />} />)}
           <Route path="about-us" element={<AboutPage />} />
+          <Route path="telemed" element={<Telemed />} />
         </Route >
-        <Route path="/telemed/room/:id" element={<Room />} />
+        <Route path="/telemed/room/:id" element={<RoomPage />} />
 
       </Routes >
     </BrowserRouter >
