@@ -5,6 +5,8 @@ const initialState = {
    loading: false,
    error: null,
    token: localStorage.getItem('token'),
+   showModal: false,
+   playChat: false,
 }
 
 export const fetchAppointments = createAsyncThunk("appointments/fetch", async (_, thunkAPI) => {
@@ -32,7 +34,7 @@ export const fetchAppointments = createAsyncThunk("appointments/fetch", async (_
    }
 });
 
-export const addAppointment = createAsyncThunk("appointments/add", async ({doctorId, user, service, roomId}, 
+export const addAppointment = createAsyncThunk("appointments/add", async ({ doctorId, user, service, roomId },
    thunkAPI) => {
    try {
       const state = thunkAPI.getState();
@@ -43,7 +45,7 @@ export const addAppointment = createAsyncThunk("appointments/add", async ({docto
                'Content-Type': 'application/json',
                Authorization: `Bearer ${state.usersReducer.token}`,
             },
-            body: JSON.stringify({doctorId, user, service, roomId})
+            body: JSON.stringify({ doctorId, user, service, roomId })
          }
       );
       const appointment = await res.json();
@@ -59,17 +61,17 @@ export const addAppointment = createAsyncThunk("appointments/add", async ({docto
    }
 });
 
-export const updateAppointment = createAsyncThunk("appointments/update", async ({id, dateAndTime}, thunkAPI) => {
+export const updateAppointment = createAsyncThunk("appointments/update", async ({ id, dateAndTime }, thunkAPI) => {
    try {
       const state = thunkAPI.getState();
-      const res = await fetch(`http://localhost:4000/appointments/update/:${id}`,
+      const res = await fetch(`http://localhost:4000/appointments/update/${id}`,
          {
             method: "PATCH",
             headers: {
                'Content-Type': 'application/json',
                Authorization: `Bearer ${state.usersReducer.token}`,
             },
-            body: JSON.stringify({dateAndTime})
+            body: JSON.stringify({ dateAndTime })
          }
       );
       const appointment = await res.json();
@@ -113,7 +115,11 @@ export const deleteAppointment = createAsyncThunk("appointments/delete", async (
 export const appointmentsSlice = createSlice({
    name: "appointments",
    initialState,
-   reducers: {},
+   reducers:  {
+      playChatReducer: (state, action) => {
+         state.playChat = action.payload;
+      }
+   },
 
    extraReducers: (builder) => {
       builder
@@ -132,6 +138,7 @@ export const appointmentsSlice = createSlice({
          .addCase(addAppointment.fulfilled, (state, action) => {
             state.appointments.push(action.payload);
             state.loading = false;
+            state.showModal = false;
             state.error = null;
          })
          .addCase(addAppointment.pending, (state, action) => {
@@ -142,7 +149,12 @@ export const appointmentsSlice = createSlice({
             state.signUp = false;
          })
          .addCase(updateAppointment.fulfilled, (state, action) => {
-            state.appointments = action.payload;
+            state.appointments = state.appointments.map((item) => {
+               if (item._id === action.payload._id) {
+                  return action.payload;
+               }
+               return item;
+            })
             state.loading = false;
             state.error = null;
          })
@@ -168,4 +180,5 @@ export const appointmentsSlice = createSlice({
    }
 });
 
+export const { playChatReducer } = appointmentsSlice.actions;
 export default appointmentsSlice.reducer;

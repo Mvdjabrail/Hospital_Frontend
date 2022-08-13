@@ -1,25 +1,31 @@
 import Container from "@appbaseio/reactivesearch/lib/styles/Container";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAppointments } from "../../../features/appointment/appointmentSlice";
+import { fetchAppointments, playChatReducer, updateAppointment } from "../../../features/appointment/appointmentSlice";
 import css from "./doctor.module.css";
-import date from "date-and-time";
 import DateTimePicker from 'react-datetime-picker';
-// import DateTimeField from "react-bootstrap-datetimepicker";
-import { DateTime } from 'react-datetime-bootstrap';
+import { TiInputCheckedOutline } from "react-icons/ti";
+import { getUsers } from "../../../features/users/userSlice";
+import { BsCollectionPlayFill } from "react-icons/bs";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
+
 
 const Doctor = () => {
    const dispatch = useDispatch();
 
    const [photo, setPhoto] = useState("");
    const [preview, setPreview] = useState("");
-   const user = useSelector((state) => state.usersReducer.users);
+   const users = useSelector((state) => state.usersReducer.users);
    const userId = localStorage.getItem("userId");
 
    const appointments = useSelector((state) => state.appointmentsReducer.appointments);
-   const appointmentsDoctor = appointments.filter((appointment) => appointment.doctorId._id === userId);
-   const [value, onChange] = useState(new Date());
-   console.log(appointments);
+   const playChat = useSelector((state) => state.appointmentsReducer.playChat);
+
+   const appointmentsDoctor = appointments.filter((appointment) => appointment.doctorId === userId);
+   const [dateAndTime, setDateAndTime] = useState(new Date());
+
+   const navigate = useNavigate();
 
    useEffect(() => {
       if (photo) {
@@ -34,8 +40,17 @@ const Doctor = () => {
    }, [dispatch, photo]);
 
    useEffect(() => {
+      dispatch(getUsers())
       dispatch(fetchAppointments());
    }, [dispatch]);
+
+   const handleAddDateAndTime = (id) => {
+      dispatch(updateAppointment({ id, dateAndTime }));
+   }
+
+   const handleEnterChat = (roomId) => {
+      navigate(`../telemed/room/${roomId}`);
+   }
 
    return (
       <>
@@ -53,20 +68,49 @@ const Doctor = () => {
                         </tr>
                      </thead>
                      <tbody>
-                        {appointmentsDoctor.map((appoint, index) => {
-                           return (
-                              <tr key={index}>
-                                 <th>{index + 1}</th>
-                                 <th>{appoint.user.lastName} {appoint.user.firstName[0]}.</th>
-                                 <th>
-                                    <DateTimePicker
-                                       onChange={onChange}
-                                       value={value}
-                                    />
-                                 </th>
-                              </tr>
+                        
+                        {appointmentsDoctor?.map((appoint, index) => {
+                           return users.map(item => {
+                              if (appoint.user === item._id) {
+                                 
+                                 let diffTime = setTimeout(function work() {
+                                    const startDate = moment(moment(appoint.dateAndTime).format("YYYY-MM-DD HH:mm"));
+                                    const endDate = moment(moment().format("YYYY-MM-DD HH:mm"));
 
-                           )
+                                    dispatch(playChatReducer(startDate.diff(endDate, "minutes") < 5))
+
+                                    diffTime = setTimeout(work, 60000)
+                                 }, 60000)
+                                 return (
+                                    <tr key={index}>
+                                       <th>{index + 1}</th>
+                                       <th>{item.lastName} {item.firstName[0]}.</th>
+                                       <th>
+                                          {appoint.dateAndTime ?
+                                             moment(appoint.dateAndTime).format("YYYY-MM-DD HH:mm")
+                                             :
+                                             <>
+                                                <DateTimePicker
+                                                   onChange={setDateAndTime}
+                                                   value={dateAndTime}
+                                                />
+                                                <button onClick={() => handleAddDateAndTime(appoint._id)}
+                                                   style={{ border: "none", background: "transparent" }}>
+                                                   <TiInputCheckedOutline size={35} color="#3695eb" />
+                                                </button>
+                                             </>
+                                          }
+                                       </th>
+                                       <th>
+                                          <button disabled={playChat} onClick={() => handleEnterChat(appoint.roomId)}
+                                             style={{ background: "transparent", border: "none" }}>
+                                             <BsCollectionPlayFill color={playChat ? "red" : "#3695eb" } size={20} />
+                                          </button>
+                                       </th>
+                                    </tr>
+                                 )
+                              }
+                           })
                         })}
 
                      </tbody>
@@ -126,12 +170,12 @@ const Doctor = () => {
                   >
                      Account
                   </div>
-                  {user.map((user) => {
+                  {users.map((user, index) => {
                      return (
                         <>
                            {user._id === userId && (
                               <>
-                                 <div
+                                 <div key={index}
                                     style={{
                                        display: "flex",
                                        justifyContent: "space-between",

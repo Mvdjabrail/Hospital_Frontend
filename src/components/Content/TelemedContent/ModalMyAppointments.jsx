@@ -2,10 +2,12 @@ import { Modal } from 'react-bootstrap';
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAppointments, deleteAppointment } from "../../../features/appointment/appointmentSlice";
+import { getUsers } from "../../../features/users/userSlice";
 import { MdDelete } from "react-icons/md";
 import styles from "./Telemed.module.css";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import moment from 'moment';
 
 const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
     const userId = localStorage.getItem("userId");
@@ -13,12 +15,14 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
     const navigate = useNavigate();
 
     const appointments = useSelector((state) => state.appointmentsReducer.appointments);
+    const users = useSelector((state) => state.usersReducer.users);
 
-    const appointmentsUser = appointments.filter((appointment) => appointment.user._id === userId);
+    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getUsers());
         dispatch(fetchAppointments());
     }, [dispatch]);
 
@@ -61,31 +65,34 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {appointmentsUser.map((appoint, index) => {
-                            const date = appoint.dateAndTime ? 
-                            `${appoint.dateAndTime.slice(0, 10)} ${appoint.dateAndTime.slice(11, 16)}`
-                            :
-                            "ожидайте..."
-                            return (
-                                <tr key={index}>
-                                    <th scope="row">{index + 1}</th>
-                                    <td>{appoint.doctorId.lastName} {appoint.doctorId.firstName[0]}.</td>
-                                    <td>{appoint.service.title}</td>
-                                    <td>{date}</td>
-                                    <td className={styles.text_align}
-                                    onClick={() => handleEnterChat(appoint.roomId)}>
-                                        <button className={styles.btnDelAppoint}>
-                                            <BsCollectionPlayFill color="red" size={20} />
-                                        </button>
-                                    </td>
-                                    <td className={styles.text_align}>
-                                        <button className={styles.btnDelAppoint}
-                                            onClick={() => handleDeleteAppoinment(appoint._id)}>
-                                            <MdDelete color="red" size={20} />
-                                        </button>
-                                    </td>
-                                </tr>
-                            )
+                        {appointmentsUser?.map((appoint, index) => {
+                            return users.map(user => {
+                                if (appoint.doctorId === user._id) {                                    const date = appoint.dateAndTime ?
+                                        moment(appoint.dateAndTime).format("DD.MM.YYYY HH: mm")
+                                        :
+                                        "ожидайте..."
+                                    return (
+                                        <tr key={index}>
+                                            <th scope="row">{index + 1}</th>
+                                            <td>{user.lastName} {user.firstName[0]}.</td>
+                                            <td>{appoint.service.title}</td>
+                                            <td>{date}</td>
+                                            <td className={styles.text_align}
+                                                onClick={() => handleEnterChat(appoint.roomId)}>
+                                                <button className={styles.btnDelAppoint}>
+                                                    <BsCollectionPlayFill color="red" size={20} />
+                                                </button>
+                                            </td>
+                                            <td className={styles.text_align}>
+                                                <button className={styles.btnDelAppoint}
+                                                    onClick={() => handleDeleteAppoinment(appoint._id)}>
+                                                    <MdDelete color="red" size={20} />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                            })
                         })}
                     </tbody>
                 </table>

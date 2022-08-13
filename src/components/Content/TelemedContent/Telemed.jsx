@@ -23,7 +23,7 @@ const Telemed = () => {
 
     const appointments = useSelector((state) => state.appointmentsReducer.appointments);
     const userId = localStorage.getItem("userId");
-    const appointmentsUser = appointments.filter((appointment) => appointment.user._id === userId);
+    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
     const [showModalAppoint, setShowModalAppoint] = useState(false);
     const [showModalMyAppoint, setShowModalMyAppoint] = useState(false);
 
@@ -51,7 +51,7 @@ const Telemed = () => {
                 </Pulse>
             </Container>
             <Container style={{ padding: "15px", boxShadow: "0px 0px 16px 0px rgba(34, 60, 80, 0.6) inset" }}>
-                <Container style={{ boxShadow: "0px 0px 16px 0px rgba(34, 60, 80, 0.6) inset" }}>
+                <Container >
                     <h2>Консультации в режиме реального времени </h2>
                     <p><span>Телемедицинские технологии</span> — позволяют в реальном масштабе времени вести прямой аудио-видеодиалог между врачами,
                         пациентом и его родственниками. Возможности телемедицины: телеконсультирование, телеобучение, теленаставничество,

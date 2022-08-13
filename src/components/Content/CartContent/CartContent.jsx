@@ -65,8 +65,6 @@ function CartComponent(props) {
 
   const total = !sum().length ? 0 : sum().reduce((item, acc) => (item += acc));
 
-  // console.log(total);
-
   return (
     <>
       <Nav variant="link" onClick={props.handleShow} className="mx-1"></Nav>

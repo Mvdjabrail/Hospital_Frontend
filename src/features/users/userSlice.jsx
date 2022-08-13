@@ -18,7 +18,6 @@ export const getUsers = createAsyncThunk("users/get", async (_, thunkAPI) => {
   try {
     const res = await fetch("http://localhost:4000/user");
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

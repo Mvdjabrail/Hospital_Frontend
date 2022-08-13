@@ -62,7 +62,6 @@ const Docs = () => {
   function handleAllRating() {
     const reviewsCount =
       reviews && reviews.filter((item) => item.servicesId === id);
-    console.log(reviews);
     const average = reviewsCount.map((item) => {
       let result = 0;
       for (let i = 0; i < item.rating; i++) {
