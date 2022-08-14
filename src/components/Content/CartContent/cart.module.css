@@ -9,3 +9,16 @@
     border: none;
     font-size: 20px;
 }
+
+.titlePrice {
+    display: flex;
+    flex-direction: column;
+}
+
+tbody td {
+    width: 100px;
+}
+
+/* .div1 {
+    margin-bottom: 7%;
+} */

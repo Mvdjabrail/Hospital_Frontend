@@ -132,7 +132,6 @@ const Header = () => {
                     className="mx-1"
                   >
                             {<BsCart4 size={30} color={"#3695eb"} />}
-
                   </Button>
                 </Nav>
                    
