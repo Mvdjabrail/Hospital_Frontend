@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAppointments } from "../../../features/appointment/appointmentSlice";
 import css from "./doctor.module.css";
 import DateTimePicker from 'react-datetime-picker';
+import { getUsers } from "../../../features/users/userSlice";
 // import DateTimeField from "react-bootstrap-datetimepicker";
 
 const Doctor = () => {
@@ -17,7 +18,6 @@ const Doctor = () => {
    const appointments = useSelector((state) => state.appointmentsReducer.appointments);
    const appointmentsDoctor = appointments.filter((appointment) => appointment.doctorId._id === userId);
    const [value, onChange] = useState(new Date());
-   console.log(appointments);
 
    useEffect(() => {
       if (photo) {
@@ -32,6 +32,7 @@ const Doctor = () => {
    }, [dispatch, photo]);
 
    useEffect(() => {
+      dispatch(getUsers())
       dispatch(fetchAppointments());
    }, [dispatch]);
 
