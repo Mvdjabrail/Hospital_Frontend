@@ -1,5 +1,5 @@
 .admin_page {
-  width: 100%;
+  width: 95vw;
   margin: 30px;
   margin-top: 7.5vw;
   padding: 0;
@@ -8,18 +8,21 @@
 
 .admin_page_content {
   width: 100%;
+  
 }
 .mainNovost {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 10%;
+  
 }
 
 .divNovost {
   display: flex;
   flex-direction: column;
   width: 30%;
+  
 }
 
 .createImage {
@@ -31,11 +34,13 @@
   align-content: space-around;
   justify-content: center;
   margin-bottom: 40px;
+  
 }
 
 .divImg {
   margin-top: 40px;
   margin-bottom: 40px;
+  
 }
 
 .img2 {
@@ -45,6 +50,7 @@
   height: 250px;
   margin-left: 20%;
   border-radius: 50%;
+  
 }
 
 .img1 {
@@ -57,6 +63,7 @@
 .input_block {
   margin-top: 120px;
   width: 30%;
+  
 }
 
 .addDiv {
@@ -64,6 +71,7 @@
   display: flex;
   align-items: center;
   margin-top: 15%;
+  
 }
 
 .add {
