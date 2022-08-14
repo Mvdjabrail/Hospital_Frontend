@@ -93,6 +93,7 @@ const Doctor = () => {
                                                 <DateTimePicker
                                                    onChange={setDateAndTime}
                                                    value={dateAndTime}
+                                                   minDate = {new Date()}
                                                 />
                                                 <button onClick={() => handleAddDateAndTime(appoint._id)}
                                                    style={{ border: "none", background: "transparent" }}>

@@ -60,15 +60,16 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
                             <th scope="col">Доктор</th>
                             <th scope="col">Услуга</th>
                             <th scope="col">Дата назначения</th>
-                            <th scope="col">Зайти</th>
+                            <th scope="col">Войти</th>
                             <th scope="col">Отменить</th>
                         </tr>
                     </thead>
                     <tbody>
                         {appointmentsUser?.map((appoint, index) => {
                             return users.map(user => {
-                                if (appoint.doctorId === user._id) {                                    const date = appoint.dateAndTime ?
-                                        moment(appoint.dateAndTime).format("DD.MM.YYYY HH: mm")
+                                if (appoint.doctorId === user._id) {
+                                    const date = appoint.dateAndTime ?
+                                        moment(appoint.dateAndTime).format("DD.MM.YYYY HH:mm")
                                         :
                                         "ожидайте..."
                                     return (
