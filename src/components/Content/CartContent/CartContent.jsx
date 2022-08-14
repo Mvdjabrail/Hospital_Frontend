@@ -79,32 +79,45 @@ function CartComponent(props) {
             <td>
               <thead>
                 <tr>
-                  <th>Цена</th>
-                  <th>Продукт</th>
+                  {/* <th>Цена</th> */}
+                  {/* <th>Продукт</th>
                   <th>Количество</th>
-                  <th>Сумма</th>
+                  <th>Сумма</th> */}
                 </tr>
               </thead>
+              <tbody>
               {currentCart.products?.map((item) => {
                 return drugs.map((drug) => {
                   if (item.productId === drug._id) {
                     return (
-                      <tbody>
+                      // <div className={styles.div1}>
                         <tr>
-                          <td>{drug.price}₽</td>
-                          <td>{drug.title}</td>
+                          {/* <td>{drug.price}₽</td> */}
                           <td>
                             {" "}
-                            <button className={styles.btn}
+                            <img
+                              alt="pic"
+                              className={styles.img}
+                              src={`http://localhost:4000/${drug.image}`}
+                            />
+                          </td>
+                          <td className={styles.titlePrice}>
+                            <th>{drug.price}₽</th>
+                            <th>{drug.title}</th>
+                          </td>
+                          <td>
+                            {" "}
+                            <button
+                              className={styles.btn}
                               onClick={() =>
                                 handlePlus(currentCart._id, drug._id)
                               }
                             >
-                              +   
+                              +
                             </button>{" "}
                             {item.amount}
                             <button
-                            className={styles.btn}
+                              className={styles.btn}
                               onClick={() =>
                                 handleMinus(currentCart._id, drug._id)
                               }
@@ -122,11 +135,12 @@ function CartComponent(props) {
                             />
                           </td>
                         </tr>
-                      </tbody>
+                      // </div>
                     );
                   }
                 });
               })}
+              </tbody>
               <tfoot>
                 <tr>
                   <td>К оплате</td>
