@@ -91,9 +91,8 @@ const UserContent = () => {
                           className={css.prof}
                           style={{ marginBottom: "2%" }}
                         >
-                          Имя:
+                          Имя: {user.firstName}
                         </div>
-                        <div>{user.firstName}</div>
                       </div>
                       <hr />
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -101,9 +100,8 @@ const UserContent = () => {
                           className={css.prof}
                           style={{ marginBottom: "2%" }}
                         >
-                          Фамилия:
+                          Фамилия: {user.lastName}
                         </div>
-                        <div>{user.lastName}</div>
                       </div>
                       <hr />
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -111,15 +109,12 @@ const UserContent = () => {
                           className={css.prof}
                           style={{ marginBottom: "2%" }}
                         >
-                          Почта:
+                          Почта: {user.email}
                         </div>
-                        <div>{user.email}</div>
-                        <hr />
                       </div>
                       <hr />
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <div className={css.prof}>Баланс:</div>
-                        <div>{user.total}₽</div>
+                        <div className={css.prof}>Баланс: {user.total} 1₽</div>
                       </div>
                     </>
                   )}
