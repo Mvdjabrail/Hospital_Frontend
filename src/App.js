@@ -20,21 +20,20 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<Layout />}>
-          <Route path="contacts" element={<Contacts />}></Route>
-          <Route path="shop" element={<Shop />} />
-            <Route path="" element={<HomePage />} />
-            <Route path="departments" element={<Departments />} />
-            <Route path="departments/:id" element={<Docs />}/>
           {(role === "admin" && (
             <Route path="admin" element={<AdminPage />} />
           )) ||
             (role === "user" && <Route path="user" element={<User />} />) ||
             (role === "doctor" && <Route path="doctor" element={<Doctor />} />)}
+          <Route path="contacts" element={<Contacts />}></Route>
+          <Route path="shop" element={<Shop />} />
+          <Route path="" element={<HomePage />} />
+          <Route path="departments" element={<Departments />} />
+          <Route path="departments/:id" element={<Docs />} />
           <Route path="about-us" element={<AboutPage />} />
           <Route path="telemed" element={<Telemed />} />
         </Route >
         <Route path="/telemed/room/:id" element={<RoomPage />} />
-
       </Routes >
     </BrowserRouter >
   );

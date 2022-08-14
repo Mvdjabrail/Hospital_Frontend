@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAppointments } from "../../../features/appointment/appointmentSlice";
 import css from "./doctor.module.css";
 // import date from "date-and-time";
+
 import DateTimePicker from 'react-datetime-picker';
 import { getUsers } from "../../../features/users/userSlice";
 // import DateTimeField from "react-bootstrap-datetimepicker";
 // import { DateTime } from 'react-datetime-bootstrap';
+
 
 const Doctor = () => {
    const dispatch = useDispatch();
