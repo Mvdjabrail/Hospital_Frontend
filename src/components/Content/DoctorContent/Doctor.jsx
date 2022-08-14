@@ -3,9 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAppointments } from "../../../features/appointment/appointmentSlice";
 import css from "./doctor.module.css";
+// import date from "date-and-time";
+
 import DateTimePicker from 'react-datetime-picker';
 import { getUsers } from "../../../features/users/userSlice";
 // import DateTimeField from "react-bootstrap-datetimepicker";
+// import { DateTime } from 'react-datetime-bootstrap';
+
 
 const Doctor = () => {
    const dispatch = useDispatch();
@@ -13,6 +17,7 @@ const Doctor = () => {
    const [photo, setPhoto] = useState("");
    const [preview, setPreview] = useState("");
    const user = useSelector((state) => state.usersReducer.users);
+   // const user = useSelector((state) => state.usersReducer.users);
    const userId = localStorage.getItem("userId");
 
    const appointments = useSelector((state) => state.appointmentsReducer.appointments);
@@ -20,6 +25,7 @@ const Doctor = () => {
    const [value, onChange] = useState(new Date());
 
    useEffect(() => {
+      console.log(user, userId);
       if (photo) {
          const reader = new FileReader();
          reader.onloadend = () => {
@@ -32,7 +38,10 @@ const Doctor = () => {
    }, [dispatch, photo]);
 
    useEffect(() => {
-      dispatch(getUsers())
+      dispatch(getUsers());
+    }, [dispatch]);
+
+   useEffect(() => {
       dispatch(fetchAppointments());
    }, [dispatch]);
 
