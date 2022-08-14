@@ -23,7 +23,6 @@ const Doctor = () => {
    const appointments = useSelector((state) => state.appointmentsReducer.appointments);
    const appointmentsDoctor = appointments.filter((appointment) => appointment.doctorId._id === userId);
    const [value, onChange] = useState(new Date());
-   console.log(appointments);
 
    useEffect(() => {
       console.log(user, userId);
