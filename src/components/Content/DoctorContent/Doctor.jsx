@@ -1,7 +1,7 @@
 import Container from "@appbaseio/reactivesearch/lib/styles/Container";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAppointments, playChatReducer, updateAppointment } from "../../../features/appointment/appointmentSlice";
+import { fetchAppointments, playChatReducer, updateAppointment, deleteAppointment } from "../../../features/appointment/appointmentSlice";
 import css from "./doctor.module.css";
 import DateTimePicker from 'react-datetime-picker';
 import { TiInputCheckedOutline } from "react-icons/ti";
@@ -9,6 +9,7 @@ import { getUsers } from "../../../features/users/userSlice";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
 
 const Doctor = () => {
    const dispatch = useDispatch();
@@ -51,6 +52,10 @@ const Doctor = () => {
       navigate(`../telemed/room/${roomId}`);
    }
 
+   const handleDeleteAppoinment = (id) => {
+      dispatch(deleteAppointment(id));
+  }
+
    return (
       <>
          <div className={css.pacientConteyner}>
@@ -60,18 +65,19 @@ const Doctor = () => {
                   <table className="table table-hover">
                      <thead >
                         <tr>
-                           <th scope="col">#</th>
+                           <th style={{width: "5%"}} scope="col">#</th>
                            <th scope="col">Пациент</th>
                            <th scope="col">Дата и время назначения</th>
-                           <th scope="col">Начать</th>
+                           <th style={{width: "10%", textAlign: "center"}}  scope="col">Начать</th>
+                           <th style={{width: "15%", textAlign: "center"}}  scope="col">Отменить</th>
                         </tr>
                      </thead>
                      <tbody>
-                        
+
                         {appointmentsDoctor?.map((appoint, index) => {
                            return users.map(item => {
                               if (appoint.user === item._id) {
-                                 
+
                                  let diffTime = setTimeout(function work() {
                                     const startDate = moment(moment(appoint.dateAndTime).format("YYYY-MM-DD HH:mm"));
                                     const endDate = moment(moment().format("YYYY-MM-DD HH:mm"));
@@ -82,9 +88,9 @@ const Doctor = () => {
                                  }, 60000)
                                  return (
                                     <tr key={index}>
-                                       <th>{index + 1}</th>
-                                       <th>{item.lastName} {item.firstName[0]}.</th>
-                                       <th>
+                                       <td>{index + 1}</td>
+                                       <td>{item.lastName} {item.firstName[0]}.</td>
+                                       <td>
                                           {appoint.dateAndTime ?
                                              moment(appoint.dateAndTime).format("YYYY-MM-DD HH:mm")
                                              :
@@ -92,7 +98,7 @@ const Doctor = () => {
                                                 <DateTimePicker
                                                    onChange={setDateAndTime}
                                                    value={dateAndTime}
-                                                   minDate = {new Date()}
+                                                   minDate={new Date()}
                                                 />
                                                 <button onClick={() => handleAddDateAndTime(appoint._id)}
                                                    style={{ border: "none", background: "transparent" }}>
@@ -100,13 +106,19 @@ const Doctor = () => {
                                                 </button>
                                              </>
                                           }
-                                       </th>
-                                       <th>
-                                          <button disabled={playChat} onClick={() => handleEnterChat(appoint.roomId)}
+                                       </td>
+                                       <td style={{textAlign: "center"}}>
+                                          <button disabled={!playChat[index]} onClick={() => handleEnterChat(appoint.roomId)}
                                              style={{ background: "transparent", border: "none" }}>
-                                             <BsCollectionPlayFill color={playChat ? "red" : "#3695eb" } size={20} />
+                                             <BsCollectionPlayFill color={playChat[index] ? "#3695eb" : "red"} size={20} />
                                           </button>
-                                       </th>
+                                       </td>
+                                       <td style={{textAlign: "center"}}>
+                                          <button className={css.btnDelAppoint}
+                                             onClick={() => handleDeleteAppoinment(appoint._id)}>
+                                             <MdDelete color="red" size={20} />
+                                          </button>
+                                       </td>
                                     </tr>
                                  )
                               }

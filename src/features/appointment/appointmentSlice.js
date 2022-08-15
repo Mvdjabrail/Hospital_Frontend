@@ -6,7 +6,7 @@ const initialState = {
    error: null,
    token: localStorage.getItem('token'),
    showModal: false,
-   playChat: false,
+   playChat: [],
 }
 
 export const fetchAppointments = createAsyncThunk("appointments/fetch", async (_, thunkAPI) => {
@@ -117,7 +117,7 @@ export const appointmentsSlice = createSlice({
    initialState,
    reducers:  {
       playChatReducer: (state, action) => {
-         state.playChat = action.payload;
+         state.playChat.push(action.payload);
       }
    },
 
