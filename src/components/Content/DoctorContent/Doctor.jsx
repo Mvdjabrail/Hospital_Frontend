@@ -109,7 +109,7 @@ const Doctor = () => {
                                        </td>
                                        <td style={{textAlign: "center"}}>
                                           <button disabled={!playChat[index]} onClick={() => handleEnterChat(appoint.roomId)}
-                                             style={{ background: "transparent", border: "none" }}>
+                                             style={{background: "transparent", border: "none" }}>
                                              <BsCollectionPlayFill color={playChat[index] ? "#3695eb" : "red"} size={20} />
                                           </button>
                                        </td>
