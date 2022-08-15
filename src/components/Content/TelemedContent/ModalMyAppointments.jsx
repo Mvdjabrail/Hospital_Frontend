@@ -56,7 +56,7 @@ const ModalAppointments = (showModalMyAppoint, setShowModalMyAppoint) => {
                 <table className="table table-hover">
                     <thead >
                         <tr>
-                            <th scope="col">#</th>
+                            <th style={{width: "6%"}} scope="col" >#</th>
                             <th scope="col">Доктор</th>
                             <th scope="col">Услуга</th>
                             <th scope="col">Дата назначения</th>
