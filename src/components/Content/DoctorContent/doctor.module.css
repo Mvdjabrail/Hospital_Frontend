@@ -159,3 +159,8 @@
     margin-left: 9vw;
     position: absolute;
   }
+
+  .btnDelAppoint {
+    background: transparent;
+    border: none;
+}
