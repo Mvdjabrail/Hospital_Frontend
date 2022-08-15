@@ -3,18 +3,26 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAppointments, playChatReducer, updateAppointment } from "../../../features/appointment/appointmentSlice";
 import css from "./doctor.module.css";
+// import date from "date-and-time";
+
 import DateTimePicker from 'react-datetime-picker';
+
 import { TiInputCheckedOutline } from "react-icons/ti";
 import { getUsers } from "../../../features/users/userSlice";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+// import DateTimeField from "react-bootstrap-datetimepicker";
+// import { DateTime } from 'react-datetime-bootstrap';
+
+
 
 const Doctor = () => {
    const dispatch = useDispatch();
 
    const [photo, setPhoto] = useState("");
    const [preview, setPreview] = useState("");
+
    const users = useSelector((state) => state.usersReducer.users);
    const userId = localStorage.getItem("userId");
 
@@ -26,7 +34,16 @@ const Doctor = () => {
 
    const navigate = useNavigate();
 
+   const user = useSelector((state) => state.usersReducer.users);
+   // const user = useSelector((state) => state.usersReducer.users);
+   const userId = localStorage.getItem("userId");
+
+   const appointments = useSelector((state) => state.appointmentsReducer.appointments);
+   const appointmentsDoctor = appointments.filter((appointment) => appointment.doctorId._id === userId);
+   const [value, onChange] = useState(new Date());
+
    useEffect(() => {
+      console.log(user, userId);
       if (photo) {
          const reader = new FileReader();
          reader.onloadend = () => {
@@ -41,7 +58,7 @@ const Doctor = () => {
    useEffect(() => {
       dispatch(getUsers())
       dispatch(fetchAppointments());
-   }, [dispatch]);
+    }, [dispatch]);
 
    const handleAddDateAndTime = (id) => {
       dispatch(updateAppointment({ id, dateAndTime }));
