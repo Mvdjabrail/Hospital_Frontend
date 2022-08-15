@@ -50,7 +50,6 @@ export const delProduct = createAsyncThunk(
         },
         body: JSON.stringify({ idProduct }),
       });
-      console.log("ID", idProduct);
       const cart = await res.json();
       return cart;
     } catch (error) {

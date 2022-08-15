@@ -26,7 +26,6 @@ export const createReviews = createAsyncThunk(
   "reviews/add",
   async ({ id, rating, text }, thunkAPI) => {
     const state = thunkAPI.getState();
-    console.log(id, rating, text )
     try {
       const res = await fetch(`http://localhost:4000/reviews`, {
         method: "POST",

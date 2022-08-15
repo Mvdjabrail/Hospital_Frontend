@@ -16,6 +16,7 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
    const appointments = useSelector((state) => state.appointmentsReducer.appointments);
 
    const appointmentsUser = appointments.filter((appointment) => appointment.user === userId);
+   const showModal = useSelector((state) => state.appointmentsReducer.showModal);
 
    const [selectedService, setSelectedService] = useState();
    const [selectedDoctor, setSelectedDoctor] = useState();
@@ -81,6 +82,11 @@ const ModalAppointments = (showModalAppoint, setShowModalAppoint) => {
 
       e.preventDefault();
       dispatch(addAppointment({ doctorId, user, service, roomId }));
+
+      setSelectedService("");
+      setSelectedDoctor("");
+
+      setShowModalAppoint(showModal);
    }
 
    return (
