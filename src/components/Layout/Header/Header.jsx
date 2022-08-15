@@ -20,7 +20,6 @@ import { useSelector } from "react-redux";
 import CartComponent from "../../Content/CartContent/CartContent";
 import { BsCart4 } from "react-icons/bs";
 
-
 const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.usersReducer.token);
@@ -131,16 +130,15 @@ const Header = () => {
                     variant="link"
                     className="mx-1"
                   >
-                            {<BsCart4 size={30} color={"#3695eb"} />}
+                    {<BsCart4 size={30} color={"#3695eb"} />}
                   </Button>
                 </Nav>
-                   
 
                 <NavLink
                   to={
                     (role === "admin" && "/admin") ||
                     (role === "user" && "/user") ||
-                    (role === "doctor" && "/doctor") 
+                    (role === "doctor" && "/doctor")
                   }
                 >
                   <Button variant="link" className="mx-1">
@@ -173,13 +171,12 @@ const Header = () => {
       <SignInPage />
       <SignUpPage />
       <CartComponent
-                      handleclose={handleclose}
-                      handleshow={handleshow}
-                      show={opened}
-                      placement={"end"}
-                      name={"end"}
-
-                    />
+        handleclose={handleclose}
+        handleshow={handleshow}
+        show={opened}
+        placement={"end"}
+        name={"end"}
+      />
     </>
   );
 };
